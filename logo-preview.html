@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adonay Beauty School - Logo Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#f0f4f9',
+              100: '#e1e9f3',
+              200: '#c3d3e8',
+              300: '#a5bddc',
+              400: '#2B5A9D',
+              500: '#2B5A9D',
+              600: '#254a7e',
+              700: '#1f3a5f',
+              800: '#192a40',
+              900: '#131d2a',
+            },
+            secondary: {
+              50: '#e8fbf7',
+              100: '#d1f7f0',
+              200: '#a3efe1',
+              300: '#75e7d1',
+              400: '#00BFA5',
+              500: '#00BFA5',
+              600: '#009584',
+              700: '#006b63',
+              800: '#004d42',
+              900: '#003322',
+            },
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-100 p-8">
+  <div class="max-w-6xl mx-auto">
+    <h1 class="text-4xl font-bold text-primary-900 mb-2">Adonay Beauty School</h1>
+    <p class="text-gray-600 mb-8">Logo Preview - Diferentes tamaños</p>
+
+    <!-- 50px -->
+    <div class="mb-12">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">50px (Original Sidebar)</h2>
+      <div class="bg-white p-6 rounded-lg shadow flex items-center">
+        <img src="assets/logo.svg" alt="Logo" style="width: 50px; height: 50px;">
+        <span class="ml-4 text-gray-600">50px x 50px</span>
+      </div>
+    </div>
+
+    <!-- 100px -->
+    <div class="mb-12">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">100px (Mediano)</h2>
+      <div class="bg-white p-8 rounded-lg shadow flex items-center">
+        <img src="assets/logo.svg" alt="Logo" style="width: 100px; height: 100px;">
+        <span class="ml-6 text-gray-600">100px x 100px</span>
+      </div>
+    </div>
+
+    <!-- 200px -->
+    <div class="mb-12">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">200px (Grande)</h2>
+      <div class="bg-white p-12 rounded-lg shadow flex justify-center items-center min-h-64">
+        <img src="assets/logo.svg" alt="Logo" style="width: 200px; height: 200px;">
+      </div>
+    </div>
+
+    <!-- 300px -->
+    <div class="mb-12">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">300px (Muy Grande)</h2>
+      <div class="bg-white p-16 rounded-lg shadow flex justify-center items-center min-h-96">
+        <img src="assets/logo.svg" alt="Logo" style="width: 300px; height: 300px;">
+      </div>
+    </div>
+
+    <!-- En sidebar azul -->
+    <div class="mt-12">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Logo en contexto de Sidebar (200px)</h2>
+      <div class="flex">
+        <div class="bg-gradient-to-b from-primary-600 to-primary-700 text-white p-8 rounded-lg shadow w-64 flex flex-col items-center">
+          <img src="assets/logo.svg" alt="Logo" style="width: 200px; height: 200px;" class="mb-4">
+          <h1 class="text-2xl font-serif font-bold">Adonay</h1>
+          <p class="text-secondary-300 text-sm">Beauty School</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info -->
+    <div class="mt-12 bg-blue-50 p-6 rounded-lg border border-blue-200">
+      <h3 class="text-lg font-bold text-blue-900 mb-2">ℹ️ Recomendación</h3>
+      <p class="text-blue-800">
+        El logo se ve excelente en <strong>200px</strong>. Es lo suficientemente grande para ser impactante pero no tan grande que sea excesivo.
+        <br><br>
+        <strong>Sugerencias de uso:</strong>
+      </p>
+      <ul class="list-disc list-inside text-blue-800 mt-2 space-y-1">
+        <li><strong>50-100px</strong>: En sidebars, navbars, favicons</li>
+        <li><strong>150-200px</strong>: En portadas, headers principales</li>
+        <li><strong>200-300px</strong>: En landing pages, presentaciones</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
