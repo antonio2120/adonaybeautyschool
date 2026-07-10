@@ -247,90 +247,303 @@
         </div>
       </div>
 
+      <!-- Role Selector -->
+      <div class="px-4 py-3 border-b border-primary-600">
+        <p class="text-xs uppercase text-secondary-300 font-semibold tracking-wide mb-2">Selecciona tu rol</p>
+        <div class="space-y-2 flex flex-col">
+          <button class="role-btn w-full px-3 py-2 rounded-lg text-sm font-medium text-left transition-all border-2"
+                  data-role="student" style="border-color: rgba(0, 191, 165, 0.5); background-color: rgba(0, 191, 165, 0.1); color: #00BFA5;">
+            👨‍🎓 Estudiante
+          </button>
+          <button class="role-btn w-full px-3 py-2 rounded-lg text-sm font-medium text-left transition-all border-2"
+                  data-role="instructor" style="border-color: rgba(255, 255, 255, 0.2); background-color: transparent; color: rgba(255, 255, 255, 0.7);">
+            👨‍🏫 Instructor/Personal
+          </button>
+          <button class="role-btn w-full px-3 py-2 rounded-lg text-sm font-medium text-left transition-all border-2"
+                  data-role="admin" style="border-color: rgba(255, 255, 255, 0.2); background-color: transparent; color: rgba(255, 255, 255, 0.7);">
+            👨‍💼 Administración
+          </button>
+        </div>
+      </div>
+
       <!-- Navigation Menu -->
-      <nav class="p-4">
-        <div class="space-y-2">
-          <!-- Dashboard -->
-          <a href="#" data-nav="dashboard" class="nav-link px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+      <nav class="p-4 overflow-y-auto flex-1">
+        <div class="space-y-2" id="nav-menu">
+          <!-- Dashboard (para todos) -->
+          <a href="#" data-nav="dashboard" data-roles="student,instructor,admin" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-3m2 3l2-3m2 3l2-3m2-1a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
             <span>Dashboard</span>
           </a>
 
-          <!-- Académico -->
-          <div class="pt-2">
-            <p class="text-xs uppercase text-secondary-300 px-4 font-semibold tracking-wide">Académico</p>
-            <a href="#" data-nav="inscripcion" class="nav-link px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
+          <!-- ============ ESTUDIANTE ============ -->
+          <div class="pt-2 menu-section" data-roles="student">
+            <p class="text-xs uppercase text-secondary-300 px-4 font-semibold tracking-wide">Mi Perfil</p>
+            <a href="#" data-nav="mi-perfil" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
               </svg>
-              <span>Inscripción</span>
+              <span>Mis Datos</span>
             </a>
-            <a href="#" data-nav="registro-qr" class="nav-link px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+            <a href="#" data-nav="mi-id" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v10a2 2 0 002 2h5m4 0h5a2 2 0 002-2V8a2 2 0 00-2-2h-5m0 0V5a2 2 0 10-4 0v1m0 0H9m4 0H9m4 0h4"></path>
+              </svg>
+              <span>Mi ID</span>
+            </a>
+          </div>
+
+          <div class="pt-2 menu-section" data-roles="student">
+            <p class="text-xs uppercase text-secondary-300 px-4 font-semibold tracking-wide">Mis Horas</p>
+            <a href="#" data-nav="registro-entrada-salida-student" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span>Entrada/Salida</span>
+            </a>
+            <a href="#" data-nav="mis-practicas" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+              <span>Mis Prácticas</span>
+            </a>
+            <a href="#" data-nav="reporte-horas-student" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+              <span>Reporte de Horas</span>
+            </a>
+          </div>
+
+          <div class="pt-2 menu-section" data-roles="student">
+            <p class="text-xs uppercase text-secondary-300 px-4 font-semibold tracking-wide">Mis Pagos</p>
+            <a href="#" data-nav="estado-pagos-student" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h10m4 0a1 1 0 11-2 0m2 0a1 1 0 10-2 0m-7 4h8a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+              <span>Estado de Pagos</span>
+            </a>
+            <a href="#" data-nav="historial-pagos-student" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span>Historial</span>
+            </a>
+          </div>
+
+          <div class="pt-2 menu-section" data-roles="student">
+            <p class="text-xs uppercase text-secondary-300 px-4 font-semibold tracking-wide">Descargas</p>
+            <a href="#" data-nav="documentos-student" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+              <span>Descargar Documentos</span>
+            </a>
+          </div>
+
+          <div class="pt-2 menu-section" data-roles="student">
+            <p class="text-xs uppercase text-secondary-300 px-4 font-semibold tracking-wide">Solicitudes</p>
+            <a href="#" data-nav="solicitud-permiso-student" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2h-3l-4 4z"></path>
+              </svg>
+              <span>Solicitud de Permiso</span>
+            </a>
+          </div>
+
+          <!-- ============ INSTRUCTOR/PERSONAL ============ -->
+          <div class="pt-2 menu-section" data-roles="instructor">
+            <p class="text-xs uppercase text-secondary-300 px-4 font-semibold tracking-wide">Asistencia</p>
+            <a href="#" data-nav="entrada-salida-qr" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
               </svg>
               <span>Entrada/Salida QR</span>
             </a>
-            <a href="#" data-nav="registro-diario" class="nav-link px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+            <a href="#" data-nav="aprobar-practicas" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
               </svg>
-              <span>Registro de Prácticas</span>
+              <span>Aprobar Prácticas</span>
             </a>
-            <a href="#" data-nav="mis-practicas" class="nav-link px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+            <a href="#" data-nav="solicitudes-permiso" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2h-3l-4 4z"></path>
               </svg>
-              <span>Prácticas registradas</span>
+              <span>Solicitudes de Permiso</span>
             </a>
           </div>
 
-          <!-- Gestión -->
-          <div class="pt-2">
+          <div class="pt-2 menu-section" data-roles="instructor">
+            <p class="text-xs uppercase text-secondary-300 px-4 font-semibold tracking-wide">Estudiantes</p>
+            <a href="#" data-nav="estudiantes-grupo" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.856-1.487M15 10h.01M11 20h5v-2a3 3 0 00-5.856-1.487M11 10h.01M7 20h5v-2a3 3 0 00-5.856-1.487M7 10h.01"></path>
+              </svg>
+              <span>Mi Grupo</span>
+            </a>
+            <a href="#" data-nav="registrar-examenes" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+              </svg>
+              <span>Registrar Exámenes</span>
+            </a>
+          </div>
+
+          <div class="pt-2 menu-section" data-roles="instructor">
+            <p class="text-xs uppercase text-secondary-300 px-4 font-semibold tracking-wide">Reportes</p>
+            <a href="#" data-nav="reporte-asistencia-grupo" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+              <span>Asistencia</span>
+            </a>
+            <a href="#" data-nav="reporte-practicas-grupo" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+              </svg>
+              <span>Prácticas</span>
+            </a>
+            <a href="#" data-nav="reporte-horas-grupo" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span>Horas Cursadas</span>
+            </a>
+          </div>
+
+          <div class="pt-2 menu-section" data-roles="instructor">
+            <p class="text-xs uppercase text-secondary-300 px-4 font-semibold tracking-wide">Perfil</p>
+            <a href="#" data-nav="mi-perfil-instructor" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+              </svg>
+              <span>Mis Datos</span>
+            </a>
+            <a href="#" data-nav="historial-pagos-instructor" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span>Mi Historial de Pagos</span>
+            </a>
+          </div>
+
+          <div class="pt-2 menu-section" data-roles="instructor">
+            <p class="text-xs uppercase text-secondary-300 px-4 font-semibold tracking-wide">Solicitudes</p>
+            <a href="#" data-nav="solicitud-permiso-instructor" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2h-3l-4 4z"></path>
+              </svg>
+              <span>Solicitud de Permiso</span>
+            </a>
+          </div>
+
+          <!-- ============ ADMINISTRACIÓN ============ -->
+          <div class="pt-2 menu-section" data-roles="admin">
+            <p class="text-xs uppercase text-secondary-300 px-4 font-semibold tracking-wide">Inscripciones</p>
+            <a href="#" data-nav="inscripcion" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+              <span>Inscripciones</span>
+            </a>
+            <a href="#" data-nav="registration" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+              </svg>
+              <span>Crear Nuevo Perfil</span>
+            </a>
+          </div>
+
+          <div class="pt-2 menu-section" data-roles="admin">
+            <p class="text-xs uppercase text-secondary-300 px-4 font-semibold tracking-wide">Asistencia & Académico</p>
+            <a href="#" data-nav="registro-qr" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+              </svg>
+              <span>Entrada/Salida QR</span>
+            </a>
+            <a href="#" data-nav="registro-diario" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+              </svg>
+              <span>Registro de Prácticas</span>
+            </a>
+          </div>
+
+          <div class="pt-2 menu-section" data-roles="admin">
+            <p class="text-xs uppercase text-secondary-300 px-4 font-semibold tracking-wide">Solicitudes</p>
+            <a href="#" data-nav="solicitud-permiso-admin" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2h-3l-4 4z"></path>
+              </svg>
+              <span>Solicitudes de Permiso</span>
+            </a>
+          </div>
+
+          <div class="pt-2 menu-section" data-roles="admin">
             <p class="text-xs uppercase text-secondary-300 px-4 font-semibold tracking-wide">Gestión</p>
-            <a href="#" data-nav="estudiantes" class="nav-link px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
+            <a href="#" data-nav="estudiantes" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 8.048M12 4.354l4 4.048M12 4.354l-4 4.048"></path>
               </svg>
               <span>Estudiantes</span>
             </a>
-            <a href="#" data-nav="grupos" class="nav-link px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+            <a href="#" data-nav="grupos" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.856-1.487M15 10h.01M11 20h5v-2a3 3 0 00-5.856-1.487M11 10h.01M7 20h5v-2a3 3 0 00-5.856-1.487M7 10h.01"></path>
               </svg>
               <span>Grupos</span>
             </a>
-            <a href="#" data-nav="practicas" class="nav-link px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+            <a href="#" data-nav="practicas" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
               </svg>
               <span>Prácticas</span>
             </a>
-            <a href="#" data-nav="reportes" class="nav-link px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+          </div>
+
+          <div class="pt-2 menu-section" data-roles="admin">
+            <p class="text-xs uppercase text-secondary-300 px-4 font-semibold tracking-wide">Reportes</p>
+            <a href="#" data-nav="reportes" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
               </svg>
-              <span>Reportes</span>
+              <span>Reportes Generales</span>
             </a>
-            <a href="#" data-nav="payments" class="nav-link px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+          </div>
+
+          <div class="pt-2 menu-section" data-roles="admin">
+            <p class="text-xs uppercase text-secondary-300 px-4 font-semibold tracking-wide">Gestión de Pagos</p>
+            <a href="#" data-nav="payments" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h10m4 0a1 1 0 11-2 0m2 0a1 1 0 10-2 0m-7 4h8a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
               </svg>
               <span>Pagos</span>
             </a>
+            <a href="#" data-nav="pagos" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span>Pagos Alternos</span>
+            </a>
           </div>
 
-          <!-- Admin -->
-          <div class="pt-2">
+          <div class="pt-2 menu-section" data-roles="admin">
             <p class="text-xs uppercase text-secondary-300 px-4 font-semibold tracking-wide">Configuración</p>
-            <a href="#" data-nav="configuracion" class="nav-link px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
+            <a href="#" data-nav="grupos" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.856-1.487M15 10h.01M11 20h5v-2a3 3 0 00-5.856-1.487M11 10h.01M7 20h5v-2a3 3 0 00-5.856-1.487M7 10h.01"></path>
+              </svg>
+              <span>Grupos/Programas</span>
+            </a>
+            <a href="#" data-nav="configuracion" class="nav-link menu-item px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
               </svg>
-              <span>Configuración</span>
+              <span>Ajustes del Sistema</span>
             </a>
           </div>
         </div>

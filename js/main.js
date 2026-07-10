@@ -7,14 +7,78 @@ class BeautySchoolApp {
   constructor() {
     this.currentPage = 'dashboard';
     this.darkMode = localStorage.getItem('darkMode') === 'true';
+    this.currentRole = localStorage.getItem('userRole') || 'student';
     this.init();
   }
 
   init() {
+    this.setupRoleButtons();
     this.setupEventListeners();
     this.restoreSidebarState();
+    this.filterMenuByRole(this.currentRole);
     this.loadPage('dashboard');
     this.setupTheme();
+  }
+
+  setupRoleButtons() {
+    // Setup role buttons
+    document.querySelectorAll('.role-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const selectedRole = btn.getAttribute('data-role');
+        this.setRole(selectedRole);
+      });
+    });
+
+    // Highlight active role button
+    this.updateRoleButtonState();
+  }
+
+  setRole(role) {
+    this.currentRole = role;
+    localStorage.setItem('userRole', role);
+    this.filterMenuByRole(role);
+    this.updateRoleButtonState();
+    this.loadPage('dashboard');
+  }
+
+  updateRoleButtonState() {
+    document.querySelectorAll('.role-btn').forEach(btn => {
+      const role = btn.getAttribute('data-role');
+      if (role === this.currentRole) {
+        btn.style.borderColor = 'rgba(0, 191, 165, 0.8)';
+        btn.style.backgroundColor = 'rgba(0, 191, 165, 0.2)';
+        btn.style.color = '#00BFA5';
+      } else {
+        btn.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+        btn.style.backgroundColor = 'transparent';
+        btn.style.color = 'rgba(255, 255, 255, 0.7)';
+      }
+    });
+  }
+
+  filterMenuByRole(role) {
+    // Hide all sections
+    const allSections = document.querySelectorAll('.menu-section');
+    allSections.forEach(section => {
+      section.style.display = 'none';
+    });
+
+    // Show sections for current role
+    allSections.forEach(section => {
+      const rolesText = section.getAttribute('data-roles');
+      if (rolesText) {
+        const roles = rolesText.split(',').map(r => r.trim());
+        if (roles.includes(role)) {
+          section.style.display = 'block';
+        }
+      }
+    });
+
+    // Always show dashboard
+    const dashboard = document.querySelector('[data-nav="dashboard"]');
+    if (dashboard) {
+      dashboard.style.display = 'flex';
+    }
   }
 
   setupEventListeners() {

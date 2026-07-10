@@ -1,0 +1,190 @@
+<div class="animate-fadeInUp">
+  <!-- Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-serif font-bold text-primary-900 mb-2">Solicitudes de Permiso de Estudiantes</h1>
+    <p class="text-gray-600">Revisa y gestiona las solicitudes de permiso de tus estudiantes</p>
+  </div>
+
+  <!-- Filtros y búsqueda -->
+  <div class="bg-white rounded-lg shadow-md p-6 mb-8 border border-gray-200">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Buscar Estudiante</label>
+        <input type="text" placeholder="Nombre o ID..."
+          class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-secondary-400">
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Estado</label>
+        <select class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-secondary-400">
+          <option value="">Todos</option>
+          <option value="pendiente">Pendientes</option>
+          <option value="aprobada">Aprobadas</option>
+          <option value="rechazada">Rechazadas</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Período</label>
+        <select class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-secondary-400">
+          <option value="">Todas las fechas</option>
+          <option value="esta-semana">Esta semana</option>
+          <option value="este-mes">Este mes</option>
+          <option value="pendientes">Pendientes por vencer</option>
+        </select>
+      </div>
+      <div class="flex items-end">
+        <button class="w-full px-4 py-2 bg-secondary-400 hover:bg-secondary-500 text-white font-semibold rounded-lg transition-colors">
+          Filtrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Estadísticas -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+    <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-yellow-500">
+      <p class="text-sm font-semibold text-gray-600 uppercase tracking-wide">Pendientes</p>
+      <p class="text-4xl font-bold text-yellow-600 mt-2">5</p>
+      <p class="text-xs text-gray-500 mt-1">Esperando aprobación</p>
+    </div>
+    <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-green-500">
+      <p class="text-sm font-semibold text-gray-600 uppercase tracking-wide">Aprobadas</p>
+      <p class="text-4xl font-bold text-green-600 mt-2">12</p>
+      <p class="text-xs text-gray-500 mt-1">Este mes</p>
+    </div>
+    <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-red-500">
+      <p class="text-sm font-semibold text-gray-600 uppercase tracking-wide">Rechazadas</p>
+      <p class="text-4xl font-bold text-red-600 mt-2">2</p>
+      <p class="text-xs text-gray-500 mt-1">Este mes</p>
+    </div>
+    <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-500">
+      <p class="text-sm font-semibold text-gray-600 uppercase tracking-wide">Activas</p>
+      <p class="text-4xl font-bold text-blue-600 mt-2">8</p>
+      <p class="text-xs text-gray-500 mt-1">En período de ausencia</p>
+    </div>
+  </div>
+
+  <!-- Lista de Solicitudes -->
+  <div class="space-y-4">
+    <!-- Solicitud 1 - Pendiente -->
+    <div class="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
+      <div class="p-6">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <h3 class="text-lg font-semibold text-primary-900">María García López</h3>
+            <p class="text-sm text-gray-600">ID: EST-2024-001 • Cosmetology</p>
+          </div>
+          <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm font-semibold rounded-full">Pendiente</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 p-4 bg-gray-50 rounded-lg">
+          <div>
+            <p class="text-xs text-gray-600 uppercase font-semibold">Período</p>
+            <p class="text-sm font-semibold text-gray-800">15 - 17 de Julio 2024</p>
+            <p class="text-xs text-gray-600">(3 días)</p>
+          </div>
+          <div>
+            <p class="text-xs text-gray-600 uppercase font-semibold">Motivo</p>
+            <p class="text-sm font-semibold text-gray-800">Enfermedad</p>
+          </div>
+          <div>
+            <p class="text-xs text-gray-600 uppercase font-semibold">Documento</p>
+            <a href="#" class="text-sm font-semibold text-secondary-600 hover:text-secondary-700">certificado_medico.pdf ↓</a>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <p class="text-xs text-gray-600 uppercase font-semibold mb-2">Descripción</p>
+          <p class="text-sm text-gray-700">Tengo una infección respiratoria y he sido recomendado por mi médico a descansar durante estos días.</p>
+        </div>
+
+        <div class="flex gap-3">
+          <button class="flex-1 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors">
+            ✓ Aprobar
+          </button>
+          <button class="flex-1 px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg transition-colors">
+            ✗ Rechazar
+          </button>
+          <button class="flex-1 px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold rounded-lg transition-colors">
+            Más Información
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Solicitud 2 - Aprobada -->
+    <div class="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
+      <div class="p-6">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <h3 class="text-lg font-semibold text-primary-900">Juan Rodríguez Martinez</h3>
+            <p class="text-sm text-gray-600">ID: EST-2024-002 • Esthetician</p>
+          </div>
+          <span class="px-3 py-1 bg-green-100 text-green-800 text-sm font-semibold rounded-full">Aprobada</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 p-4 bg-gray-50 rounded-lg">
+          <div>
+            <p class="text-xs text-gray-600 uppercase font-semibold">Período</p>
+            <p class="text-sm font-semibold text-gray-800">10 - 12 de Julio 2024</p>
+            <p class="text-xs text-gray-600">(3 días)</p>
+          </div>
+          <div>
+            <p class="text-xs text-gray-600 uppercase font-semibold">Motivo</p>
+            <p class="text-sm font-semibold text-gray-800">Asunto Familiar</p>
+          </div>
+          <div>
+            <p class="text-xs text-gray-600 uppercase font-semibold">Aprobado el</p>
+            <p class="text-sm font-semibold text-gray-800">09 de Julio 2024</p>
+          </div>
+        </div>
+
+        <div class="flex gap-3">
+          <button class="flex-1 px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold rounded-lg transition-colors">
+            Ver Detalles
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Solicitud 3 - Pendiente -->
+    <div class="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
+      <div class="p-6">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <h3 class="text-lg font-semibold text-primary-900">Sofia Hernández López</h3>
+            <p class="text-sm text-gray-600">ID: EST-2024-003 • Nail Technology</p>
+          </div>
+          <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm font-semibold rounded-full">Pendiente</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 p-4 bg-gray-50 rounded-lg">
+          <div>
+            <p class="text-xs text-gray-600 uppercase font-semibold">Período</p>
+            <p class="text-sm font-semibold text-gray-800">20 - 21 de Julio 2024</p>
+            <p class="text-xs text-gray-600">(2 días)</p>
+          </div>
+          <div>
+            <p class="text-xs text-gray-600 uppercase font-semibold">Motivo</p>
+            <p class="text-sm font-semibold text-gray-800">Cita Médica</p>
+          </div>
+          <div>
+            <p class="text-xs text-gray-600 uppercase font-semibold">Documento</p>
+            <a href="#" class="text-sm font-semibold text-secondary-600 hover:text-secondary-700">cita_medica.pdf ↓</a>
+          </div>
+        </div>
+
+        <div class="flex gap-3">
+          <button class="flex-1 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors">
+            ✓ Aprobar
+          </button>
+          <button class="flex-1 px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg transition-colors">
+            ✗ Rechazar
+          </button>
+          <button class="flex-1 px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold rounded-lg transition-colors">
+            Más Información
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
