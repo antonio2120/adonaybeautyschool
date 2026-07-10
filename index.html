@@ -196,6 +196,27 @@
       z-index: 2;
     }
 
+    /* Sidebar Toggle Styles */
+    aside.sidebar-collapsed {
+      width: 0;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    @media (min-width: 768px) {
+      aside.sidebar-collapsed {
+        transform: translateX(-100%);
+      }
+
+      main {
+        transition: margin-left 0.3s ease;
+      }
+
+      main.sidebar-collapsed {
+        margin-left: 0;
+      }
+    }
+
     @import url('css/input.css');
   </style>
 
@@ -213,7 +234,7 @@
     </button>
 
     <!-- Sidebar Navigation -->
-    <aside id="sidebar" class="fixed md:relative w-64 bg-gradient-to-b from-primary-800 to-primary-900 text-white h-screen overflow-y-auto transition-transform transform translate-x-full md:translate-x-0 md:flex-shrink-0 z-40">
+    <aside id="sidebar" class="fixed md:relative w-64 bg-gradient-to-b from-primary-800 to-primary-900 text-white h-screen overflow-y-auto transition-all transform translate-x-full md:translate-x-0 md:flex-shrink-0 z-40 md:w-64 sidebar-visible" data-sidebar-state="visible">
 
       <!-- Logo -->
       <div class="p-6 border-b border-primary-600">
@@ -321,7 +342,12 @@
     <main class="flex-1 overflow-y-auto pt-16 md:pt-0">
       <!-- Top Bar -->
       <header class="fixed md:relative top-0 left-0 right-0 md:left-0 bg-white border-b border-gray-200 px-6 py-4 md:py-6 z-30 flex items-center justify-between">
-        <div class="flex-1 md:flex-none">
+        <div class="flex items-center gap-4 flex-1 md:flex-none">
+          <button id="sidebar-toggle" class="hidden md:block p-2 hover:bg-gray-100 rounded-lg transition-colors" title="Ocultar/Mostrar menú">
+            <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
           <h2 id="page-title" class="text-2xl font-bold text-gray-800">Dashboard</h2>
         </div>
         <div class="flex items-center gap-4">

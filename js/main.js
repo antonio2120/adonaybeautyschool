@@ -12,6 +12,7 @@ class BeautySchoolApp {
 
   init() {
     this.setupEventListeners();
+    this.restoreSidebarState();
     this.loadPage('dashboard');
     this.setupTheme();
   }
@@ -33,6 +34,14 @@ class BeautySchoolApp {
     if (menuToggle) {
       menuToggle.addEventListener('click', () => {
         document.getElementById('sidebar').classList.toggle('translate-x-full');
+      });
+    }
+
+    // Desktop sidebar toggle
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    if (sidebarToggle) {
+      sidebarToggle.addEventListener('click', () => {
+        this.toggleSidebar();
       });
     }
 
@@ -148,6 +157,30 @@ class BeautySchoolApp {
     const sidebar = document.getElementById('sidebar');
     if (sidebar) {
       sidebar.classList.add('translate-x-full');
+    }
+  }
+
+  toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const main = document.querySelector('main');
+    if (sidebar) {
+      sidebar.classList.toggle('sidebar-collapsed');
+      if (main) {
+        main.classList.toggle('sidebar-collapsed');
+      }
+      // Save state to localStorage
+      const isCollapsed = sidebar.classList.contains('sidebar-collapsed');
+      localStorage.setItem('sidebarCollapsed', isCollapsed);
+    }
+  }
+
+  restoreSidebarState() {
+    const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+    if (isCollapsed) {
+      const sidebar = document.getElementById('sidebar');
+      const main = document.querySelector('main');
+      if (sidebar) sidebar.classList.add('sidebar-collapsed');
+      if (main) main.classList.add('sidebar-collapsed');
     }
   }
 
