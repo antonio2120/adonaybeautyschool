@@ -1,6 +1,6 @@
-# Adonis Beauty School - Management System
+# Adonay Beauty School - Management System
 
-A comprehensive web-based management system for Adonis Beauty School with responsive design for PCs, tablets, and mobile devices.
+A comprehensive web-based management system for Adonay Beauty School with responsive design for PCs, tablets, and mobile devices.
 
 ## Features
 
