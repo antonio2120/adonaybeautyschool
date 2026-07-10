@@ -1,0 +1,269 @@
+<div class="animate-fadeInUp">
+  <div class="max-w-3xl mx-auto">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="font-serif text-4xl font-bold text-primary-900 mb-2">Registro Diario de Prácticas</h1>
+      <div class="h-1 w-12 bg-secondary-400 my-3"></div>
+      <p class="text-gray-700">Registra las prácticas realizadas por los estudiantes</p>
+    </div>
+
+    <!-- Registration Form -->
+    <div class="bg-white rounded-lg shadow p-8 mb-8">
+      <form id="registro-form">
+        <!-- Estudiante -->
+        <div class="mb-6">
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Estudiante *</label>
+          <input
+            type="text"
+            id="estudiante-search"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400 focus:ring-2 focus:ring-secondary-100"
+            placeholder="Busca por nombre o ID..."
+            autocomplete="off"
+          >
+          <div id="estudiante-sugerencias" class="mt-2 border border-gray-200 rounded-lg max-h-48 overflow-y-auto hidden bg-white"></div>
+          <input type="hidden" id="estudiante-id" />
+        </div>
+
+        <!-- Estudiante Seleccionado -->
+        <div id="estudiante-seleccionado" class="mb-6 p-4 bg-secondary-50 rounded-lg hidden border border-secondary-200">
+          <div class="flex items-center justify-between">
+            <div>
+              <p id="estudiante-nombre" class="font-bold text-gray-900"></p>
+              <p id="estudiante-programa" class="text-sm text-gray-600"></p>
+            </div>
+            <button type="button" onclick="document.getElementById('estudiante-seleccionado').classList.add('hidden'); document.getElementById('estudiante-search').value = ''; document.getElementById('estudiante-id').value = '';" class="text-red-600 hover:text-red-700 font-semibold">✕</button>
+          </div>
+        </div>
+
+        <!-- Tipo de Práctica -->
+        <div class="mb-6">
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Tipo de Práctica *</label>
+          <select id="tipo-practica" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400 focus:ring-2 focus:ring-secondary-100">
+            <option value="">-- Selecciona un tipo --</option>
+            <optgroup label="Corte de Cabello">
+              <option value="CUT001">Corte Recto 0°</option>
+              <option value="CUT002">Corte Melena</option>
+              <option value="CUT003">Corte en V</option>
+              <option value="CUT004">Corte Escalonado Bob Corto 45°</option>
+              <option value="CUT005">Corte Escalonado Bob Largo 45°</option>
+              <option value="CUT006">Corte Escalonado Uniforme</option>
+              <option value="CUT007">Corte en Capas 180°</option>
+              <option value="CUT008">Corte Mariposa</option>
+              <option value="CUT009">Corte Básico con Máquina</option>
+              <option value="CUT010">Flequillo</option>
+            </optgroup>
+            <optgroup label="Peluquería">
+              <option value="STYLE001">Planchado</option>
+              <option value="STYLE002">Ondulación Térmica</option>
+            </optgroup>
+            <optgroup label="Textura Química">
+              <option value="CHEM001">Prueba Preliminar de Rizos</option>
+              <option value="CHEM002">Permanente Básico</option>
+              <option value="CHEM003">Permanente Curvatura</option>
+              <option value="CHEM004">Permanente Enladrillado</option>
+              <option value="CHEM005">Permanente Zig Zag</option>
+              <option value="CHEM006">Permanente Bigudí Doble</option>
+              <option value="CHEM007">Permanente Espiral</option>
+              <option value="CHEM008">Alisador Hidróxido</option>
+              <option value="CHEM009">Queratina</option>
+              <option value="CHEM010">Coloración Permanente</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <!-- Horas -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Horas Dedicadas *</label>
+            <input
+              type="number"
+              id="horas"
+              step="0.5"
+              min="0.5"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400 focus:ring-2 focus:ring-secondary-100"
+              placeholder="Ej: 2.5"
+            >
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Tipo de Modelo *</label>
+            <select id="tipo-modelo" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400 focus:ring-2 focus:ring-secondary-100">
+              <option value="">-- Selecciona --</option>
+              <option value="Persona">Persona</option>
+              <option value="Mannequin">Mannequin</option>
+              <option value="Lab">Lab</option>
+              <option value="Clinic">Clinic</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Fecha -->
+        <div class="mb-6">
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Fecha *</label>
+          <input
+            type="date"
+            id="fecha-practica"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400 focus:ring-2 focus:ring-secondary-100"
+          >
+        </div>
+
+        <!-- Instructor -->
+        <div class="mb-6">
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Instructor</label>
+          <input
+            type="text"
+            id="instructor"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400 focus:ring-2 focus:ring-secondary-100"
+            placeholder="Nombre del instructor"
+          >
+        </div>
+
+        <!-- Notas -->
+        <div class="mb-6">
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Notas (Opcional)</label>
+          <textarea
+            id="notas"
+            rows="3"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400 focus:ring-2 focus:ring-secondary-100"
+            placeholder="Ej: Técnica perfecta, estudiante mostró dominio..."
+          ></textarea>
+        </div>
+
+        <!-- Autorización -->
+        <div class="mb-8">
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="checkbox" id="autorizada" class="w-4 h-4 text-secondary-500 rounded">
+            <span class="text-sm font-semibold text-gray-700">Autorizado por Instructora</span>
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="w-full px-6 py-3 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg font-semibold transition-all flex items-center justify-center gap-2"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span>Guardar Práctica</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('pageLoaded', function(e) {
+  if (e.detail.page !== 'registro-diario') return;
+
+  // Set today's date
+  document.getElementById('fecha-practica').valueAsDate = new Date();
+
+  // Load estudiantes for search
+  let estudiantes = [];
+  fetch('data/students.json')
+    .then(r => r.json())
+    .then(data => {
+      estudiantes = data.estudiantes || [];
+    });
+
+  // Estudiante search
+  document.getElementById('estudiante-search').addEventListener('input', function() {
+    const search = this.value.toLowerCase();
+    const sugerencias = document.getElementById('estudiante-sugerencias');
+
+    if (search.length < 1) {
+      sugerencias.classList.add('hidden');
+      return;
+    }
+
+    const matches = estudiantes.filter(e =>
+      e.nombre.toLowerCase().includes(search) ||
+      e.id.toLowerCase().includes(search)
+    );
+
+    if (matches.length === 0) {
+      sugerencias.innerHTML = '<div class="p-3 text-gray-600 text-center">No se encontraron estudiantes</div>';
+      sugerencias.classList.remove('hidden');
+      return;
+    }
+
+    sugerencias.innerHTML = matches.map(e => `
+      <div class="p-3 hover:bg-secondary-100 cursor-pointer border-b border-gray-200 last:border-b-0 transition-colors"
+           onclick="selectEstudiante('${e.id}', '${e.nombre}', '${e.programa}')">
+        <p class="font-semibold text-gray-900">${e.nombre}</p>
+        <p class="text-xs text-gray-600">${e.id} • ${e.programa} • ${e.horas_completadas}/${e.horas_requeridas} h</p>
+      </div>
+    `).join('');
+
+    sugerencias.classList.remove('hidden');
+  });
+
+  // Click outside to close suggestions
+  document.addEventListener('click', function(e) {
+    if (e.target.id !== 'estudiante-search') {
+      document.getElementById('estudiante-sugerencias').classList.add('hidden');
+    }
+  });
+
+  // Form submit
+  document.getElementById('registro-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const estudiante_id = document.getElementById('estudiante-id').value;
+    if (!estudiante_id) {
+      app.showToast('Selecciona un estudiante', 'error');
+      return;
+    }
+
+    const tipo_practica = document.getElementById('tipo-practica').value;
+    if (!tipo_practica) {
+      app.showToast('Selecciona un tipo de práctica', 'error');
+      return;
+    }
+
+    const horas = parseFloat(document.getElementById('horas').value);
+    if (!horas || horas <= 0) {
+      app.showToast('Las horas deben ser mayor a 0', 'error');
+      return;
+    }
+
+    const tipo_modelo = document.getElementById('tipo-modelo').value;
+    if (!tipo_modelo) {
+      app.showToast('Selecciona un tipo de modelo', 'error');
+      return;
+    }
+
+    // Save to localStorage
+    let practicas = JSON.parse(localStorage.getItem('practicas') || '[]');
+    const nueva = {
+      id: 'PRC' + Date.now(),
+      id_estudiante: estudiante_id,
+      tipo_practica: tipo_practica,
+      fecha: document.getElementById('fecha-practica').value,
+      horas: horas,
+      tipo_modelo: tipo_modelo,
+      instructor: document.getElementById('instructor').value || 'Sin asignar',
+      notas: document.getElementById('notas').value,
+      autorizada: document.getElementById('autorizada').checked,
+      fecha_registro: new Date().toISOString()
+    };
+
+    practicas.push(nueva);
+    localStorage.setItem('practicas', JSON.stringify(practicas));
+
+    app.showToast('✓ Práctica registrada exitosamente', 'success');
+    this.reset();
+    document.getElementById('fecha-practica').valueAsDate = new Date();
+    document.getElementById('estudiante-seleccionado').classList.add('hidden');
+  });
+});
+
+function selectEstudiante(id, nombre, programa) {
+  document.getElementById('estudiante-id').value = id;
+  document.getElementById('estudiante-nombre').textContent = nombre;
+  document.getElementById('estudiante-programa').textContent = programa;
+  document.getElementById('estudiante-seleccionado').classList.remove('hidden');
+  document.getElementById('estudiante-search').value = nombre;
+  document.getElementById('estudiante-sugerencias').classList.add('hidden');
+}
+</script>

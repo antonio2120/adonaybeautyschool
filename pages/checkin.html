@@ -1,0 +1,245 @@
+<div class="animate-fadeInUp">
+  <div class="max-w-2xl mx-auto">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="font-serif text-4xl font-bold text-primary-900 mb-2">Student Check-in</h1>
+      <div class="h-1 w-12 bg-primary-400 my-3"></div>
+      <p class="text-gray-700">Register arrival time for students</p>
+    </div>
+
+    <!-- Check-in Form Card -->
+    <div class="card-featured mb-8">
+      <form id="checkin-form">
+        <!-- Student Search -->
+        <div class="mb-6">
+          <label class="form-label">Search Student</label>
+          <input
+            type="text"
+            id="student-search"
+            class="form-input"
+            placeholder="Enter student name or ID (e.g., STU001, Sarah)"
+            autocomplete="off"
+          >
+          <div id="student-suggestions" class="mt-2 border border-gray-200 rounded-lg max-h-48 overflow-y-auto hidden"></div>
+        </div>
+
+        <!-- Selected Student -->
+        <div id="selected-student" class="mb-6 p-4 bg-gray-100 rounded-lg hidden">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div id="student-avatar" class="w-12 h-12 rounded-full bg-primary-300"></div>
+              <div>
+                <p id="selected-student-name" class="font-bold text-gray-900"></p>
+                <p id="selected-student-id" class="text-sm text-gray-600"></p>
+              </div>
+            </div>
+            <button
+              type="button"
+              onclick="document.getElementById('selected-student').classList.add('hidden'); document.getElementById('student-search').value = ''; document.getElementById('student-search').focus();"
+              class="text-red-600 hover:text-red-700 font-semibold"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+
+        <!-- Check-in Time -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div>
+            <label class="form-label">Check-in Date</label>
+            <input
+              type="date"
+              id="checkin-date"
+              class="form-input"
+            >
+          </div>
+          <div>
+            <label class="form-label">Check-in Time</label>
+            <input
+              type="time"
+              id="checkin-time"
+              class="form-input"
+            >
+          </div>
+        </div>
+
+        <!-- Notes -->
+        <div class="mb-6">
+          <label class="form-label">Notes (Optional)</label>
+          <textarea
+            id="checkin-notes"
+            class="form-input"
+            placeholder="e.g., Late arrival, excuse letter provided"
+            rows="3"
+          ></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="w-full btn-primary"
+        >
+          ✓ Confirm Check-in
+        </button>
+      </form>
+    </div>
+
+    <!-- Today's Check-ins Summary -->
+    <div class="card-featured">
+      <h2 class="text-2xl font-serif font-bold text-primary-900 mb-6">Today's Check-ins</h2>
+      <div id="checkins-list" class="space-y-3">
+        <!-- Dynamically populated -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('page-title').textContent = 'Student Check-in';
+
+  // Load students data
+  let studentsData = [];
+  let checkinsData = [];
+
+  async function loadData() {
+    try {
+      const [studentRes, attendanceRes] = await Promise.all([
+        fetch('data/students.json'),
+        fetch('data/attendance.json')
+      ]);
+
+      const studentJson = await studentRes.json();
+      const attendanceJson = await attendanceRes.json();
+
+      studentsData = studentJson.students;
+      checkinsData = attendanceJson.attendance;
+
+      // Set today's date
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('checkin-date').value = today;
+      document.getElementById('checkin-time').value = window.app.getCurrentTime();
+
+      displayTodaysCheckins();
+    } catch (error) {
+      console.error('Error loading data:', error);
+      window.app.showToast('Error loading student data', 'error');
+    }
+  }
+
+  // Student search functionality
+  document.getElementById('student-search').addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase();
+    const suggestions = document.getElementById('student-suggestions');
+
+    if (query.length < 1) {
+      suggestions.classList.add('hidden');
+      return;
+    }
+
+    const filtered = studentsData.filter(s =>
+      s.name.toLowerCase().includes(query) ||
+      s.id.toLowerCase().includes(query) ||
+      s.email.toLowerCase().includes(query)
+    );
+
+    if (filtered.length === 0) {
+      suggestions.innerHTML = '<div class="p-4 text-gray-600">No students found</div>';
+      suggestions.classList.remove('hidden');
+      return;
+    }
+
+    suggestions.innerHTML = filtered.map(student => `
+      <div class="p-3 border-b border-gray-200 hover:bg-gray-50 cursor-pointer transition-all" onclick="selectStudent('${student.id}', '${student.name}')">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-primary-300"></div>
+          <div>
+            <p class="font-semibold text-gray-900">${student.name}</p>
+            <p class="text-xs text-gray-600">${student.id}</p>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    suggestions.classList.remove('hidden');
+  });
+
+  // Select student
+  window.selectStudent = function(studentId, studentName) {
+    const student = studentsData.find(s => s.id === studentId);
+    document.getElementById('student-search').value = studentName;
+    document.getElementById('selected-student').classList.remove('hidden');
+    document.getElementById('selected-student-name').textContent = student.name;
+    document.getElementById('selected-student-id').textContent = student.id;
+    document.getElementById('student-suggestions').classList.add('hidden');
+    document.getElementById('student-search').dataset.selectedId = studentId;
+  };
+
+  // Form submission
+  document.getElementById('checkin-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const studentId = document.getElementById('student-search').dataset.selectedId;
+    const studentName = document.getElementById('selected-student-name').textContent;
+    const date = document.getElementById('checkin-date').value;
+    const time = document.getElementById('checkin-time').value;
+    const notes = document.getElementById('checkin-notes').value;
+
+    if (!studentId) {
+      window.app.showToast('Please select a student', 'warning');
+      return;
+    }
+
+    // Add to checkins list
+    const newCheckin = {
+      id: `ATT${Date.now()}`,
+      studentId,
+      studentName,
+      date,
+      checkInTime: time,
+      notes
+    };
+
+    checkinsData.push(newCheckin);
+    localStorage.setItem('checkins', JSON.stringify(checkinsData));
+
+    // Reset form
+    document.getElementById('checkin-form').reset();
+    document.getElementById('selected-student').classList.add('hidden');
+    document.getElementById('student-search').dataset.selectedId = '';
+    document.getElementById('checkin-time').value = window.app.getCurrentTime();
+
+    displayTodaysCheckins();
+    window.app.showToast(`✓ ${studentName} checked in at ${time}`, 'success');
+  });
+
+  function displayTodaysCheckins() {
+    const today = document.getElementById('checkin-date').value;
+    const todaysCheckins = checkinsData.filter(c => c.date === today);
+
+    const list = document.getElementById('checkins-list');
+    if (todaysCheckins.length === 0) {
+      list.innerHTML = '<p class="text-gray-500 italic">No check-ins recorded yet</p>';
+      return;
+    }
+
+    list.innerHTML = todaysCheckins.map(checkin => `
+      <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-full bg-primary-300"></div>
+          <div>
+            <p class="font-semibold text-gray-900">${checkin.studentName}</p>
+            <p class="text-xs text-gray-600">${checkin.studentId}</p>
+          </div>
+        </div>
+        <div class="text-right">
+          <p class="font-bold text-primary-600">${checkin.checkInTime}</p>
+          <p class="text-xs text-gray-500">✓ Checked in</p>
+          ${checkin.notes ? `<p class="text-xs text-gray-600 mt-1">${checkin.notes}</p>` : ''}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Load data on page load
+  loadData();
+</script>

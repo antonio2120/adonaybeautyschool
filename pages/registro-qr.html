@@ -1,0 +1,258 @@
+<div class="animate-fadeInUp">
+  <div class="max-w-6xl mx-auto">
+    <div class="mb-8">
+      <h1 class="font-serif text-4xl font-bold text-primary-900 mb-2">Registro de Entrada/Salida</h1>
+      <div class="h-1 w-12 bg-secondary-400 my-3"></div>
+      <p class="text-gray-700">Sistema de control de asistencia con Código QR para personal y alumnado</p>
+    </div>
+
+    <!-- Tabs para Personal y Estudiantes -->
+    <div class="mb-8 flex gap-2 border-b border-gray-200">
+      <button class="qr-tab-btn px-6 py-3 font-semibold text-gray-600 border-b-2 border-secondary-400 active" data-tab="personal">
+        Personal
+      </button>
+      <button class="qr-tab-btn px-6 py-3 font-semibold text-gray-600 border-b-2 border-transparent hover:border-secondary-400" data-tab="estudiantes">
+        Estudiantes
+      </button>
+    </div>
+
+    <!-- TAB: Personal -->
+    <div id="personal-tab" class="qr-tab-content">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Generador QR -->
+        <div class="bg-white rounded-lg shadow p-6">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6">Generar Código QR</h2>
+          <div class="mb-6">
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Seleccionar Personal</label>
+            <select id="personal-select" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400">
+              <option value="">-- Seleccionar --</option>
+              <option value="P001|Directora María López">P001 - Directora María López</option>
+              <option value="P002|Coordinadora Laura Sánchez">P002 - Coordinadora Laura Sánchez</option>
+              <option value="P003|Instructora Rosa García">P003 - Instructora Rosa García</option>
+              <option value="P004|Instructora Carmen Díaz">P004 - Instructora Carmen Díaz</option>
+              <option value="P005|Recepcionista Ana Morales">P005 - Recepcionista Ana Morales</option>
+            </select>
+          </div>
+          <div class="flex gap-3 mb-6">
+            <button id="btn-entrada-personal" class="flex-1 px-4 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg font-semibold transition-all">
+              ✓ Entrada
+            </button>
+            <button id="btn-salida-personal" class="flex-1 px-4 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg font-semibold transition-all">
+              ✗ Salida
+            </button>
+          </div>
+          <div id="qr-personal" class="bg-gray-100 rounded-lg p-6 flex items-center justify-center min-h-64">
+            <div class="text-center text-gray-500">
+              <svg class="w-24 h-24 mx-auto mb-2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+              </svg>
+              <p>QR se mostrará aquí</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Historial Personal -->
+        <div class="bg-white rounded-lg shadow p-6">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6">Últimos Registros - Personal</h2>
+          <div class="space-y-3 max-h-96 overflow-y-auto">
+            <div id="personal-history" class="space-y-3">
+              <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg border-l-4 border-green-500">
+                <div>
+                  <p class="font-semibold text-gray-800 text-sm">María López</p>
+                  <p class="text-xs text-gray-600">P001 - Directora</p>
+                </div>
+                <div class="text-right">
+                  <p class="text-xs font-semibold text-green-700">✓ ENTRADA</p>
+                  <p class="text-xs text-gray-500">08:00 AM</p>
+                </div>
+              </div>
+              <div class="flex items-center justify-between p-3 bg-red-50 rounded-lg border-l-4 border-red-500">
+                <div>
+                  <p class="font-semibold text-gray-800 text-sm">Laura Sánchez</p>
+                  <p class="text-xs text-gray-600">P002 - Coordinadora</p>
+                </div>
+                <div class="text-right">
+                  <p class="text-xs font-semibold text-red-700">✗ SALIDA</p>
+                  <p class="text-xs text-gray-500">05:30 PM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: Estudiantes -->
+    <div id="estudiantes-tab" class="qr-tab-content hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Generador QR Estudiantes -->
+        <div class="bg-white rounded-lg shadow p-6">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6">Generar Código QR</h2>
+          <div class="mb-6">
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Seleccionar Estudiante</label>
+            <select id="estudiante-select" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400">
+              <option value="">-- Seleccionar --</option>
+              <option value="STU001|Noemi Romero">STU001 - Noemi Romero</option>
+              <option value="STU002|Maria Garcia">STU002 - Maria Garcia</option>
+              <option value="STU003|Jessica Williams">STU003 - Jessica Williams</option>
+              <option value="STU004|Sofia Martinez">STU004 - Sofia Martinez</option>
+              <option value="STU005|Isabella Rodríguez">STU005 - Isabella Rodríguez</option>
+            </select>
+          </div>
+          <div class="flex gap-3 mb-6">
+            <button id="btn-entrada-estudiante" class="flex-1 px-4 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg font-semibold transition-all">
+              ✓ Entrada
+            </button>
+            <button id="btn-salida-estudiante" class="flex-1 px-4 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg font-semibold transition-all">
+              ✗ Salida
+            </button>
+          </div>
+          <div id="qr-estudiante" class="bg-gray-100 rounded-lg p-6 flex items-center justify-center min-h-64">
+            <div class="text-center text-gray-500">
+              <svg class="w-24 h-24 mx-auto mb-2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+              </svg>
+              <p>QR se mostrará aquí</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Historial Estudiantes -->
+        <div class="bg-white rounded-lg shadow p-6">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6">Últimos Registros - Estudiantes</h2>
+          <div class="space-y-3 max-h-96 overflow-y-auto">
+            <div id="estudiante-history" class="space-y-3">
+              <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg border-l-4 border-green-500">
+                <div>
+                  <p class="font-semibold text-gray-800 text-sm">Noemi Romero</p>
+                  <p class="text-xs text-gray-600">STU001 - Cosmetology</p>
+                </div>
+                <div class="text-right">
+                  <p class="text-xs font-semibold text-green-700">✓ ENTRADA</p>
+                  <p class="text-xs text-gray-500">08:30 AM</p>
+                </div>
+              </div>
+              <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg border-l-4 border-green-500">
+                <div>
+                  <p class="font-semibold text-gray-800 text-sm">Sofia Martinez</p>
+                  <p class="text-xs text-gray-600">STU004 - Cosmetology</p>
+                </div>
+                <div class="text-right">
+                  <p class="text-xs font-semibold text-green-700">✓ ENTRADA</p>
+                  <p class="text-xs text-gray-500">08:45 AM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script>
+(function() {
+  // Tabs
+  document.querySelectorAll('.qr-tab-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const tab = this.getAttribute('data-tab');
+      document.querySelectorAll('.qr-tab-btn').forEach(b => {
+        b.classList.remove('border-secondary-400');
+        b.classList.add('border-transparent');
+      });
+      document.querySelectorAll('.qr-tab-content').forEach(c => c.classList.add('hidden'));
+
+      this.classList.add('border-secondary-400');
+      this.classList.remove('border-transparent');
+      document.getElementById(tab + '-tab').classList.remove('hidden');
+    });
+  });
+
+  // Generar QR
+  function generarQR(elemento, datos, tipo) {
+    elemento.innerHTML = '';
+    new QRCode(elemento, {
+      text: datos,
+      width: 200,
+      height: 200,
+      colorDark: '#2B5A9D',
+      colorLight: '#ffffff'
+    });
+  }
+
+  // Personal
+  document.getElementById('btn-entrada-personal').addEventListener('click', function() {
+    const select = document.getElementById('personal-select');
+    const [id, nombre] = select.value.split('|');
+    if (!id) {
+      app.showToast('Selecciona un personal', 'warning');
+      return;
+    }
+    generarQR(document.getElementById('qr-personal'), `ENTRADA|${id}|${nombre}|${new Date().toLocaleTimeString()}`, 'entrada');
+    agregarHistorial('personal', nombre, 'ENTRADA');
+  });
+
+  document.getElementById('btn-salida-personal').addEventListener('click', function() {
+    const select = document.getElementById('personal-select');
+    const [id, nombre] = select.value.split('|');
+    if (!id) {
+      app.showToast('Selecciona un personal', 'warning');
+      return;
+    }
+    generarQR(document.getElementById('qr-personal'), `SALIDA|${id}|${nombre}|${new Date().toLocaleTimeString()}`, 'salida');
+    agregarHistorial('personal', nombre, 'SALIDA');
+  });
+
+  // Estudiantes
+  document.getElementById('btn-entrada-estudiante').addEventListener('click', function() {
+    const select = document.getElementById('estudiante-select');
+    const [id, nombre] = select.value.split('|');
+    if (!id) {
+      app.showToast('Selecciona un estudiante', 'warning');
+      return;
+    }
+    generarQR(document.getElementById('qr-estudiante'), `ENTRADA|${id}|${nombre}|${new Date().toLocaleTimeString()}`, 'entrada');
+    agregarHistorial('estudiante', nombre, 'ENTRADA');
+  });
+
+  document.getElementById('btn-salida-estudiante').addEventListener('click', function() {
+    const select = document.getElementById('estudiante-select');
+    const [id, nombre] = select.value.split('|');
+    if (!id) {
+      app.showToast('Selecciona un estudiante', 'warning');
+      return;
+    }
+    generarQR(document.getElementById('qr-estudiante'), `SALIDA|${id}|${nombre}|${new Date().toLocaleTimeString()}`, 'salida');
+    agregarHistorial('estudiante', nombre, 'SALIDA');
+  });
+
+  function agregarHistorial(tipo, nombre, accion) {
+    const hora = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+    const color = accion === 'ENTRADA' ? 'green' : 'red';
+    const historialId = tipo === 'personal' ? 'personal-history' : 'estudiante-history';
+
+    const nuevoRegistro = document.createElement('div');
+    nuevoRegistro.className = `flex items-center justify-between p-3 bg-${color}-50 rounded-lg border-l-4 border-${color}-500`;
+    nuevoRegistro.innerHTML = `
+      <div>
+        <p class="font-semibold text-gray-800 text-sm">${nombre}</p>
+        <p class="text-xs text-gray-600">${tipo === 'personal' ? 'Personal' : 'Estudiante'}</p>
+      </div>
+      <div class="text-right">
+        <p class="text-xs font-semibold text-${color}-700">${accion === 'ENTRADA' ? '✓ ENTRADA' : '✗ SALIDA'}</p>
+        <p class="text-xs text-gray-500">${hora}</p>
+      </div>
+    `;
+
+    const historial = document.getElementById(historialId);
+    historial.insertBefore(nuevoRegistro, historial.firstChild);
+
+    // Limitar a 10 registros
+    while (historial.children.length > 10) {
+      historial.removeChild(historial.lastChild);
+    }
+  }
+})();
+</script>

@@ -1,0 +1,287 @@
+<div class="animate-fadeInUp">
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-8">
+      <h1 class="font-serif text-4xl font-bold text-primary-900 mb-2">Gestión de Grupos</h1>
+      <div class="h-1 w-12 bg-secondary-400 my-3"></div>
+      <p class="text-gray-700">Administra los grupos de estudiantes por programa y fecha</p>
+    </div>
+
+    <!-- Controles -->
+    <div class="bg-white rounded-lg shadow p-6 mb-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Buscar</label>
+          <input type="text" id="search-grupos" placeholder="Buscar por ID o Programa..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400">
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Filtrar por Programa</label>
+          <select id="filter-programa" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400">
+            <option value="">-- Todos --</option>
+            <option value="Cosmetology">Cosmetology</option>
+            <option value="Esthetician">Esthetician</option>
+            <option value="Nail Technician">Nail Technician</option>
+          </select>
+        </div>
+        <div class="flex items-end gap-2">
+          <button id="reset-grupos" class="flex-1 px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-lg font-semibold text-sm transition-all">
+            Limpiar
+          </button>
+          <button id="btn-agregar-grupo" class="flex-1 px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg font-semibold text-sm transition-all">
+            + Agregar
+          </button>
+        </div>
+      </div>
+
+      <p class="text-sm text-gray-600">Total de grupos: <span id="total-grupos">8</span></p>
+    </div>
+
+    <!-- Tabla de Grupos -->
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-gray-200 bg-gray-50">
+              <th class="px-6 py-4 text-left font-semibold text-gray-700">ID Grupo</th>
+              <th class="px-6 py-4 text-left font-semibold text-gray-700">Programa</th>
+              <th class="px-6 py-4 text-center font-semibold text-gray-700">Fecha Inicio</th>
+              <th class="px-6 py-4 text-center font-semibold text-gray-700">Estudiantes</th>
+              <th class="px-6 py-4 text-center font-semibold text-gray-700">Capacidad</th>
+              <th class="px-6 py-4 text-center font-semibold text-gray-700">Estado</th>
+              <th class="px-6 py-4 text-center font-semibold text-gray-700">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="grupos-tbody">
+            <!-- Se llena dinámicamente -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para Agregar/Editar Grupo -->
+<div id="modal-grupo" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+    <div class="p-6 border-b border-gray-200">
+      <h2 class="text-2xl font-bold text-gray-800" id="modal-titulo-grupo">Agregar Grupo</h2>
+    </div>
+    <div class="p-6 space-y-4">
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-2">ID Grupo *</label>
+        <input type="text" id="form-id-grupo" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400" placeholder="Ej: GRP-001" readonly>
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-2">Programa *</label>
+        <select id="form-programa-grupo" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400">
+          <option value="">-- Seleccionar --</option>
+          <option value="Cosmetology">Cosmetology (1200 horas)</option>
+          <option value="Esthetician">Esthetician (600 horas)</option>
+          <option value="Nail Technician">Nail Technician (400 horas)</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-2">Fecha de Inicio *</label>
+        <input type="date" id="form-fecha-grupo" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400">
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-2">Número de Estudiantes *</label>
+        <input type="number" id="form-estudiantes-grupo" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400" placeholder="0" min="0" max="30">
+      </div>
+    </div>
+    <div class="p-6 border-t border-gray-200 flex gap-3">
+      <button id="btn-guardar-grupo" class="flex-1 px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg font-semibold transition-all">
+        Guardar
+      </button>
+      <button id="btn-cancelar-grupo" class="flex-1 px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-lg font-semibold transition-all">
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const grupos = [
+    { id: 'GRP-001', programa: 'Cosmetology', fecha: '2026-01-15', estudiantes: 12, capacidad: 15 },
+    { id: 'GRP-002', programa: 'Esthetician', fecha: '2026-01-20', estudiantes: 8, capacidad: 10 },
+    { id: 'GRP-003', programa: 'Nail Technician', fecha: '2026-02-01', estudiantes: 10, capacidad: 12 },
+    { id: 'GRP-004', programa: 'Cosmetology', fecha: '2026-02-15', estudiantes: 14, capacidad: 15 },
+    { id: 'GRP-005', programa: 'Esthetician', fecha: '2026-03-01', estudiantes: 9, capacidad: 10 },
+    { id: 'GRP-006', programa: 'Nail Technician', fecha: '2026-03-15', estudiantes: 7, capacidad: 12 },
+    { id: 'GRP-007', programa: 'Cosmetology', fecha: '2026-04-01', estudiantes: 13, capacidad: 15 },
+    { id: 'GRP-008', programa: 'Esthetician', fecha: '2026-04-15', estudiantes: 10, capacidad: 10 }
+  ];
+
+  let gruposFiltrados = [...grupos];
+  let editandoId = null;
+  let proximoNumero = 9;
+
+  const tbody = document.getElementById('grupos-tbody');
+  const searchInput = document.getElementById('search-grupos');
+  const filterPrograma = document.getElementById('filter-programa');
+  const btnAgregar = document.getElementById('btn-agregar-grupo');
+  const resetBtn = document.getElementById('reset-grupos');
+  const modal = document.getElementById('modal-grupo');
+  const btnGuardar = document.getElementById('btn-guardar-grupo');
+  const btnCancelar = document.getElementById('btn-cancelar-grupo');
+  const modalTitulo = document.getElementById('modal-titulo-grupo');
+
+  function generarIdGrupo() {
+    return `GRP-${proximoNumero.toString().padStart(3, '0')}`;
+  }
+
+  function renderTable() {
+    tbody.innerHTML = '';
+    gruposFiltrados.forEach(g => {
+      const porcentaje = Math.round((g.estudiantes / g.capacidad) * 100);
+      const estado = g.estudiantes >= g.capacidad ? 'Lleno' : 'Disponible';
+      const estadoColor = g.estudiantes >= g.capacidad ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800';
+
+      const row = document.createElement('tr');
+      row.className = 'border-b border-gray-200 hover:bg-gray-50';
+      row.innerHTML = `
+        <td class="px-6 py-4 text-gray-800 font-semibold">${g.id}</td>
+        <td class="px-6 py-4 text-gray-600">${g.programa}</td>
+        <td class="px-6 py-4 text-center text-gray-600">${g.fecha}</td>
+        <td class="px-6 py-4 text-center cursor-pointer hover:bg-secondary-50 transition-colors ver-estudiantes-grupo" data-id="${g.id}" data-programa="${g.programa}" data-fecha="${g.fecha}" data-estudiantes="${g.estudiantes}" data-capacidad="${g.capacidad}">
+          <div class="flex items-center justify-center">
+            <span class="font-semibold text-secondary-600">${g.estudiantes}</span>
+            <span class="text-gray-400 mx-1">/</span>
+            <span class="text-gray-600">${g.capacidad}</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+            <div class="bg-secondary-500 h-2 rounded-full" style="width: ${porcentaje}%"></div>
+          </div>
+        </td>
+        <td class="px-6 py-4 text-center text-gray-600">${porcentaje}%</td>
+        <td class="px-6 py-4 text-center"><span class="px-3 py-1 ${estadoColor} rounded-full text-xs font-semibold">${estado}</span></td>
+        <td class="px-6 py-4 text-center flex justify-center gap-2">
+          <button class="btn-editar-grupo px-3 py-1 bg-primary-500 hover:bg-primary-600 text-white rounded text-xs font-semibold transition-all" data-id="${g.id}">
+            ✏️ Editar
+          </button>
+          <button class="btn-eliminar-grupo px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded text-xs font-semibold transition-all" data-id="${g.id}">
+            🗑️ Eliminar
+          </button>
+        </td>
+      `;
+      tbody.appendChild(row);
+    });
+    document.getElementById('total-grupos').textContent = grupos.length;
+  }
+
+  function filtrar() {
+    const search = searchInput.value.toLowerCase();
+    const programa = filterPrograma.value;
+
+    gruposFiltrados = grupos.filter(g => {
+      const searchMatch = g.id.toLowerCase().includes(search) || g.programa.toLowerCase().includes(search);
+      const programaMatch = !programa || g.programa === programa;
+      return searchMatch && programaMatch;
+    });
+
+    renderTable();
+  }
+
+  function openModal(grupo = null) {
+    editandoId = grupo ? grupo.id : null;
+    if (grupo) {
+      document.getElementById('modal-titulo-grupo').textContent = 'Editar Grupo';
+      document.getElementById('form-id-grupo').value = grupo.id;
+      document.getElementById('form-programa-grupo').value = grupo.programa;
+      document.getElementById('form-fecha-grupo').value = grupo.fecha;
+      document.getElementById('form-estudiantes-grupo').value = grupo.estudiantes;
+    } else {
+      document.getElementById('modal-titulo-grupo').textContent = 'Agregar Grupo';
+      document.getElementById('form-id-grupo').value = generarIdGrupo();
+      document.getElementById('form-programa-grupo').value = '';
+      document.getElementById('form-fecha-grupo').value = '';
+      document.getElementById('form-estudiantes-grupo').value = '';
+    }
+    modal.classList.remove('hidden');
+  }
+
+  function closeModal() {
+    modal.classList.add('hidden');
+    editandoId = null;
+  }
+
+  btnAgregar.addEventListener('click', () => {
+    proximoNumero++;
+    openModal();
+  });
+  btnCancelar.addEventListener('click', closeModal);
+
+  btnGuardar.addEventListener('click', () => {
+    const id = document.getElementById('form-id-grupo').value;
+    const programa = document.getElementById('form-programa-grupo').value;
+    const fecha = document.getElementById('form-fecha-grupo').value;
+    const estudiantes = parseInt(document.getElementById('form-estudiantes-grupo').value);
+
+    if (!id || !programa || !fecha || isNaN(estudiantes)) {
+      alert('Completa todos los campos');
+      return;
+    }
+
+    if (editandoId) {
+      const grupo = grupos.find(g => g.id === editandoId);
+      if (grupo) {
+        grupo.programa = programa;
+        grupo.fecha = fecha;
+        grupo.estudiantes = estudiantes;
+        app.showToast('✓ Grupo actualizado', 'success');
+      }
+    } else {
+      grupos.push({ id, programa, fecha, estudiantes, capacidad: 15 });
+      app.showToast('✓ Grupo agregado', 'success');
+    }
+
+    closeModal();
+    filtrar();
+  });
+
+  tbody.addEventListener('click', (e) => {
+    // Ver estudiantes del grupo
+    if (e.target.closest('.ver-estudiantes-grupo')) {
+      const cell = e.target.closest('.ver-estudiantes-grupo');
+      const grupoData = {
+        id: cell.getAttribute('data-id'),
+        programa: cell.getAttribute('data-programa'),
+        fecha: cell.getAttribute('data-fecha'),
+        estudiantes: parseInt(cell.getAttribute('data-estudiantes')),
+        capacidad: parseInt(cell.getAttribute('data-capacidad'))
+      };
+      sessionStorage.setItem('grupoSeleccionado', JSON.stringify(grupoData));
+      app.loadPage('grupo-detalle');
+    }
+
+    if (e.target.classList.contains('btn-editar-grupo')) {
+      const id = e.target.getAttribute('data-id');
+      const grupo = grupos.find(g => g.id === id);
+      if (grupo) openModal(grupo);
+    }
+
+    if (e.target.classList.contains('btn-eliminar-grupo')) {
+      const id = e.target.getAttribute('data-id');
+      if (confirm('¿Eliminar este grupo?')) {
+        const index = grupos.findIndex(g => g.id === id);
+        if (index > -1) {
+          grupos.splice(index, 1);
+          app.showToast('✓ Grupo eliminado', 'success');
+          filtrar();
+        }
+      }
+    }
+  });
+
+  searchInput.addEventListener('input', filtrar);
+  filterPrograma.addEventListener('change', filtrar);
+
+  resetBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    filterPrograma.value = '';
+    filtrar();
+  });
+
+  renderTable();
+})();
+</script>

@@ -1,0 +1,375 @@
+<div class="animate-fadeInUp">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="font-serif text-4xl font-bold text-primary-900 mb-2">Gestión de Pagos</h1>
+      <div class="h-1 w-12 bg-secondary-400 my-3"></div>
+      <p class="text-gray-700">Registra y gestiona los pagos de los estudiantes</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="bg-white rounded-lg shadow p-6 mb-6">
+      <div class="flex gap-4 mb-6 border-b border-gray-200">
+        <button id="tab-procesar-btn" class="px-4 py-2 font-semibold text-gray-700 border-b-2 border-secondary-400 text-secondary-600">Procesar Pago</button>
+        <button id="tab-historial-btn" class="px-4 py-2 font-semibold text-gray-700 border-b-2 border-transparent hover:text-primary-600 transition-all">Historial de Pagos</button>
+      </div>
+
+      <!-- Tab: Procesar Pago -->
+      <div id="tab-procesar" class="space-y-6">
+        <!-- Búsqueda de Estudiante -->
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Buscar Estudiante *</label>
+          <div class="relative">
+            <input type="text" id="search-estudiante" placeholder="Escribe nombre o ID..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400" autocomplete="off">
+            <div id="dropdown-estudiantes" class="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg hidden max-h-64 overflow-y-auto z-10">
+              <!-- Se llena dinámicamente -->
+            </div>
+          </div>
+          <input type="hidden" id="estudiante-id">
+        </div>
+
+        <!-- Info del Estudiante -->
+        <div id="info-estudiante" class="p-4 bg-gray-100 rounded-lg hidden">
+          <p class="font-semibold text-gray-800 mb-2">Información del Estudiante</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+            <p><strong>Nombre:</strong> <span id="info-nombre">-</span></p>
+            <p><strong>ID:</strong> <span id="info-id">-</span></p>
+            <p><strong>Programa:</strong> <span id="info-programa">-</span></p>
+          </div>
+        </div>
+
+        <!-- Concepto y Monto -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Concepto *</label>
+            <select id="concepto" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400">
+              <option value="">-- Seleccionar --</option>
+              <option value="Aplicación">Aplicación - $50</option>
+              <option value="Inscripción">Inscripción - $100</option>
+              <option value="Cosmetology">Cosmetology - $1500</option>
+              <option value="Esthetician">Esthetician - $1000</option>
+              <option value="Nail Technician">Nail Technician - $800</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Monto ($) *</label>
+            <input type="number" id="monto" placeholder="0.00" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400" step="0.01" min="0">
+          </div>
+        </div>
+
+        <!-- Método de Pago -->
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-3">Método de Pago *</label>
+          <div class="space-y-3">
+            <label class="flex items-center gap-3 cursor-pointer p-3 border-2 border-gray-200 rounded-lg hover:border-secondary-400 transition-all">
+              <input type="radio" name="metodo" value="tarjeta" class="w-4 h-4">
+              <div>
+                <p class="font-semibold text-gray-900">Tarjeta de Crédito/Débito</p>
+                <p class="text-sm text-gray-600">Visa, Mastercard, American Express</p>
+              </div>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer p-3 border-2 border-gray-200 rounded-lg hover:border-secondary-400 transition-all">
+              <input type="radio" name="metodo" value="zelle" class="w-4 h-4">
+              <div>
+                <p class="font-semibold text-gray-900">Zelle</p>
+                <p class="text-sm text-gray-600">Pago digital via Zelle app</p>
+              </div>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer p-3 border-2 border-gray-200 rounded-lg hover:border-secondary-400 transition-all">
+              <input type="radio" name="metodo" value="transferencia" class="w-4 h-4">
+              <div>
+                <p class="font-semibold text-gray-900">Transferencia Bancaria</p>
+                <p class="text-sm text-gray-600">Depósito directo o transferencia</p>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Formulario de Tarjeta -->
+        <div id="form-tarjeta" class="hidden p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <h3 class="font-semibold text-gray-800 mb-4">Información de la Tarjeta</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <input type="text" placeholder="Nombre del Titular" id="titular" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400">
+            <input type="text" placeholder="Número de Tarjeta" id="numero-tarjeta" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400">
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <input type="text" placeholder="MM/YY" id="vencimiento" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400">
+            <input type="text" placeholder="CVC" id="cvc" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400" maxlength="4">
+          </div>
+        </div>
+
+        <!-- QR Zelle -->
+        <div id="form-zelle" class="hidden p-6 bg-blue-50 rounded-lg border border-blue-200">
+          <h3 class="font-semibold text-gray-800 mb-4 text-center">Código QR - Zelle</h3>
+          <div class="flex flex-col items-center gap-4">
+            <div id="qr-zelle" class="bg-white p-4 rounded-lg border border-gray-300"></div>
+            <div class="text-center">
+              <p class="text-sm text-gray-700 font-semibold">Monto: <span id="monto-qr" class="text-lg text-green-600">$0.00</span></p>
+              <p class="text-xs text-gray-600 mt-2">Escanea este código QR con tu app de Zelle</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botón Guardar -->
+        <button id="btn-guardar-pago" class="w-full px-4 py-3 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg font-semibold transition-all">
+          💳 Procesar Pago
+        </button>
+      </div>
+
+      <!-- Tab: Historial -->
+      <div id="tab-historial" class="hidden">
+        <h3 class="font-semibold text-gray-800 mb-4">Historial de Pagos</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 bg-gray-50">
+                <th class="px-6 py-3 text-left font-semibold text-gray-700">Estudiante</th>
+                <th class="px-6 py-3 text-left font-semibold text-gray-700">Concepto</th>
+                <th class="px-6 py-3 text-left font-semibold text-gray-700">Monto</th>
+                <th class="px-6 py-3 text-left font-semibold text-gray-700">Método</th>
+                <th class="px-6 py-3 text-left font-semibold text-gray-700">Fecha</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-historial">
+              <!-- Se llena dinámicamente -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+(function() {
+  const todosEstudiantes = [
+    { id: 'STU001', nombre: 'Noemi Romero', programa: 'Cosmetology' },
+    { id: 'STU002', nombre: 'Maria Garcia', programa: 'Esthetician' },
+    { id: 'STU003', nombre: 'Jessica Williams', programa: 'Nail Technician' },
+    { id: 'STU004', nombre: 'Sofia Martinez', programa: 'Cosmetology' },
+    { id: 'STU005', nombre: 'Isabella Rodríguez', programa: 'Esthetician' },
+    { id: 'STU006', nombre: 'Daniela Torres', programa: 'Nail Technician' },
+    { id: 'STU007', nombre: 'Catalina Herrera', programa: 'Cosmetology' },
+    { id: 'STU008', nombre: 'Alejandra López', programa: 'Esthetician' },
+    { id: 'STU009', nombre: 'Valentina Sánchez', programa: 'Nail Technician' },
+    { id: 'STU010', nombre: 'Gabriela Flores', programa: 'Cosmetology' },
+    { id: 'STU011', nombre: 'Mariana Gutiérrez', programa: 'Esthetician' },
+    { id: 'STU012', nombre: 'Lucía Mendoza', programa: 'Nail Technician' },
+    { id: 'STU013', nombre: 'Carmen Rivas', programa: 'Cosmetology' },
+    { id: 'STU014', nombre: 'Rosario García', programa: 'Esthetician' },
+    { id: 'STU015', nombre: 'Elena Castillo', programa: 'Nail Technician' }
+  ];
+
+  let pagosProcesados = [];
+
+  // Referencias del DOM
+  const searchInput = document.getElementById('search-estudiante');
+  const dropdown = document.getElementById('dropdown-estudiantes');
+  const estudianteIdInput = document.getElementById('estudiante-id');
+  const infoEstudiante = document.getElementById('info-estudiante');
+  const conceptoSelect = document.getElementById('concepto');
+  const montoInput = document.getElementById('monto');
+  const metodoPago = document.querySelectorAll('input[name="metodo"]');
+  const formTarjeta = document.getElementById('form-tarjeta');
+  const formZelle = document.getElementById('form-zelle');
+  const btnGuardar = document.getElementById('btn-guardar-pago');
+  const tabProcesarBtn = document.getElementById('tab-procesar-btn');
+  const tabHistorialBtn = document.getElementById('tab-historial-btn');
+  const tabProcesar = document.getElementById('tab-procesar');
+  const tabHistorial = document.getElementById('tab-historial');
+  const tablaHistorial = document.getElementById('tabla-historial');
+
+  // Búsqueda de estudiantes
+  searchInput.addEventListener('input', (e) => {
+    const search = e.target.value.toLowerCase().trim();
+
+    if (!search) {
+      dropdown.classList.add('hidden');
+      return;
+    }
+
+    const filtrados = todosEstudiantes.filter(est =>
+      est.nombre.toLowerCase().includes(search) ||
+      est.id.toLowerCase().includes(search)
+    );
+
+    if (filtrados.length === 0) {
+      dropdown.innerHTML = '<div class="px-4 py-3 text-gray-500 text-center">No hay resultados</div>';
+      dropdown.classList.remove('hidden');
+      return;
+    }
+
+    dropdown.innerHTML = filtrados.map(est => `
+      <div class="px-4 py-3 hover:bg-gray-100 cursor-pointer border-b border-gray-100 last:border-b-0 estudiante-opcion" data-id="${est.id}" data-nombre="${est.nombre}" data-programa="${est.programa}">
+        <p class="font-semibold text-gray-800">${est.nombre}</p>
+        <p class="text-sm text-gray-600">${est.id} • ${est.programa}</p>
+      </div>
+    `).join('');
+    dropdown.classList.remove('hidden');
+  });
+
+  // Seleccionar estudiante del dropdown
+  dropdown.addEventListener('click', (e) => {
+    const opcion = e.target.closest('.estudiante-opcion');
+    if (!opcion) return;
+
+    const id = opcion.getAttribute('data-id');
+    const nombre = opcion.getAttribute('data-nombre');
+    const programa = opcion.getAttribute('data-programa');
+
+    estudianteIdInput.value = id;
+    searchInput.value = `${nombre} (${id})`;
+    dropdown.classList.add('hidden');
+
+    document.getElementById('info-nombre').textContent = nombre;
+    document.getElementById('info-id').textContent = id;
+    document.getElementById('info-programa').textContent = programa;
+    infoEstudiante.classList.remove('hidden');
+  });
+
+  // Cerrar dropdown al hacer clic fuera
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('#search-estudiante') && !e.target.closest('#dropdown-estudiantes')) {
+      dropdown.classList.add('hidden');
+    }
+  });
+
+  // Cambio de concepto actualiza monto
+  conceptoSelect.addEventListener('change', (e) => {
+    const precios = {
+      'Aplicación': 50,
+      'Inscripción': 100,
+      'Cosmetology': 1500,
+      'Esthetician': 1000,
+      'Nail Technician': 800
+    };
+    montoInput.value = precios[e.target.value] || '';
+    actualizarQR();
+  });
+
+  // Cambio de monto actualiza QR
+  montoInput.addEventListener('change', actualizarQR);
+
+  // Cambio de método de pago
+  metodoPago.forEach(radio => {
+    radio.addEventListener('change', (e) => {
+      if (e.target.value === 'tarjeta') {
+        formTarjeta.classList.remove('hidden');
+        formZelle.classList.add('hidden');
+      } else if (e.target.value === 'zelle') {
+        formTarjeta.classList.add('hidden');
+        formZelle.classList.remove('hidden');
+        actualizarQR();
+      } else {
+        formTarjeta.classList.add('hidden');
+        formZelle.classList.add('hidden');
+      }
+    });
+  });
+
+  // Actualizar QR
+  function actualizarQR() {
+    const monto = montoInput.value || '0.00';
+    document.getElementById('monto-qr').textContent = '$' + parseFloat(monto).toFixed(2);
+
+    const qrContainer = document.getElementById('qr-zelle');
+    qrContainer.innerHTML = '';
+
+    const qrData = `zelle://payment?amount=${monto}&recipient=beautyschool@email.com`;
+    new QRCode(qrContainer, {
+      text: qrData,
+      width: 200,
+      height: 200,
+      colorDark: '#000000',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  }
+
+  // Guardar pago
+  btnGuardar.addEventListener('click', () => {
+    const estudianteId = estudianteIdInput.value;
+    const concepto = conceptoSelect.value;
+    const monto = montoInput.value;
+    const metodo = document.querySelector('input[name="metodo"]:checked')?.value;
+
+    if (!estudianteId || !concepto || !monto || !metodo) {
+      app.showToast('⚠️ Completa todos los campos', 'warning');
+      return;
+    }
+
+    const nombreEstudiante = document.getElementById('info-nombre').textContent;
+
+    const pago = {
+      estudianteId,
+      nombreEstudiante,
+      concepto,
+      monto: parseFloat(monto),
+      metodo,
+      fecha: new Date().toLocaleDateString('es-ES')
+    };
+
+    pagosProcesados.push(pago);
+    localStorage.setItem('pagosProcesados', JSON.stringify(pagosProcesados));
+
+    app.showToast(`✓ Pago de $${parseFloat(monto).toFixed(2)} registrado`, 'success');
+
+    // Limpiar formulario
+    searchInput.value = '';
+    estudianteIdInput.value = '';
+    conceptoSelect.value = '';
+    montoInput.value = '';
+    document.querySelector('input[name="metodo"]').checked = false;
+    infoEstudiante.classList.add('hidden');
+    formTarjeta.classList.add('hidden');
+    formZelle.classList.add('hidden');
+
+    actualizarHistorial();
+  });
+
+  // Tabs
+  tabProcesarBtn.addEventListener('click', () => {
+    tabProcesar.classList.remove('hidden');
+    tabHistorial.classList.add('hidden');
+    tabProcesarBtn.classList.add('border-secondary-400', 'text-secondary-600');
+    tabProcesarBtn.classList.remove('border-transparent');
+    tabHistorialBtn.classList.add('border-transparent');
+    tabHistorialBtn.classList.remove('border-secondary-400', 'text-secondary-600');
+  });
+
+  tabHistorialBtn.addEventListener('click', () => {
+    tabProcesar.classList.add('hidden');
+    tabHistorial.classList.remove('hidden');
+    tabProcesarBtn.classList.add('border-transparent');
+    tabProcesarBtn.classList.remove('border-secondary-400', 'text-secondary-600');
+    tabHistorialBtn.classList.add('border-secondary-400', 'text-secondary-600');
+    tabHistorialBtn.classList.remove('border-transparent');
+    actualizarHistorial();
+  });
+
+  // Actualizar historial
+  function actualizarHistorial() {
+    if (pagosProcesados.length === 0) {
+      tablaHistorial.innerHTML = '<tr><td colspan="5" class="px-6 py-8 text-center text-gray-600">No hay pagos registrados</td></tr>';
+      return;
+    }
+
+    tablaHistorial.innerHTML = pagosProcesados.map(pago => `
+      <tr class="border-b border-gray-200 hover:bg-gray-50">
+        <td class="px-6 py-3 text-gray-800 font-semibold">${pago.nombreEstudiante}</td>
+        <td class="px-6 py-3 text-gray-800">${pago.concepto}</td>
+        <td class="px-6 py-3 text-secondary-600 font-semibold">$${pago.monto.toFixed(2)}</td>
+        <td class="px-6 py-3 text-gray-600 capitalize">${pago.metodo}</td>
+        <td class="px-6 py-3 text-gray-600">${pago.fecha}</td>
+      </tr>
+    `).join('');
+  }
+
+  // Cargar pagos del localStorage al iniciar
+  const pagosGuardados = localStorage.getItem('pagosProcesados');
+  if (pagosGuardados) {
+    pagosProcesados = JSON.parse(pagosGuardados);
+  }
+})();
+</script>

@@ -1,0 +1,281 @@
+<div class="animate-fadeInUp">
+  <div>
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="font-serif text-4xl font-bold text-primary-900 mb-2">Practical Sessions</h1>
+      <div class="h-1 w-12 bg-primary-400 my-3"></div>
+      <p class="text-gray-700">Register for and manage practical training sessions</p>
+    </div>
+
+    <!-- Filter -->
+    <div class="card-featured mb-8">
+      <div class="flex flex-col md:flex-row gap-4">
+        <div class="flex-1">
+          <label class="form-label">Filter by Course</label>
+          <select id="filter-course" class="form-input" onchange="filterSessions()">
+            <option value="">All Courses</option>
+          </select>
+        </div>
+        <div class="flex-1">
+          <label class="form-label">Filter by Status</label>
+          <select id="filter-status" class="form-input" onchange="filterSessions()">
+            <option value="">All Sessions</option>
+            <option value="available">Available</option>
+            <option value="full">Full</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sessions Grid -->
+    <div id="sessions-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Populated dynamically -->
+    </div>
+  </div>
+
+  <!-- Registration Modal -->
+  <div id="registration-modal" data-modal class="modal">
+    <div class="modal-content">
+      <div class="p-6">
+        <div class="flex items-start justify-between mb-4">
+          <h2 id="modal-title" class="text-2xl font-serif font-bold text-primary-900">Register for Session</h2>
+          <button data-modal-close type="button" class="text-gray-400 hover:text-gray-600 text-2xl leading-none">✕</button>
+        </div>
+
+        <div id="modal-content" class="mb-6">
+          <!-- Content populated dynamically -->
+        </div>
+
+        <form id="session-registration-form" onsubmit="submitSessionRegistration(event)">
+          <div class="mb-6">
+            <label class="form-label">Select Student</label>
+            <select id="modal-student" class="form-input" required>
+              <option value="">Choose a student...</option>
+            </select>
+          </div>
+
+          <div class="flex gap-3">
+            <button type="button" data-modal-close class="flex-1 btn-outline">Cancel</button>
+            <button type="submit" class="flex-1 btn-primary">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('page-title').textContent = 'Practical Sessions';
+
+  let sessionsData = [];
+  let studentsData = [];
+  let filteredSessions = [];
+  let selectedSession = null;
+
+  async function loadData() {
+    try {
+      const [sessionsRes, studentsRes] = await Promise.all([
+        fetch('data/sessions.json'),
+        fetch('data/students.json')
+      ]);
+
+      const sessionsJson = await sessionsRes.json();
+      const studentsJson = await studentsRes.json();
+
+      sessionsData = sessionsJson.sessions;
+      studentsData = studentsJson.students;
+
+      populateCourseFilter();
+      filteredSessions = sessionsData;
+      displaySessions();
+      populateStudentSelect();
+    } catch (error) {
+      console.error('Error loading data:', error);
+      window.app.showToast('Error loading sessions', 'error');
+    }
+  }
+
+  function populateCourseFilter() {
+    const select = document.getElementById('filter-course');
+    const courses = [...new Set(sessionsData.map(s => s.course))];
+
+    courses.forEach(course => {
+      const option = document.createElement('option');
+      option.value = course;
+      option.textContent = course;
+      select.appendChild(option);
+    });
+  }
+
+  function populateStudentSelect() {
+    const select = document.getElementById('modal-student');
+    select.innerHTML = '<option value="">Choose a student...</option>';
+
+    studentsData.forEach(student => {
+      const option = document.createElement('option');
+      option.value = student.id;
+      option.textContent = `${student.name} (${student.id})`;
+      select.appendChild(option);
+    });
+  }
+
+  function filterSessions() {
+    const course = document.getElementById('filter-course').value;
+    const status = document.getElementById('filter-status').value;
+
+    filteredSessions = sessionsData.filter(session => {
+      const courseMatch = !course || session.course === course;
+      let statusMatch = true;
+
+      if (status === 'available') {
+        statusMatch = session.enrolled < session.capacity;
+      } else if (status === 'full') {
+        statusMatch = session.enrolled >= session.capacity;
+      }
+
+      return courseMatch && statusMatch;
+    });
+
+    displaySessions();
+  }
+
+  function displaySessions() {
+    const grid = document.getElementById('sessions-grid');
+
+    if (filteredSessions.length === 0) {
+      grid.innerHTML = '<div class="col-span-full text-center py-8 text-gray-600"><p>No sessions found</p></div>';
+      return;
+    }
+
+    grid.innerHTML = filteredSessions.map(session => {
+      const isFull = session.enrolled >= session.capacity;
+      const availableSpots = session.capacity - session.enrolled;
+      const enrollmentPercent = (session.enrolled / session.capacity) * 100;
+
+      return `
+        <div class="card">
+          <div class="flex items-start justify-between mb-3">
+            <h3 class="text-lg font-bold text-gray-900 flex-1">${session.name}</h3>
+            <span class="badge ${isFull ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}">
+              ${isFull ? 'Full' : 'Available'}
+            </span>
+          </div>
+
+          <p class="text-sm text-gray-600 mb-4">
+            <strong>Course:</strong> ${session.course}
+          </p>
+
+          <div class="space-y-2 mb-4">
+            <div class="flex items-center gap-2 text-sm">
+              <span class="text-gray-600">📅</span>
+              <span class="text-gray-700">${session.startDate} to ${session.endDate}</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm">
+              <span class="text-gray-600">🕐</span>
+              <span class="text-gray-700">${session.startTime} - ${session.endTime}</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm">
+              <span class="text-gray-600">📍</span>
+              <span class="text-gray-700">${session.schedule}</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm">
+              <span class="text-gray-600">👨‍🏫</span>
+              <span class="text-gray-700">${session.instructor}</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm">
+              <span class="text-gray-600">📍</span>
+              <span class="text-gray-700">${session.location}</span>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-semibold text-gray-600">Enrollment</span>
+              <span class="text-xs font-semibold text-gray-900">${session.enrolled}/${session.capacity}</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+              <div class="bg-primary-600 h-2 rounded-full" style="width: ${enrollmentPercent}%"></div>
+            </div>
+            <p class="text-xs text-gray-500 mt-1">${availableSpots} spot${availableSpots !== 1 ? 's' : ''} available</p>
+          </div>
+
+          <p class="text-sm text-gray-600 mb-4">${session.description}</p>
+
+          <button
+            onclick="openRegistrationModal('${session.id}')"
+            ${isFull ? 'disabled' : ''}
+            class="${isFull ? 'opacity-50 cursor-not-allowed' : ''} w-full btn-primary"
+          >
+            ${isFull ? '✕ Session Full' : '+ Register'}
+          </button>
+        </div>
+      `;
+    }).join('');
+  }
+
+  window.openRegistrationModal = function(sessionId) {
+    selectedSession = sessionsData.find(s => s.id === sessionId);
+
+    if (!selectedSession) return;
+
+    const isFull = selectedSession.enrolled >= selectedSession.capacity;
+    if (isFull) {
+      window.app.showToast('This session is full', 'warning');
+      return;
+    }
+
+    document.getElementById('modal-title').textContent = `Register for ${selectedSession.name}`;
+
+    const content = document.getElementById('modal-content');
+    content.innerHTML = `
+      <div class="space-y-3 bg-gray-50 p-4 rounded-lg">
+        <p><strong>Course:</strong> ${selectedSession.course}</p>
+        <p><strong>Dates:</strong> ${selectedSession.startDate} to ${selectedSession.endDate}</p>
+        <p><strong>Schedule:</strong> ${selectedSession.schedule}</p>
+        <p><strong>Time:</strong> ${selectedSession.startTime} - ${selectedSession.endTime}</p>
+        <p><strong>Instructor:</strong> ${selectedSession.instructor}</p>
+        <p><strong>Location:</strong> ${selectedSession.location}</p>
+        <p><strong>Available Spots:</strong> ${selectedSession.capacity - selectedSession.enrolled}</p>
+      </div>
+    `;
+
+    window.app.openModal('registration-modal');
+  };
+
+  window.submitSessionRegistration = function(event) {
+    event.preventDefault();
+
+    const studentId = document.getElementById('modal-student').value;
+    const student = studentsData.find(s => s.id === studentId);
+
+    if (!studentId || !selectedSession) {
+      window.app.showToast('Please select a student', 'warning');
+      return;
+    }
+
+    const registration = {
+      id: 'SREG' + Date.now(),
+      sessionId: selectedSession.id,
+      sessionName: selectedSession.name,
+      studentId,
+      studentName: student.name,
+      registrationDate: new Date().toISOString(),
+      status: 'confirmed'
+    };
+
+    const registrations = JSON.parse(localStorage.getItem('sessionRegistrations') || '[]');
+    registrations.push(registration);
+    localStorage.setItem('sessionRegistrations', JSON.stringify(registrations));
+
+    // Update enrollment count
+    selectedSession.enrolled += 1;
+
+    document.getElementById('session-registration-form').reset();
+    window.app.closeModal('registration-modal');
+    window.app.showToast(`✓ ${student.name} registered for ${selectedSession.name}`, 'success');
+
+    displaySessions();
+  };
+
+  loadData();
+</script>

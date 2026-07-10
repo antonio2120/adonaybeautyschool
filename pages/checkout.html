@@ -1,0 +1,302 @@
+<div class="animate-fadeInUp">
+  <div class="max-w-2xl mx-auto">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="font-serif text-4xl font-bold text-primary-900 mb-2">Student Check-out</h1>
+      <div class="h-1 w-12 bg-primary-400 my-3"></div>
+      <p class="text-gray-700">Register departure time for students</p>
+    </div>
+
+    <!-- Check-out Form Card -->
+    <div class="card-featured mb-8">
+      <form id="checkout-form">
+        <!-- Student Search -->
+        <div class="mb-6">
+          <label class="form-label">Search Student (Checked-in Today)</label>
+          <input
+            type="text"
+            id="student-search"
+            class="form-input"
+            placeholder="Enter student name or ID"
+            autocomplete="off"
+          >
+          <div id="student-suggestions" class="mt-2 border border-gray-200 rounded-lg max-h-48 overflow-y-auto hidden"></div>
+        </div>
+
+        <!-- Selected Student -->
+        <div id="selected-student" class="mb-6 p-4 bg-blue-100 rounded-lg border-2 border-blue-300 hidden">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div id="student-avatar" class="w-12 h-12 rounded-full bg-blue-300"></div>
+              <div>
+                <p id="selected-student-name" class="font-bold text-gray-900"></p>
+                <p id="selected-student-id" class="text-sm text-gray-600"></p>
+                <p id="check-in-time" class="text-xs text-blue-700 font-semibold mt-1"></p>
+              </div>
+            </div>
+            <button
+              type="button"
+              onclick="document.getElementById('selected-student').classList.add('hidden'); document.getElementById('student-search').value = ''; document.getElementById('student-search').focus();"
+              class="text-red-600 hover:text-red-700 font-semibold"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+
+        <!-- Check-out Time -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div>
+            <label class="form-label">Check-out Date</label>
+            <input
+              type="date"
+              id="checkout-date"
+              class="form-input"
+            >
+          </div>
+          <div>
+            <label class="form-label">Check-out Time</label>
+            <input
+              type="time"
+              id="checkout-time"
+              class="form-input"
+            >
+          </div>
+        </div>
+
+        <!-- Hours Summary -->
+        <div id="hours-summary" class="mb-6 p-4 bg-gray-100 rounded-lg hidden">
+          <div class="flex justify-between items-center">
+            <span class="text-gray-700 font-semibold">Hours Logged:</span>
+            <span id="hours-logged" class="text-2xl font-bold text-primary-600">0.0</span>
+          </div>
+        </div>
+
+        <!-- Notes -->
+        <div class="mb-6">
+          <label class="form-label">Notes (Optional)</label>
+          <textarea
+            id="checkout-notes"
+            class="form-input"
+            placeholder="e.g., Left early, Completed assignment"
+            rows="3"
+          ></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="w-full btn-primary"
+        >
+          ← Confirm Check-out
+        </button>
+      </form>
+    </div>
+
+    <!-- Today's Check-outs Summary -->
+    <div class="card-featured">
+      <h2 class="text-2xl font-serif font-bold text-primary-900 mb-6">Today's Check-outs</h2>
+      <div id="checkouts-list" class="space-y-3">
+        <!-- Dynamically populated -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('page-title').textContent = 'Student Check-out';
+
+  let studentsData = [];
+  let checkinsData = [];
+  let checkoutsData = [];
+
+  async function loadData() {
+    try {
+      const [studentRes, attendanceRes] = await Promise.all([
+        fetch('data/students.json'),
+        fetch('data/attendance.json')
+      ]);
+
+      const studentJson = await studentRes.json();
+      const attendanceJson = await attendanceRes.json();
+
+      studentsData = studentJson.students;
+      checkinsData = attendanceJson.attendance;
+      checkoutsData = JSON.parse(localStorage.getItem('checkouts') || '[]');
+
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('checkout-date').value = today;
+      document.getElementById('checkout-time').value = window.app.getCurrentTime();
+
+      displayTodaysCheckouts();
+    } catch (error) {
+      console.error('Error loading data:', error);
+      window.app.showToast('Error loading student data', 'error');
+    }
+  }
+
+  // Get students who checked in today
+  function getStudentsCheckedInToday() {
+    const today = new Date().toISOString().split('T')[0];
+    const today_checkins = checkinsData.filter(c => c.date === today);
+
+    return studentsData.filter(s =>
+      today_checkins.some(c => c.studentId === s.id) &&
+      !checkoutsData.some(c => c.studentId === s.id && c.date === today)
+    );
+  }
+
+  // Student search functionality
+  document.getElementById('student-search').addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase();
+    const suggestions = document.getElementById('student-suggestions');
+
+    if (query.length < 1) {
+      suggestions.classList.add('hidden');
+      return;
+    }
+
+    const checkedInStudents = getStudentsCheckedInToday();
+    const filtered = checkedInStudents.filter(s =>
+      s.name.toLowerCase().includes(query) ||
+      s.id.toLowerCase().includes(query)
+    );
+
+    if (filtered.length === 0) {
+      suggestions.innerHTML = '<div class="p-4 text-gray-600">No checked-in students found</div>';
+      suggestions.classList.remove('hidden');
+      return;
+    }
+
+    suggestions.innerHTML = filtered.map(student => {
+      const today = new Date().toISOString().split('T')[0];
+      const checkin = checkinsData.find(c => c.studentId === student.id && c.date === today);
+      return `
+        <div class="p-3 border-b border-gray-200 hover:bg-gray-50 cursor-pointer transition-all" onclick="selectStudent('${student.id}', '${student.name}', '${checkin.checkInTime}')">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-blue-300"></div>
+              <div>
+                <p class="font-semibold text-gray-900">${student.name}</p>
+                <p class="text-xs text-gray-600">${student.id}</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="text-sm font-semibold text-blue-700">Checked in: ${checkin.checkInTime}</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    suggestions.classList.remove('hidden');
+  });
+
+  // Select student
+  window.selectStudent = function(studentId, studentName, checkInTime) {
+    const student = studentsData.find(s => s.id === studentId);
+    document.getElementById('student-search').value = studentName;
+    document.getElementById('selected-student').classList.remove('hidden');
+    document.getElementById('selected-student-name').textContent = student.name;
+    document.getElementById('selected-student-id').textContent = student.id;
+    document.getElementById('check-in-time').textContent = `Checked in: ${checkInTime}`;
+    document.getElementById('student-suggestions').classList.add('hidden');
+    document.getElementById('student-search').dataset.selectedId = studentId;
+    document.getElementById('student-search').dataset.checkInTime = checkInTime;
+  };
+
+  // Calculate hours logged
+  document.getElementById('checkout-time').addEventListener('change', calculateHours);
+  document.getElementById('checkout-date').addEventListener('change', calculateHours);
+
+  function calculateHours() {
+    const checkInTime = document.getElementById('student-search').dataset.checkInTime;
+    const checkOutTime = document.getElementById('checkout-time').value;
+
+    if (!checkInTime || !checkOutTime) return;
+
+    const [inHour, inMin] = checkInTime.split(':').map(Number);
+    const [outHour, outMin] = checkOutTime.split(':').map(Number);
+
+    const inMinutes = inHour * 60 + inMin;
+    const outMinutes = outHour * 60 + outMin;
+
+    const hoursLogged = ((outMinutes - inMinutes) / 60).toFixed(1);
+
+    if (hoursLogged < 0) {
+      document.getElementById('hours-summary').classList.add('hidden');
+    } else {
+      document.getElementById('hours-logged').textContent = hoursLogged;
+      document.getElementById('hours-summary').classList.remove('hidden');
+    }
+  }
+
+  // Form submission
+  document.getElementById('checkout-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const studentId = document.getElementById('student-search').dataset.selectedId;
+    const studentName = document.getElementById('selected-student-name').textContent;
+    const date = document.getElementById('checkout-date').value;
+    const time = document.getElementById('checkout-time').value;
+    const notes = document.getElementById('checkout-notes').value;
+    const hoursLogged = document.getElementById('hours-logged').textContent;
+
+    if (!studentId) {
+      window.app.showToast('Please select a student', 'warning');
+      return;
+    }
+
+    const newCheckout = {
+      id: `CHK${Date.now()}`,
+      studentId,
+      studentName,
+      date,
+      checkOutTime: time,
+      hoursLogged: parseFloat(hoursLogged),
+      notes
+    };
+
+    checkoutsData.push(newCheckout);
+    localStorage.setItem('checkouts', JSON.stringify(checkoutsData));
+
+    document.getElementById('checkout-form').reset();
+    document.getElementById('selected-student').classList.add('hidden');
+    document.getElementById('student-search').dataset.selectedId = '';
+    document.getElementById('checkout-time').value = window.app.getCurrentTime();
+    document.getElementById('hours-summary').classList.add('hidden');
+
+    displayTodaysCheckouts();
+    window.app.showToast(`✓ ${studentName} checked out at ${time}`, 'success');
+  });
+
+  function displayTodaysCheckouts() {
+    const today = document.getElementById('checkout-date').value;
+    const todaysCheckouts = checkoutsData.filter(c => c.date === today);
+
+    const list = document.getElementById('checkouts-list');
+    if (todaysCheckouts.length === 0) {
+      list.innerHTML = '<p class="text-gray-500 italic">No check-outs recorded yet</p>';
+      return;
+    }
+
+    list.innerHTML = todaysCheckouts.map(checkout => `
+      <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-full bg-blue-300"></div>
+          <div>
+            <p class="font-semibold text-gray-900">${checkout.studentName}</p>
+            <p class="text-xs text-gray-600">${checkout.studentId}</p>
+          </div>
+        </div>
+        <div class="text-right">
+          <p class="font-bold text-blue-600">${checkout.checkOutTime}</p>
+          <p class="text-xs text-gray-500">${checkout.hoursLogged} hrs logged</p>
+          ${checkout.notes ? `<p class="text-xs text-gray-600 mt-1">${checkout.notes}</p>` : ''}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  loadData();
+</script>

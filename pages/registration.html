@@ -1,0 +1,287 @@
+<div class="animate-fadeInUp">
+  <div class="max-w-3xl mx-auto">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="font-serif text-4xl font-bold text-primary-900 mb-2">Online Student Registration</h1>
+      <div class="h-1 w-12 bg-primary-400 my-3"></div>
+      <p class="text-gray-700">Enroll in our beauty school programs</p>
+    </div>
+
+    <!-- Registration Form -->
+    <div class="card-featured mb-8">
+      <form id="registration-form">
+        <!-- Step 1: Personal Information -->
+        <div id="step-1">
+          <h2 class="text-xl font-bold text-gray-800 mb-6 pb-4 border-b border-gray-200">Step 1: Personal Information</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="form-label">First Name *</label>
+              <input type="text" name="firstName" class="form-input" required>
+            </div>
+            <div>
+              <label class="form-label">Last Name *</label>
+              <input type="text" name="lastName" class="form-input" required>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label">Email Address *</label>
+            <input type="email" name="email" class="form-input" required>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="form-label">Phone Number *</label>
+              <input type="tel" name="phone" class="form-input" placeholder="(555) 123-4567" required>
+            </div>
+            <div>
+              <label class="form-label">Date of Birth *</label>
+              <input type="date" name="dob" class="form-input" required>
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <label class="form-label">Address *</label>
+            <input type="text" name="address" class="form-input" placeholder="Street address" required>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <input type="text" name="city" class="form-input" placeholder="City" required>
+            <input type="text" name="state" class="form-input" placeholder="State" required>
+          </div>
+
+          <button type="button" onclick="goToStep(2)" class="w-full btn-primary">
+            Next: Select Course →
+          </button>
+        </div>
+
+        <!-- Step 2: Course Selection -->
+        <div id="step-2" class="hidden">
+          <h2 class="text-xl font-bold text-gray-800 mb-6 pb-4 border-b border-gray-200">Step 2: Select Course</h2>
+
+          <p class="text-gray-600 mb-4">Choose your desired beauty program</p>
+
+          <div id="courses-list" class="mb-6 space-y-3">
+            <!-- Populated dynamically -->
+          </div>
+
+          <div class="flex gap-3">
+            <button type="button" onclick="goToStep(1)" class="btn-outline flex-1">
+              ← Back
+            </button>
+            <button type="button" onclick="goToStep(3)" class="btn-primary flex-1">
+              Next: Session Selection →
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Session & Confirmation -->
+        <div id="step-3" class="hidden">
+          <h2 class="text-xl font-bold text-gray-800 mb-6 pb-4 border-b border-gray-200">Step 3: Select Sessions & Review</h2>
+
+          <div class="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <p class="text-sm font-semibold text-blue-900">📋 Registration Summary</p>
+            <div id="summary-info" class="mt-3 text-sm text-gray-700"></div>
+          </div>
+
+          <div class="mb-6">
+            <label class="form-label">Preferred Sessions *</label>
+            <p class="text-sm text-gray-600 mb-3">Select all sessions that interest you</p>
+            <div id="sessions-list" class="space-y-3">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input type="checkbox" name="terms" required class="w-4 h-4">
+              <span class="text-gray-700">I agree to the terms and conditions and have read the program requirements *</span>
+            </label>
+          </div>
+
+          <div class="flex gap-3">
+            <button type="button" onclick="goToStep(2)" class="btn-outline flex-1">
+              ← Back
+            </button>
+            <button type="submit" class="btn-primary flex-1">
+              ✓ Complete Registration
+            </button>
+          </div>
+        </div>
+
+        <!-- Success Message -->
+        <div id="success-message" class="hidden">
+          <div class="text-center py-8">
+            <div class="text-6xl mb-4">✓</div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-2">Registration Successful!</h2>
+            <p class="text-gray-600 mb-4">We've sent a confirmation email to <strong id="confirm-email"></strong></p>
+            <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6 text-left">
+              <p class="text-sm font-semibold text-green-900 mb-2">What's Next?</p>
+              <ul class="text-sm text-green-800 space-y-1 list-disc list-inside">
+                <li>Check your email for enrollment details</li>
+                <li>Complete your payment to secure your spot</li>
+                <li>Attend the orientation session</li>
+              </ul>
+            </div>
+            <button onclick="location.href='index.html'" class="btn-primary">
+              Return to Dashboard
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('page-title').textContent = 'Online Registration';
+
+  let sessionsData = [];
+  let currentStep = 1;
+
+  async function loadData() {
+    try {
+      const sessionsRes = await fetch('data/sessions.json');
+      const sessionsJson = await sessionsRes.json();
+      sessionsData = sessionsJson.sessions;
+
+      populateCourses();
+      displaySessions();
+    } catch (error) {
+      console.error('Error loading data:', error);
+      window.app.showToast('Error loading courses', 'error');
+    }
+  }
+
+  function populateCourses() {
+    const coursesList = document.getElementById('courses-list');
+    const courses = [...new Set(sessionsData.map(s => s.course))];
+
+    coursesList.innerHTML = courses.map(course => `
+      <label class="flex items-center gap-4 p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-primary-600 hover:bg-primary-50 transition-all">
+        <input type="radio" name="course" value="${course}" required class="w-4 h-4">
+        <div class="flex-1">
+          <p class="font-semibold text-gray-900">${course}</p>
+          <p class="text-sm text-gray-600">${sessionsData.filter(s => s.course === course).length} available sessions</p>
+        </div>
+      </label>
+    `).join('');
+  }
+
+  function displaySessions() {
+    const sessionsList = document.getElementById('sessions-list');
+    const selectedCourse = document.querySelector('input[name="course"]:checked')?.value;
+
+    if (!selectedCourse) {
+      sessionsList.innerHTML = '<p class="text-gray-600">Select a course to see available sessions</p>';
+      return;
+    }
+
+    const courseSessions = sessionsData.filter(s => s.course === selectedCourse);
+
+    sessionsList.innerHTML = courseSessions.map(session => `
+      <label class="flex items-start gap-4 p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-primary-600 transition-all">
+        <input type="checkbox" name="sessions" value="${session.id}" class="w-4 h-4 mt-1">
+        <div class="flex-1">
+          <p class="font-semibold text-gray-900">${session.name}</p>
+          <p class="text-sm text-gray-600">${session.schedule}</p>
+          <p class="text-xs text-gray-500 mt-1">${session.startTime} - ${session.endTime} | Instructor: ${session.instructor}</p>
+          <p class="text-xs text-gray-500">${session.enrolled}/${session.capacity} enrolled</p>
+        </div>
+      </label>
+    `).join('');
+  }
+
+  document.querySelectorAll('input[name="course"]').forEach(radio => {
+    radio.addEventListener('change', displaySessions);
+  });
+
+  function goToStep(step) {
+    if (step === 1) {
+      document.getElementById('step-1').classList.remove('hidden');
+      document.getElementById('step-2').classList.add('hidden');
+      document.getElementById('step-3').classList.add('hidden');
+      currentStep = 1;
+    } else if (step === 2) {
+      document.getElementById('step-1').classList.add('hidden');
+      document.getElementById('step-2').classList.remove('hidden');
+      document.getElementById('step-3').classList.add('hidden');
+      currentStep = 2;
+    } else if (step === 3) {
+      const selectedCourse = document.querySelector('input[name="course"]:checked');
+      if (!selectedCourse) {
+        window.app.showToast('Please select a course', 'warning');
+        return;
+      }
+
+      updateSummary();
+      document.getElementById('step-1').classList.add('hidden');
+      document.getElementById('step-2').classList.add('hidden');
+      document.getElementById('step-3').classList.remove('hidden');
+      currentStep = 3;
+    }
+  }
+
+  function updateSummary() {
+    const firstName = document.querySelector('input[name="firstName"]').value;
+    const lastName = document.querySelector('input[name="lastName"]').value;
+    const email = document.querySelector('input[name="email"]').value;
+    const course = document.querySelector('input[name="course"]:checked').value;
+
+    const summary = document.getElementById('summary-info');
+    summary.innerHTML = `
+      <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Course:</strong> ${course}</p>
+    `;
+
+    displaySessions();
+  }
+
+  document.getElementById('registration-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(document.getElementById('registration-form'));
+    const firstName = formData.get('firstName');
+    const lastName = formData.get('lastName');
+    const email = formData.get('email');
+    const course = formData.get('course');
+    const sessions = formData.getAll('sessions');
+
+    if (!document.querySelector('input[name="terms"]').checked) {
+      window.app.showToast('Please accept the terms and conditions', 'warning');
+      return;
+    }
+
+    if (sessions.length === 0) {
+      window.app.showToast('Please select at least one session', 'warning');
+      return;
+    }
+
+    // Save registration
+    const registration = {
+      id: 'REG' + Date.now(),
+      firstName,
+      lastName,
+      email,
+      course,
+      sessions,
+      registrationDate: new Date().toISOString(),
+      status: 'pending'
+    };
+
+    const registrations = JSON.parse(localStorage.getItem('registrations') || '[]');
+    registrations.push(registration);
+    localStorage.setItem('registrations', JSON.stringify(registrations));
+
+    // Show success message
+    document.getElementById('registration-form').style.display = 'none';
+    document.getElementById('confirm-email').textContent = email;
+    document.getElementById('success-message').classList.remove('hidden');
+
+    window.app.showToast('Registration submitted successfully!', 'success');
+  });
+
+  loadData();
+</script>

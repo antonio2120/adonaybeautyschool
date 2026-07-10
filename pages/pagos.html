@@ -1,0 +1,133 @@
+<div class="animate-fadeInUp">
+  <div class="max-w-6xl mx-auto">
+    <div class="mb-8">
+      <h1 class="font-serif text-4xl font-bold text-primary-900 mb-2">Gestión de Pagos</h1>
+      <div class="h-1 w-12 bg-secondary-400 my-3"></div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+      <div class="bg-white rounded-lg shadow p-6 border-l-4 border-green-600">
+        <p class="text-sm text-gray-600 uppercase font-semibold">Total Pagado</p>
+        <p class="text-3xl font-bold text-green-600 mt-2">$20,150</p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-6 border-l-4 border-yellow-600">
+        <p class="text-sm text-gray-600 uppercase font-semibold">Pendiente</p>
+        <p class="text-3xl font-bold text-yellow-600 mt-2">$2,000</p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-6 border-l-4 border-primary-600">
+        <p class="text-sm text-gray-600 uppercase font-semibold">Mensualidades Vencidas</p>
+        <p class="text-3xl font-bold text-primary-600 mt-2">0</p>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex gap-2 border-b border-gray-200 mb-6">
+      <button class="px-6 py-3 font-semibold text-gray-600 border-b-2 border-secondary-400 tab-btn active" data-tab="nuevo-pago">Nuevo Pago</button>
+      <button class="px-6 py-3 font-semibold text-gray-600 border-b-2 border-transparent tab-btn" data-tab="historial">Historial</button>
+    </div>
+
+    <!-- Nuevo Pago -->
+    <div id="nuevo-pago" class="tab-content">
+      <div class="bg-white rounded-lg shadow p-8 mb-8">
+        <form>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Estudiante *</label>
+              <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400 focus:ring-2 focus:ring-secondary-100">
+                <option>-- Selecciona --</option>
+                <option>Noemi Romero (STU001)</option>
+                <option>Maria Garcia (STU002)</option>
+                <option>Jessica Williams (STU003)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Concepto *</label>
+              <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400 focus:ring-2 focus:ring-secondary-100">
+                <option>-- Selecciona --</option>
+                <option>Pago Total Programa</option>
+                <option>Mensualidad</option>
+                <option>Educación Continua</option>
+                <option>Asesorías Especiales</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Monto ($) *</label>
+              <input type="number" step="0.01" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400 focus:ring-2 focus:ring-secondary-100" placeholder="0.00">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Método de Pago *</label>
+              <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400 focus:ring-2 focus:ring-secondary-100">
+                <option>-- Selecciona --</option>
+                <option>Zelle</option>
+                <option>Tarjeta de Crédito</option>
+                <option>Efectivo</option>
+                <option>Transferencia Bancaria</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Referencia/Recibo</label>
+            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400 focus:ring-2 focus:ring-secondary-100" placeholder="Número de confirmación o referencia">
+          </div>
+
+          <button type="submit" class="w-full px-6 py-3 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg font-semibold transition-all">
+            Registrar Pago
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Historial -->
+    <div id="historial" class="tab-content hidden">
+      <div class="bg-white rounded-lg shadow p-6">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 bg-gray-50">
+                <th class="px-4 py-3 text-left font-semibold text-gray-700">Fecha</th>
+                <th class="px-4 py-3 text-left font-semibold text-gray-700">Estudiante</th>
+                <th class="px-4 py-3 text-left font-semibold text-gray-700">Concepto</th>
+                <th class="px-4 py-3 text-right font-semibold text-gray-700">Monto</th>
+                <th class="px-4 py-3 text-left font-semibold text-gray-700">Método</th>
+                <th class="px-4 py-3 text-left font-semibold text-gray-700">Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-200">
+                <td class="px-4 py-3 text-gray-600">2026-03-01</td>
+                <td class="px-4 py-3 text-gray-800">Maria Garcia</td>
+                <td class="px-4 py-3 text-gray-800">Mensualidad Marzo</td>
+                <td class="px-4 py-3 text-right font-semibold text-gray-800">$1,000</td>
+                <td class="px-4 py-3 text-gray-600">Zelle</td>
+                <td class="px-4 py-3"><span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full font-semibold">Completado</span></td>
+              </tr>
+              <tr class="border-b border-gray-200">
+                <td class="px-4 py-3 text-gray-600">2026-02-05</td>
+                <td class="px-4 py-3 text-gray-800">Maria Garcia</td>
+                <td class="px-4 py-3 text-gray-800">Mensualidad Febrero</td>
+                <td class="px-4 py-3 text-right font-semibold text-gray-800">$1,000</td>
+                <td class="px-4 py-3 text-gray-600">Efectivo</td>
+                <td class="px-4 py-3"><span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full font-semibold">Completado</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('border-secondary-400'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+    this.classList.add('border-secondary-400');
+    document.getElementById(this.dataset.tab).classList.remove('hidden');
+  });
+});
+</script>

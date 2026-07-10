@@ -1,0 +1,259 @@
+<div class="animate-fadeInUp">
+  <div>
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="font-serif text-4xl font-bold text-primary-900 mb-2">Reports & Analytics</h1>
+      <div class="h-1 w-12 bg-primary-400 my-3"></div>
+      <p class="text-gray-700">View attendance records and statistics</p>
+    </div>
+
+    <!-- Filters -->
+    <div class="card-featured mb-8">
+      <h2 class="text-lg font-bold text-gray-800 mb-4">Filters</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div>
+          <label class="form-label">Start Date</label>
+          <input type="date" id="filter-start-date" class="form-input">
+        </div>
+        <div>
+          <label class="form-label">End Date</label>
+          <input type="date" id="filter-end-date" class="form-input">
+        </div>
+        <div>
+          <label class="form-label">Student</label>
+          <select id="filter-student" class="form-input">
+            <option value="">All Students</option>
+          </select>
+        </div>
+        <div class="flex items-end gap-2">
+          <button onclick="applyFilters()" class="btn-primary flex-1">Apply Filters</button>
+          <button onclick="resetFilters()" class="btn-outline flex-1">Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+      <div class="card-featured">
+        <p class="text-sm font-semibold text-gray-500 tracking-wide uppercase">Total Check-ins</p>
+        <p id="stat-checkins" class="text-4xl font-bold text-primary-600 mt-2">0</p>
+      </div>
+      <div class="card-featured">
+        <p class="text-sm font-semibold text-gray-500 tracking-wide uppercase">Total Check-outs</p>
+        <p id="stat-checkouts" class="text-4xl font-bold text-blue-600 mt-2">0</p>
+      </div>
+      <div class="card-featured">
+        <p class="text-sm font-semibold text-gray-500 tracking-wide uppercase">Avg Hours/Student</p>
+        <p id="stat-avg-hours" class="text-4xl font-bold text-green-600 mt-2">0.0</p>
+      </div>
+      <div class="card-featured">
+        <p class="text-sm font-semibold text-gray-500 tracking-wide uppercase">Attendance Rate</p>
+        <p id="stat-attendance-rate" class="text-4xl font-bold text-accent-600 mt-2">0%</p>
+      </div>
+    </div>
+
+    <!-- Attendance Table -->
+    <div class="card-featured mb-8">
+      <h2 class="text-2xl font-serif font-bold text-primary-900 mb-6">Attendance Records</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b border-gray-200 bg-gray-50">
+              <th class="px-4 py-3 text-left font-semibold text-gray-700">Student Name</th>
+              <th class="px-4 py-3 text-left font-semibold text-gray-700">ID</th>
+              <th class="px-4 py-3 text-left font-semibold text-gray-700">Date</th>
+              <th class="px-4 py-3 text-left font-semibold text-gray-700">Check-in</th>
+              <th class="px-4 py-3 text-left font-semibold text-gray-700">Check-out</th>
+              <th class="px-4 py-3 text-left font-semibold text-gray-700">Hours</th>
+              <th class="px-4 py-3 text-left font-semibold text-gray-700">Status</th>
+            </tr>
+          </thead>
+          <tbody id="attendance-table-body">
+            <!-- Populated dynamically -->
+          </tbody>
+        </table>
+      </div>
+      <div id="no-records" class="text-center py-8 text-gray-600 hidden">
+        <p>No attendance records found</p>
+      </div>
+    </div>
+
+    <!-- Export Options -->
+    <div class="card-featured">
+      <h2 class="text-2xl font-serif font-bold text-primary-900 mb-6">Export Options</h2>
+      <div class="flex flex-col md:flex-row gap-3">
+        <button onclick="exportToCSV()" class="btn-secondary flex-1">
+          📥 Export to CSV
+        </button>
+        <button onclick="printReport()" class="btn-outline flex-1">
+          🖨️ Print Report
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('page-title').textContent = 'Reports & Analytics';
+
+  let studentsData = [];
+  let attendanceData = [];
+  let filteredData = [];
+
+  async function loadData() {
+    try {
+      const [studentRes, attendanceRes] = await Promise.all([
+        fetch('data/students.json'),
+        fetch('data/attendance.json')
+      ]);
+
+      const studentJson = await studentRes.json();
+      const attendanceJson = await attendanceRes.json();
+
+      studentsData = studentJson.students;
+      attendanceData = attendanceJson.attendance;
+
+      // Add mock check-outs from localStorage
+      const checkoutsData = JSON.parse(localStorage.getItem('checkouts') || '[]');
+      attendanceData = attendanceData.map(att => {
+        const checkout = checkoutsData.find(c => c.studentId === att.studentId && c.date === att.date);
+        return {
+          ...att,
+          checkOutTime: checkout ? checkout.checkOutTime : att.checkOutTime,
+          hoursLogged: checkout ? checkout.hoursLogged : att.hoursLogged
+        };
+      });
+
+      populateStudentFilter();
+      initDateFilters();
+      displayAttendance();
+    } catch (error) {
+      console.error('Error loading data:', error);
+      window.app.showToast('Error loading data', 'error');
+    }
+  }
+
+  function populateStudentFilter() {
+    const select = document.getElementById('filter-student');
+    studentsData.forEach(student => {
+      const option = document.createElement('option');
+      option.value = student.id;
+      option.textContent = student.name;
+      select.appendChild(option);
+    });
+  }
+
+  function initDateFilters() {
+    const today = new Date().toISOString().split('T')[0];
+    const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+
+    document.getElementById('filter-start-date').value = thirtyDaysAgo;
+    document.getElementById('filter-end-date').value = today;
+  }
+
+  function applyFilters() {
+    const startDate = document.getElementById('filter-start-date').value;
+    const endDate = document.getElementById('filter-end-date').value;
+    const studentId = document.getElementById('filter-student').value;
+
+    filteredData = attendanceData.filter(record => {
+      const dateMatch = record.date >= startDate && record.date <= endDate;
+      const studentMatch = !studentId || record.studentId === studentId;
+      return dateMatch && studentMatch;
+    });
+
+    displayAttendance();
+    updateStats();
+  }
+
+  function resetFilters() {
+    document.getElementById('filter-student').value = '';
+    initDateFilters();
+    applyFilters();
+  }
+
+  function displayAttendance() {
+    const tbody = document.getElementById('attendance-table-body');
+    const noRecords = document.getElementById('no-records');
+
+    const dataToDisplay = filteredData.length > 0 ? filteredData : attendanceData.slice(0, 20);
+
+    if (dataToDisplay.length === 0) {
+      tbody.innerHTML = '';
+      noRecords.classList.remove('hidden');
+      return;
+    }
+
+    noRecords.classList.add('hidden');
+    tbody.innerHTML = dataToDisplay.map(record => {
+      const status = record.checkOutTime ? 'Complete' : 'Pending';
+      const statusColor = status === 'Complete' ? 'text-green-600' : 'text-yellow-600';
+
+      return `
+        <tr class="table-row">
+          <td class="px-4 py-3 text-gray-900 font-semibold">${record.studentName}</td>
+          <td class="px-4 py-3 text-gray-600">${record.studentId}</td>
+          <td class="px-4 py-3 text-gray-600">${window.app.formatDate(record.date)}</td>
+          <td class="px-4 py-3 font-semibold text-green-600">${record.checkInTime}</td>
+          <td class="px-4 py-3 font-semibold text-blue-600">${record.checkOutTime || '—'}</td>
+          <td class="px-4 py-3 text-gray-900 font-semibold">${record.hoursLogged.toFixed(1)}</td>
+          <td class="px-4 py-3"><span class="badge ${statusColor}">${status}</span></td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function updateStats() {
+    const dataToUse = filteredData.length > 0 ? filteredData : attendanceData;
+
+    const totalCheckins = dataToUse.length;
+    const totalCheckouts = dataToUse.filter(r => r.checkOutTime).length;
+    const avgHours = totalCheckouts > 0
+      ? (dataToUse.reduce((sum, r) => sum + r.hoursLogged, 0) / totalCheckouts).toFixed(1)
+      : '0.0';
+    const attendanceRate = studentsData.length > 0
+      ? Math.round((totalCheckins / (studentsData.length * 5)) * 100)
+      : 0;
+
+    document.getElementById('stat-checkins').textContent = totalCheckins;
+    document.getElementById('stat-checkouts').textContent = totalCheckouts;
+    document.getElementById('stat-avg-hours').textContent = avgHours;
+    document.getElementById('stat-attendance-rate').textContent = attendanceRate + '%';
+  }
+
+  window.exportToCSV = function() {
+    const dataToExport = filteredData.length > 0 ? filteredData : attendanceData;
+
+    let csv = 'Student Name,ID,Date,Check-in Time,Check-out Time,Hours Logged,Notes\\n';
+    dataToExport.forEach(record => {
+      csv += `"${record.studentName}","${record.studentId}","${record.date}","${record.checkInTime}","${record.checkOutTime || ''}","${record.hoursLogged}","${record.notes || ''}"\\n`;
+    });
+
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `attendance-report-${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+
+    window.app.showToast('Report exported successfully', 'success');
+  };
+
+  window.printReport = function() {
+    window.print();
+  };
+
+  loadData();
+</script>
+
+<style media="print">
+  @media print {
+    #sidebar, header, #menu-toggle, .card:has(.btn-secondary) {
+      display: none;
+    }
+    .overflow-x-auto {
+      overflow: visible;
+    }
+  }
+</style>

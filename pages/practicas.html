@@ -1,0 +1,288 @@
+<div class="animate-fadeInUp">
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-8">
+      <h1 class="font-serif text-4xl font-bold text-primary-900 mb-2">Gestión de Prácticas</h1>
+      <div class="h-1 w-12 bg-secondary-400 my-3"></div>
+      <p class="text-gray-700">Administra el catálogo de prácticas disponibles</p>
+    </div>
+
+    <!-- Controles -->
+    <div class="bg-white rounded-lg shadow p-6 mb-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Buscar</label>
+          <input type="text" id="search-practicas" placeholder="Nombre de práctica..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400">
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Filtrar por Tipo</label>
+          <select id="filter-tipo" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400">
+            <option value="">-- Todos --</option>
+            <option value="Corte">Corte</option>
+            <option value="Planchado">Planchado</option>
+            <option value="Permanente">Permanente</option>
+            <option value="Otros">Otros</option>
+          </select>
+        </div>
+        <div class="flex items-end gap-2">
+          <button id="reset-practicas" class="flex-1 px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-lg font-semibold text-sm transition-all">
+            Limpiar
+          </button>
+          <button id="btn-agregar" class="flex-1 px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg font-semibold text-sm transition-all">
+            + Agregar
+          </button>
+        </div>
+      </div>
+
+      <p class="text-sm text-gray-600">Total de prácticas: <span id="total-practicas">15</span></p>
+    </div>
+
+    <!-- Tabla de Prácticas -->
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-gray-200 bg-gray-50">
+              <th class="px-6 py-4 text-left font-semibold text-gray-700">Nombre</th>
+              <th class="px-6 py-4 text-left font-semibold text-gray-700">Tipo</th>
+              <th class="px-6 py-4 text-center font-semibold text-gray-700">Horas</th>
+              <th class="px-6 py-4 text-left font-semibold text-gray-700">Descripción</th>
+              <th class="px-6 py-4 text-center font-semibold text-gray-700">Estado</th>
+              <th class="px-6 py-4 text-center font-semibold text-gray-700">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="practicas-tbody">
+            <!-- Se llena dinámicamente -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para Agregar/Editar Práctica -->
+<div id="modal-practica" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+    <div class="p-6 border-b border-gray-200">
+      <h2 class="text-2xl font-bold text-gray-800" id="modal-titulo">Agregar Práctica</h2>
+    </div>
+    <div class="p-6 space-y-4">
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-2">Nombre *</label>
+        <input type="text" id="form-nombre" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400" placeholder="Ej: Corte Bob Corto">
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-2">Tipo *</label>
+        <select id="form-tipo" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400">
+          <option value="">-- Seleccionar --</option>
+          <option value="Corte">Corte</option>
+          <option value="Planchado">Planchado</option>
+          <option value="Permanente">Permanente</option>
+          <option value="Secado">Secado</option>
+          <option value="Colorimetría">Colorimetría</option>
+          <option value="Peinado">Peinado</option>
+          <option value="Manicure">Manicure</option>
+          <option value="Maquillaje">Maquillaje</option>
+          <option value="Depilación">Depilación</option>
+          <option value="Faciales">Faciales</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-2">Horas *</label>
+        <input type="number" id="form-horas" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400" placeholder="2.5" step="0.5">
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-2">Descripción</label>
+        <textarea id="form-descripcion" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400" placeholder="Detalles de la práctica..." rows="3"></textarea>
+      </div>
+    </div>
+    <div class="p-6 border-t border-gray-200 flex gap-3">
+      <button id="btn-guardar" class="flex-1 px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg font-semibold transition-all">
+        Guardar
+      </button>
+      <button id="btn-cancelar" class="flex-1 px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-lg font-semibold transition-all">
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  // Función para obtener icono según el tipo de práctica
+  function getIconoPractica(tipo) {
+    const iconos = {
+      'Corte': '<svg class="w-5 h-5 text-primary-600" fill="currentColor" viewBox="0 0 24 24"><path d="M6 4a2 2 0 100 4 2 2 0 000-4zm0 8a2 2 0 100 4 2 2 0 000-4zm6-8a2 2 0 100 4 2 2 0 000-4zm4 8l6 6m0-6l-6 6"/></svg>',
+      'Planchado': '<svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 3h6v2H9V3zm-2 4h10v10H7V7zm1 2v6h8V9H8z"/></svg>',
+      'Permanente': '<svg class="w-5 h-5 text-purple-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg>',
+      'Secado': '<svg class="w-5 h-5 text-yellow-600" fill="currentColor" viewBox="0 0 24 24"><path d="M13 2h-2v2h2V2zm0 18h-2v2h2v-2zm7-7h-2v-2h2v2zm-16 0H2v-2h2v2zm14-7l-1.41-1.41-1.42 1.42 1.41 1.41 1.42-1.42zM6.83 7.17L5.42 5.76 4 7.17l1.41 1.41 1.42-1.41zm11.31 11.32l-1.41-1.42-1.42 1.41 1.41 1.41 1.42-1.4zM6.83 16.83l-1.42-1.41L4 16.83l1.41 1.41 1.42-1.41z"/></svg>',
+      'Colorimetría': '<svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>',
+      'Peinado': '<svg class="w-5 h-5 text-pink-600" fill="currentColor" viewBox="0 0 24 24"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6-6C9.9 4 9 4.9 9 6s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 10c-2.2 0-4 1.8-4 4h8c0-2.2-1.8-4-4-4z"/></svg>',
+      'Manicure': '<svg class="w-5 h-5 text-rose-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm1-13h-2v6h2V7zm0 8h-2v2h2v-2z"/></svg>',
+      'Maquillaje': '<svg class="w-5 h-5 text-fuchsia-600" fill="currentColor" viewBox="0 0 24 24"><path d="M15.5 1h-8C6.12 1 5 2.12 5 3.5v17C5 21.88 6.12 23 7.5 23h8c1.38 0 2.5-1.12 2.5-2.5v-17C18 2.12 16.88 1 15.5 1zm-4 21c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm4-8H7V4h8.5v10z"/></svg>',
+      'Depilación': '<svg class="w-5 h-5 text-indigo-600" fill="currentColor" viewBox="0 0 24 24"><path d="M13 5.5h-2v7h2v-7zm-1 11c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm6-11h-2v9h2v-9zM8 5.5H6v11h2v-11z"/></svg>',
+      'Faciales': '<svg class="w-5 h-5 text-teal-600" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="8" cy="10" r="1.5" fill="currentColor"/><circle cx="16" cy="10" r="1.5" fill="currentColor"/><path d="M8 14c0 1 1 2 2 2h4c1 0 2-1 2-2" stroke="currentColor" stroke-width="2" fill="none"/></svg>'
+    };
+
+    return iconos[tipo] || '<svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg>';
+  }
+
+  const practicas = [
+    { id: 1, nombre: 'Corte Escalonado Bob Corto 45°', tipo: 'Corte', horas: 2.5, descripcion: 'Corte de precisión con ángulo de 45 grados' },
+    { id: 2, nombre: 'Planchado Profesional', tipo: 'Planchado', horas: 1.5, descripcion: 'Alisado con plancha de cerámica' },
+    { id: 3, nombre: 'Permanente Espiral', tipo: 'Permanente', horas: 4.0, descripcion: 'Ondas permanentes en espiral' },
+    { id: 4, nombre: 'Corte Recto 0°', tipo: 'Corte', horas: 2.0, descripcion: 'Corte recto sin ángulo' },
+    { id: 5, nombre: 'Permanente Básico', tipo: 'Permanente', horas: 3.5, descripcion: 'Ondulación permanente básica' },
+    { id: 6, nombre: 'Secado y Volumen', tipo: 'Secado', horas: 2.0, descripcion: 'Secado con técnica de volumen' },
+    { id: 7, nombre: 'Colorimetría Básica', tipo: 'Colorimetría', horas: 2.5, descripcion: 'Aplicación de color en el cabello' },
+    { id: 8, nombre: 'Peinado Elegante', tipo: 'Peinado', horas: 3.0, descripcion: 'Peinados para ocasiones especiales' },
+    { id: 9, nombre: 'Manicure Clásica', tipo: 'Manicure', horas: 1.5, descripcion: 'Manicure tradicional con acabado' },
+    { id: 10, nombre: 'Maquillaje Social', tipo: 'Maquillaje', horas: 3.0, descripcion: 'Maquillaje para eventos' },
+    { id: 11, nombre: 'Depilación Profesional', tipo: 'Depilación', horas: 2.0, descripcion: 'Depilación con cera y afeitado' },
+    { id: 12, nombre: 'Faciales Básicos', tipo: 'Faciales', horas: 2.0, descripcion: 'Limpieza facial profesional' },
+    { id: 13, nombre: 'Peinado Casual', tipo: 'Peinado', horas: 2.0, descripcion: 'Peinados para uso diario' },
+    { id: 14, nombre: 'Maquillaje Nocturno', tipo: 'Maquillaje', horas: 2.5, descripcion: 'Maquillaje intenso para noche' },
+    { id: 15, nombre: 'Corte Degradado', tipo: 'Corte', horas: 3.0, descripcion: 'Corte con degradación suave' }
+  ];
+
+  let practicasFiltradas = [...practicas];
+  let editandoId = null;
+  let proximoId = 16;
+
+  const tbody = document.getElementById('practicas-tbody');
+  const searchInput = document.getElementById('search-practicas');
+  const filterTipo = document.getElementById('filter-tipo');
+  const btnAgregar = document.getElementById('btn-agregar');
+  const resetBtn = document.getElementById('reset-practicas');
+  const modal = document.getElementById('modal-practica');
+  const btnGuardar = document.getElementById('btn-guardar');
+  const btnCancelar = document.getElementById('btn-cancelar');
+  const modalTitulo = document.getElementById('modal-titulo');
+
+  function renderTable() {
+    tbody.innerHTML = '';
+    practicasFiltradas.forEach(p => {
+      const row = document.createElement('tr');
+      row.className = 'border-b border-gray-200 hover:bg-gray-50';
+      row.innerHTML = `
+        <td class="px-6 py-4 text-gray-800 font-semibold flex items-center gap-2">
+          <span class="inline-flex">${getIconoPractica(p.tipo)}</span>
+          ${p.nombre}
+        </td>
+        <td class="px-6 py-4 text-gray-600"><span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs flex items-center gap-2 w-fit"><span class="inline-flex">${getIconoPractica(p.tipo)}</span> ${p.tipo}</span></td>
+        <td class="px-6 py-4 text-center font-semibold text-secondary-600">${p.horas} h</td>
+        <td class="px-6 py-4 text-gray-600 text-xs">${p.descripcion}</td>
+        <td class="px-6 py-4 text-center"><span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Activo</span></td>
+        <td class="px-6 py-4 text-center flex justify-center gap-2">
+          <button class="btn-editar px-3 py-1 bg-primary-500 hover:bg-primary-600 text-white rounded text-xs font-semibold transition-all" data-id="${p.id}">
+            ✏️ Editar
+          </button>
+          <button class="btn-eliminar px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded text-xs font-semibold transition-all" data-id="${p.id}">
+            🗑️ Eliminar
+          </button>
+        </td>
+      `;
+      tbody.appendChild(row);
+    });
+    document.getElementById('total-practicas').textContent = practicas.length;
+  }
+
+  function filtrar() {
+    const search = searchInput.value.toLowerCase();
+    const tipo = filterTipo.value;
+
+    practicasFiltradas = practicas.filter(p => {
+      const searchMatch = p.nombre.toLowerCase().includes(search) || p.descripcion.toLowerCase().includes(search);
+      const tipoMatch = !tipo || p.tipo === tipo;
+      return searchMatch && tipoMatch;
+    });
+
+    renderTable();
+  }
+
+  function openModal(practica = null) {
+    editandoId = practica ? practica.id : null;
+    if (practica) {
+      modalTitulo.textContent = 'Editar Práctica';
+      document.getElementById('form-nombre').value = practica.nombre;
+      document.getElementById('form-tipo').value = practica.tipo;
+      document.getElementById('form-horas').value = practica.horas;
+      document.getElementById('form-descripcion').value = practica.descripcion;
+    } else {
+      modalTitulo.textContent = 'Agregar Práctica';
+      document.getElementById('form-nombre').value = '';
+      document.getElementById('form-tipo').value = '';
+      document.getElementById('form-horas').value = '';
+      document.getElementById('form-descripcion').value = '';
+    }
+    modal.classList.remove('hidden');
+  }
+
+  function closeModal() {
+    modal.classList.add('hidden');
+    editandoId = null;
+  }
+
+  btnAgregar.addEventListener('click', () => openModal());
+  btnCancelar.addEventListener('click', closeModal);
+
+  btnGuardar.addEventListener('click', () => {
+    const nombre = document.getElementById('form-nombre').value;
+    const tipo = document.getElementById('form-tipo').value;
+    const horas = parseFloat(document.getElementById('form-horas').value);
+    const descripcion = document.getElementById('form-descripcion').value;
+
+    if (!nombre || !tipo || !horas) {
+      alert('Completa los campos requeridos');
+      return;
+    }
+
+    if (editandoId) {
+      const practica = practicas.find(p => p.id === editandoId);
+      if (practica) {
+        practica.nombre = nombre;
+        practica.tipo = tipo;
+        practica.horas = horas;
+        practica.descripcion = descripcion;
+        app.showToast('✓ Práctica actualizada', 'success');
+      }
+    } else {
+      practicas.push({ id: proximoId++, nombre, tipo, horas, descripcion });
+      app.showToast('✓ Práctica agregada', 'success');
+    }
+
+    closeModal();
+    filtrar();
+  });
+
+  tbody.addEventListener('click', (e) => {
+    if (e.target.classList.contains('btn-editar')) {
+      const id = parseInt(e.target.getAttribute('data-id'));
+      const practica = practicas.find(p => p.id === id);
+      if (practica) openModal(practica);
+    }
+
+    if (e.target.classList.contains('btn-eliminar')) {
+      const id = parseInt(e.target.getAttribute('data-id'));
+      if (confirm('¿Eliminar esta práctica?')) {
+        const index = practicas.findIndex(p => p.id === id);
+        if (index > -1) {
+          practicas.splice(index, 1);
+          app.showToast('✓ Práctica eliminada', 'success');
+          filtrar();
+        }
+      }
+    }
+  });
+
+  searchInput.addEventListener('input', filtrar);
+  filterTipo.addEventListener('change', filtrar);
+
+  resetBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    filterTipo.value = '';
+    filtrar();
+  });
+
+  renderTable();
+})();
+</script>

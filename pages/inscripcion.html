@@ -1,0 +1,732 @@
+<div class="animate-fadeInUp">
+  <div class="max-w-4xl mx-auto">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="font-serif text-4xl font-bold text-primary-900 mb-2">Inscripción de Estudiantes</h1>
+      <div class="h-1 w-12 bg-secondary-400 my-3"></div>
+      <p class="text-gray-700">Proceso de inscripción de nuevos estudiantes</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="mb-8 flex gap-2 border-b border-gray-200 overflow-x-auto">
+      <button class="tab-btn px-6 py-3 font-semibold text-gray-600 border-b-2 border-secondary-400 whitespace-nowrap" data-tab="listado-preregistro">
+        Listado de Pre-registro
+      </button>
+      <button class="tab-btn px-6 py-3 font-semibold text-gray-600 border-b-2 border-transparent hover:border-secondary-400 whitespace-nowrap" data-tab="preregistro">
+        Nuevo Pre-registro
+      </button>
+      <button class="tab-btn px-6 py-3 font-semibold text-gray-600 border-b-2 border-transparent hover:border-secondary-400 whitespace-nowrap" data-tab="inscripcion">
+        Inscripción
+      </button>
+      <button class="tab-btn px-6 py-3 font-semibold text-gray-600 border-b-2 border-transparent hover:border-secondary-400 whitespace-nowrap" data-tab="historial">
+        Historial
+      </button>
+    </div>
+
+    <!-- Listado de Pre-registro Tab -->
+    <div id="listado-preregistro-tab" class="tab-content">
+      <div class="bg-white rounded-lg shadow p-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Listado de Pre-registros</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 bg-gray-50">
+                <th class="px-4 py-3 text-left font-semibold text-gray-700">ID</th>
+                <th class="px-4 py-3 text-left font-semibold text-gray-700">Nombre</th>
+                <th class="px-4 py-3 text-left font-semibold text-gray-700">Programa</th>
+                <th class="px-4 py-3 text-left font-semibold text-gray-700">Teléfono</th>
+                <th class="px-4 py-3 text-left font-semibold text-gray-700">NSS</th>
+                <th class="px-4 py-3 text-center font-semibold text-gray-700">Pago</th>
+                <th class="px-4 py-3 text-left font-semibold text-gray-700">Fecha</th>
+                <th class="px-4 py-3 text-center font-semibold text-gray-700">Acción</th>
+              </tr>
+            </thead>
+            <tbody id="listado-body">
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3 text-gray-800">PRE-001</td>
+                <td class="px-4 py-3 text-gray-800">Sofia Martinez</td>
+                <td class="px-4 py-3 text-gray-800">Cosmetology</td>
+                <td class="px-4 py-3 text-gray-600">(240) 555-0101</td>
+                <td class="px-4 py-3 text-gray-600">123-45-6789</td>
+                <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-semibold">✓ $150</span></td>
+                <td class="px-4 py-3 text-gray-600">2026-06-15</td>
+                <td class="px-4 py-3 text-center"><button class="btn-inscribir px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg text-sm font-semibold transition-all" data-nombre="Sofia Martinez" data-programa="Cosmetology" data-email="sofia.martinez@email.com" data-telefono="(240) 555-0101" data-nss="123-45-6789" data-domicilio="123 Main St, Laurel, MD 20707">Inscribir</button></td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3 text-gray-800">PRE-002</td>
+                <td class="px-4 py-3 text-gray-800">Isabella Rodríguez</td>
+                <td class="px-4 py-3 text-gray-800">Esthetician Specialized in Makeup</td>
+                <td class="px-4 py-3 text-gray-600">(240) 555-0102</td>
+                <td class="px-4 py-3 text-gray-600">987-65-4321</td>
+                <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-semibold">✓ $150</span></td>
+                <td class="px-4 py-3 text-gray-600">2026-06-16</td>
+                <td class="px-4 py-3 text-center"><button class="btn-inscribir px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg text-sm font-semibold transition-all" data-nombre="Isabella Rodríguez" data-programa="Esthetician Specialized in Makeup" data-email="isabella.rodriguez@email.com" data-telefono="(240) 555-0102" data-nss="987-65-4321" data-domicilio="456 Oak Ave, Laurel, MD 20707">Inscribir</button></td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3 text-gray-800">PRE-003</td>
+                <td class="px-4 py-3 text-gray-800">Daniela Torres</td>
+                <td class="px-4 py-3 text-gray-800">Nail Technician</td>
+                <td class="px-4 py-3 text-gray-600">(240) 555-0103</td>
+                <td class="px-4 py-3 text-gray-600">456-78-9012</td>
+                <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs font-semibold">Pendiente</span></td>
+                <td class="px-4 py-3 text-gray-600">2026-06-17</td>
+                <td class="px-4 py-3 text-center"><button class="btn-inscribir px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg text-sm font-semibold transition-all" data-nombre="Daniela Torres" data-programa="Nail Technician" data-email="daniela.torres@email.com" data-telefono="(240) 555-0103" data-nss="456-78-9012" data-domicilio="789 Pine Rd, Laurel, MD 20707">Inscribir</button></td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3 text-gray-800">PRE-004</td>
+                <td class="px-4 py-3 text-gray-800">Catalina Herrera</td>
+                <td class="px-4 py-3 text-gray-800">Cosmetology</td>
+                <td class="px-4 py-3 text-gray-600">(240) 555-0104</td>
+                <td class="px-4 py-3 text-gray-600">234-56-7890</td>
+                <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-semibold">✓ $150</span></td>
+                <td class="px-4 py-3 text-gray-600">2026-06-18</td>
+                <td class="px-4 py-3 text-center"><button class="btn-inscribir px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg text-sm font-semibold transition-all" data-nombre="Catalina Herrera" data-programa="Cosmetology" data-email="catalina.herrera@email.com" data-telefono="(240) 555-0104" data-nss="234-56-7890" data-domicilio="321 Elm St, Laurel, MD 20707">Inscribir</button></td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3 text-gray-800">PRE-005</td>
+                <td class="px-4 py-3 text-gray-800">Alejandra López</td>
+                <td class="px-4 py-3 text-gray-800">Esthetician Specialized in Makeup</td>
+                <td class="px-4 py-3 text-gray-600">(240) 555-0105</td>
+                <td class="px-4 py-3 text-gray-600">765-43-2109</td>
+                <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-semibold">✓ $150</span></td>
+                <td class="px-4 py-3 text-gray-600">2026-06-19</td>
+                <td class="px-4 py-3 text-center"><button class="btn-inscribir px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg text-sm font-semibold transition-all" data-nombre="Alejandra López" data-programa="Esthetician Specialized in Makeup" data-email="alejandra.lopez@email.com" data-telefono="(240) 555-0105" data-nss="765-43-2109" data-domicilio="654 Maple Dr, Laurel, MD 20707">Inscribir</button></td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3 text-gray-800">PRE-006</td>
+                <td class="px-4 py-3 text-gray-800">Valentina Sánchez</td>
+                <td class="px-4 py-3 text-gray-800">Nail Technician</td>
+                <td class="px-4 py-3 text-gray-600">(240) 555-0106</td>
+                <td class="px-4 py-3 text-gray-600">678-90-1234</td>
+                <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs font-semibold">Pendiente</span></td>
+                <td class="px-4 py-3 text-gray-600">2026-06-20</td>
+                <td class="px-4 py-3 text-center"><button class="btn-inscribir px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg text-sm font-semibold transition-all" data-nombre="Valentina Sánchez" data-programa="Nail Technician" data-email="valentina.sanchez@email.com" data-telefono="(240) 555-0106" data-nss="678-90-1234" data-domicilio="345 Cedar Ln, Laurel, MD 20707">Inscribir</button></td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3 text-gray-800">PRE-007</td>
+                <td class="px-4 py-3 text-gray-800">Gabriela Flores</td>
+                <td class="px-4 py-3 text-gray-800">Cosmetology</td>
+                <td class="px-4 py-3 text-gray-600">(240) 555-0107</td>
+                <td class="px-4 py-3 text-gray-600">345-67-8901</td>
+                <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-semibold">✓ $150</span></td>
+                <td class="px-4 py-3 text-gray-600">2026-06-21</td>
+                <td class="px-4 py-3 text-center"><button class="btn-inscribir px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg text-sm font-semibold transition-all" data-nombre="Gabriela Flores" data-programa="Cosmetology" data-email="gabriela.flores@email.com" data-telefono="(240) 555-0107" data-nss="345-67-8901" data-domicilio="147 Birch Way, Laurel, MD 20707">Inscribir</button></td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3 text-gray-800">PRE-008</td>
+                <td class="px-4 py-3 text-gray-800">Mariana Gutiérrez</td>
+                <td class="px-4 py-3 text-gray-800">Esthetician Specialized in Makeup</td>
+                <td class="px-4 py-3 text-gray-600">(240) 555-0108</td>
+                <td class="px-4 py-3 text-gray-600">890-12-3456</td>
+                <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-semibold">✓ $150</span></td>
+                <td class="px-4 py-3 text-gray-600">2026-06-22</td>
+                <td class="px-4 py-3 text-center"><button class="btn-inscribir px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg text-sm font-semibold transition-all" data-nombre="Mariana Gutiérrez" data-programa="Esthetician Specialized in Makeup" data-email="mariana.gutierrez@email.com" data-telefono="(240) 555-0108" data-nss="890-12-3456" data-domicilio="258 Spruce St, Laurel, MD 20707">Inscribir</button></td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3 text-gray-800">PRE-009</td>
+                <td class="px-4 py-3 text-gray-800">Lucía Mendoza</td>
+                <td class="px-4 py-3 text-gray-800">Nail Technician</td>
+                <td class="px-4 py-3 text-gray-600">(240) 555-0109</td>
+                <td class="px-4 py-3 text-gray-600">123-78-9456</td>
+                <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-semibold">✓ $150</span></td>
+                <td class="px-4 py-3 text-gray-600">2026-06-23</td>
+                <td class="px-4 py-3 text-center"><button class="btn-inscribir px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg text-sm font-semibold transition-all" data-nombre="Lucía Mendoza" data-programa="Nail Technician" data-email="lucia.mendoza@email.com" data-telefono="(240) 555-0109" data-nss="123-78-9456" data-domicilio="369 Willow Rd, Laurel, MD 20707">Inscribir</button></td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3 text-gray-800">PRE-010</td>
+                <td class="px-4 py-3 text-gray-800">Carmen Rivas</td>
+                <td class="px-4 py-3 text-gray-800">Cosmetology</td>
+                <td class="px-4 py-3 text-gray-600">(240) 555-0110</td>
+                <td class="px-4 py-3 text-gray-600">456-12-7890</td>
+                <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs font-semibold">Pendiente</span></td>
+                <td class="px-4 py-3 text-gray-600">2026-06-24</td>
+                <td class="px-4 py-3 text-center"><button class="btn-inscribir px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg text-sm font-semibold transition-all" data-nombre="Carmen Rivas" data-programa="Cosmetology" data-email="carmen.rivas@email.com" data-telefono="(240) 555-0110" data-nss="456-12-7890" data-domicilio="471 Ash Ave, Laurel, MD 20707">Inscribir</button></td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3 text-gray-800">PRE-011</td>
+                <td class="px-4 py-3 text-gray-800">Rosario García</td>
+                <td class="px-4 py-3 text-gray-800">Esthetician Specialized in Makeup</td>
+                <td class="px-4 py-3 text-gray-600">(240) 555-0111</td>
+                <td class="px-4 py-3 text-gray-600">789-45-6123</td>
+                <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-semibold">✓ $150</span></td>
+                <td class="px-4 py-3 text-gray-600">2026-06-25</td>
+                <td class="px-4 py-3 text-center"><button class="btn-inscribir px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg text-sm font-semibold transition-all" data-nombre="Rosario García" data-programa="Esthetician Specialized in Makeup" data-email="rosario.garcia@email.com" data-telefono="(240) 555-0111" data-nss="789-45-6123" data-domicilio="582 Poplar Pl, Laurel, MD 20707">Inscribir</button></td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3 text-gray-800">PRE-012</td>
+                <td class="px-4 py-3 text-gray-800">Elena Castillo</td>
+                <td class="px-4 py-3 text-gray-800">Nail Technician</td>
+                <td class="px-4 py-3 text-gray-600">(240) 555-0112</td>
+                <td class="px-4 py-3 text-gray-600">234-89-0123</td>
+                <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-semibold">✓ $150</span></td>
+                <td class="px-4 py-3 text-gray-600">2026-06-26</td>
+                <td class="px-4 py-3 text-center"><button class="btn-inscribir px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg text-sm font-semibold transition-all" data-nombre="Elena Castillo" data-programa="Nail Technician" data-email="elena.castillo@email.com" data-telefono="(240) 555-0112" data-nss="234-89-0123" data-domicilio="693 Fir Ln, Laurel, MD 20707">Inscribir</button></td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3 text-gray-800">PRE-013</td>
+                <td class="px-4 py-3 text-gray-800">Patricia Jiménez</td>
+                <td class="px-4 py-3 text-gray-800">Cosmetology</td>
+                <td class="px-4 py-3 text-gray-600">(240) 555-0113</td>
+                <td class="px-4 py-3 text-gray-600">567-01-2345</td>
+                <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-semibold">✓ $150</span></td>
+                <td class="px-4 py-3 text-gray-600">2026-06-27</td>
+                <td class="px-4 py-3 text-center"><button class="btn-inscribir px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg text-sm font-semibold transition-all" data-nombre="Patricia Jiménez" data-programa="Cosmetology" data-email="patricia.jimenez@email.com" data-telefono="(240) 555-0113" data-nss="567-01-2345" data-domicilio="804 Hemlock Dr, Laurel, MD 20707">Inscribir</button></td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3 text-gray-800">PRE-014</td>
+                <td class="px-4 py-3 text-gray-800">Adriana Vega</td>
+                <td class="px-4 py-3 text-gray-800">Esthetician Specialized in Makeup</td>
+                <td class="px-4 py-3 text-gray-600">(240) 555-0114</td>
+                <td class="px-4 py-3 text-gray-600">890-34-5678</td>
+                <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs font-semibold">Pendiente</span></td>
+                <td class="px-4 py-3 text-gray-600">2026-06-28</td>
+                <td class="px-4 py-3 text-center"><button class="btn-inscribir px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg text-sm font-semibold transition-all" data-nombre="Adriana Vega" data-programa="Esthetician Specialized in Makeup" data-email="adriana.vega@email.com" data-telefono="(240) 555-0114" data-nss="890-34-5678" data-domicilio="915 Oak Ter, Laurel, MD 20707">Inscribir</button></td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3 text-gray-800">PRE-015</td>
+                <td class="px-4 py-3 text-gray-800">Lorena Fuentes</td>
+                <td class="px-4 py-3 text-gray-800">Nail Technician</td>
+                <td class="px-4 py-3 text-gray-600">(240) 555-0115</td>
+                <td class="px-4 py-3 text-gray-600">123-23-4567</td>
+                <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-semibold">✓ $150</span></td>
+                <td class="px-4 py-3 text-gray-600">2026-06-29</td>
+                <td class="px-4 py-3 text-center"><button class="btn-inscribir px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg text-sm font-semibold transition-all" data-nombre="Lorena Fuentes" data-programa="Nail Technician" data-email="lorena.fuentes@email.com" data-telefono="(240) 555-0115" data-nss="123-23-4567" data-domicilio="026 Hickory Hts, Laurel, MD 20707">Inscribir</button></td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3 text-gray-800">PRE-016</td>
+                <td class="px-4 py-3 text-gray-800">Natalia Reyes</td>
+                <td class="px-4 py-3 text-gray-800">Cosmetology</td>
+                <td class="px-4 py-3 text-gray-600">(240) 555-0116</td>
+                <td class="px-4 py-3 text-gray-600">456-34-5678</td>
+                <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-semibold">✓ $150</span></td>
+                <td class="px-4 py-3 text-gray-600">2026-07-01</td>
+                <td class="px-4 py-3 text-center"><button class="btn-inscribir px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg text-sm font-semibold transition-all" data-nombre="Natalia Reyes" data-programa="Cosmetology" data-email="natalia.reyes@email.com" data-telefono="(240) 555-0116" data-nss="456-34-5678" data-domicilio="137 Juniper Jct, Laurel, MD 20707">Inscribir</button></td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3 text-gray-800">PRE-017</td>
+                <td class="px-4 py-3 text-gray-800">Viviana Peña</td>
+                <td class="px-4 py-3 text-gray-800">Esthetician Specialized in Makeup</td>
+                <td class="px-4 py-3 text-gray-600">(240) 555-0117</td>
+                <td class="px-4 py-3 text-gray-600">789-56-7890</td>
+                <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-semibold">✓ $150</span></td>
+                <td class="px-4 py-3 text-gray-600">2026-07-02</td>
+                <td class="px-4 py-3 text-center"><button class="btn-inscribir px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg text-sm font-semibold transition-all" data-nombre="Viviana Peña" data-programa="Esthetician Specialized in Makeup" data-email="viviana.pena@email.com" data-telefono="(240) 555-0117" data-nss="789-56-7890" data-domicilio="248 Larch Loop, Laurel, MD 20707">Inscribir</button></td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3 text-gray-800">PRE-018</td>
+                <td class="px-4 py-3 text-gray-800">Miriam Silva</td>
+                <td class="px-4 py-3 text-gray-800">Nail Technician</td>
+                <td class="px-4 py-3 text-gray-600">(240) 555-0118</td>
+                <td class="px-4 py-3 text-gray-600">012-67-8901</td>
+                <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs font-semibold">Pendiente</span></td>
+                <td class="px-4 py-3 text-gray-600">2026-07-03</td>
+                <td class="px-4 py-3 text-center"><button class="btn-inscribir px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg text-sm font-semibold transition-all" data-nombre="Miriam Silva" data-programa="Nail Technician" data-email="miriam.silva@email.com" data-telefono="(240) 555-0118" data-nss="012-67-8901" data-domicilio="359 Magnolia Mnr, Laurel, MD 20707">Inscribir</button></td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3 text-gray-800">PRE-019</td>
+                <td class="px-4 py-3 text-gray-800">Fabiola Morales</td>
+                <td class="px-4 py-3 text-gray-800">Cosmetology</td>
+                <td class="px-4 py-3 text-gray-600">(240) 555-0119</td>
+                <td class="px-4 py-3 text-gray-600">345-78-9012</td>
+                <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-semibold">✓ $150</span></td>
+                <td class="px-4 py-3 text-gray-600">2026-07-04</td>
+                <td class="px-4 py-3 text-center"><button class="btn-inscribir px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg text-sm font-semibold transition-all" data-nombre="Fabiola Morales" data-programa="Cosmetology" data-email="fabiola.morales@email.com" data-telefono="(240) 555-0119" data-nss="345-78-9012" data-domicilio="460 Nutmeg Pl, Laurel, MD 20707">Inscribir</button></td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3 text-gray-800">PRE-020</td>
+                <td class="px-4 py-3 text-gray-800">Yanira Cortés</td>
+                <td class="px-4 py-3 text-gray-800">Esthetician Specialized in Makeup</td>
+                <td class="px-4 py-3 text-gray-600">(240) 555-0120</td>
+                <td class="px-4 py-3 text-gray-600">678-01-2345</td>
+                <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-semibold">✓ $150</span></td>
+                <td class="px-4 py-3 text-gray-600">2026-07-05</td>
+                <td class="px-4 py-3 text-center"><button class="btn-inscribir px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg text-sm font-semibold transition-all" data-nombre="Yanira Cortés" data-programa="Esthetician Specialized in Makeup" data-email="yanira.cortes@email.com" data-telefono="(240) 555-0120" data-nss="678-01-2345" data-domicilio="571 Orchard Oval, Laurel, MD 20707">Inscribir</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pre-registro Tab -->
+    <div id="preregistro-tab" class="tab-content hidden">
+      <div class="bg-white rounded-lg shadow p-8 mb-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Formulario de Aplicación</h2>
+        <form id="preregistro-form">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Nombre Completo *</label>
+              <input type="text" id="pre_nombre" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400 focus:ring-2 focus:ring-secondary-100" required>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Correo Electrónico *</label>
+              <input type="email" id="pre_email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400 focus:ring-2 focus:ring-secondary-100" required>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Teléfono *</label>
+              <input type="tel" id="pre_telefono" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400 focus:ring-2 focus:ring-secondary-100" required>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Programa *</label>
+              <select id="pre_programa" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400 focus:ring-2 focus:ring-secondary-100" required>
+                <option value="">-- Selecciona --</option>
+                <option value="Cosmetology">Cosmetology (1200 horas)</option>
+                <option value="Esthetician Specialized in Makeup">Esthetician Specialized in Makeup (600 horas)</option>
+                <option value="Nail Technician">Nail Technician (400 horas)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Domicilio *</label>
+            <input type="text" id="pre_domicilio" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400 focus:ring-2 focus:ring-secondary-100" required>
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-sm font-semibold text-gray-700 mb-2">NSS o ITIN *</label>
+            <input type="text" id="pre_nss" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400 focus:ring-2 focus:ring-secondary-100" placeholder="Indispensable para licencia" required>
+          </div>
+
+          <div class="mb-8">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input type="checkbox" id="pre_pago" class="w-4 h-4 text-secondary-500 rounded">
+              <span class="text-sm font-semibold text-gray-700">✓ Pago de aplicación recibido ($150)</span>
+            </label>
+          </div>
+
+          <button type="submit" class="w-full px-6 py-3 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg font-semibold transition-all">
+            Enviar Aplicación
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Inscripción Tab -->
+    <div id="inscripcion-tab" class="tab-content hidden">
+      <div class="bg-white rounded-lg shadow p-8 mb-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Formulario de Inscripción</h2>
+
+        <!-- Buscador de Pre-registrados -->
+        <div class="mb-8 p-6 bg-blue-50 rounded-lg border border-blue-200">
+          <label class="block text-sm font-semibold text-gray-700 mb-3">Buscar Pre-registrado *</label>
+          <input type="text" id="search-preregistro" placeholder="Escribe nombre o ID..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400 focus:ring-2 focus:ring-secondary-100 mb-3">
+
+          <!-- Lista de resultados -->
+          <div id="preregistro-list" class="max-h-64 overflow-y-auto border border-gray-300 rounded-lg hidden">
+            <div id="preregistro-items" class="divide-y"></div>
+          </div>
+        </div>
+
+        <form id="inscripcion-form">
+          <!-- Datos Precargados del Pre-registrado -->
+          <div class="mb-8 p-6 bg-green-50 rounded-lg border border-green-200" id="datos-precargados" style="display: none;">
+            <h3 class="font-bold text-green-900 mb-6">✓ Datos del Estudiante</h3>
+
+            <!-- Datos Personales -->
+            <div class="mb-6">
+              <h4 class="font-semibold text-gray-800 mb-3 text-sm">Información Personal</h4>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <p class="text-gray-600 text-xs font-semibold uppercase">Nombre Completo</p>
+                  <p class="font-semibold text-gray-800" id="pre_nombre_display"></p>
+                </div>
+                <div>
+                  <p class="text-gray-600 text-xs font-semibold uppercase">Email</p>
+                  <p class="font-semibold text-gray-800" id="pre_email_display"></p>
+                </div>
+                <div>
+                  <p class="text-gray-600 text-xs font-semibold uppercase">Teléfono</p>
+                  <p class="font-semibold text-gray-800" id="pre_telefono_display"></p>
+                </div>
+                <div>
+                  <p class="text-gray-600 text-xs font-semibold uppercase">NSS/ITIN</p>
+                  <p class="font-semibold text-gray-800" id="pre_nss_display"></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Datos Académicos -->
+            <div class="mb-6 pt-4 border-t border-green-300">
+              <h4 class="font-semibold text-gray-800 mb-3 text-sm">Información Académica</h4>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <p class="text-gray-600 text-xs font-semibold uppercase">Programa</p>
+                  <p class="font-semibold text-gray-800" id="pre_programa_display"></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Domicilio -->
+            <div class="pt-4 border-t border-green-300">
+              <h4 class="font-semibold text-gray-800 mb-3 text-sm">Domicilio</h4>
+              <p class="text-gray-600 text-xs font-semibold uppercase mb-1">Dirección</p>
+              <p class="font-semibold text-gray-800" id="pre_domicilio_display"></p>
+            </div>
+
+            <input type="hidden" id="pre_id_seleccionado">
+            <input type="hidden" id="pre_nombre_hidden">
+            <input type="hidden" id="pre_programa_hidden">
+          </div>
+
+          <!-- Foto -->
+          <div class="mb-8">
+            <label class="block text-sm font-semibold text-gray-700 mb-3">Foto del Estudiante *</label>
+            <div class="flex gap-3 mb-4">
+              <button type="button" id="btn-camara" class="flex-1 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold transition-all flex items-center justify-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                Cámara
+              </button>
+              <button type="button" id="btn-galeria" class="flex-1 px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-lg font-semibold transition-all flex items-center justify-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                Galería
+              </button>
+            </div>
+            <input type="file" id="file-input" accept="image/*" style="display: none;">
+            <div id="foto-preview" class="w-32 h-32 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 text-xs text-center p-2">
+              <span>Vista previa de foto</span>
+            </div>
+          </div>
+
+          <!-- Datos del Documento -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">ID Documento (Maryland License/Passport) *</label>
+              <input type="text" id="id_documento" placeholder="Ej: DL123456789" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400 focus:ring-2 focus:ring-secondary-100" required>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Fecha de Inicio *</label>
+              <input type="date" id="fecha_inicio" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400 focus:ring-2 focus:ring-secondary-100" required>
+            </div>
+          </div>
+
+          <!-- Checkboxes de Requisitos -->
+          <div class="mb-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <h3 class="font-semibold text-gray-800 mb-4">Requisitos Completados</h3>
+            <label class="flex items-center gap-3 cursor-pointer mb-3">
+              <input type="checkbox" id="foto_presente" class="w-4 h-4 text-secondary-500 rounded">
+              <span class="text-sm font-semibold text-gray-700">✓ Foto capturada</span>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer mb-3">
+              <input type="checkbox" id="contrato_firmado" class="w-4 h-4 text-secondary-500 rounded">
+              <span class="text-sm font-semibold text-gray-700">✓ Contrato firmado</span>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input type="checkbox" id="pago_inscripcion" class="w-4 h-4 text-secondary-500 rounded">
+              <span class="text-sm font-semibold text-gray-700">✓ Pago de inscripción recibido</span>
+            </label>
+          </div>
+
+          <button type="submit" class="w-full px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold transition-all">
+            Completar Inscripción
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Historial Tab -->
+    <div id="historial-tab" class="tab-content hidden">
+      <div class="bg-white rounded-lg shadow p-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Historial de Inscripciones</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 bg-gray-50">
+                <th class="px-4 py-3 text-left font-semibold text-gray-700">Nombre</th>
+                <th class="px-4 py-3 text-left font-semibold text-gray-700">Programa</th>
+                <th class="px-4 py-3 text-left font-semibold text-gray-700">Fecha Inscripción</th>
+                <th class="px-4 py-3 text-left font-semibold text-gray-700">Estado</th>
+              </tr>
+            </thead>
+            <tbody id="historial-body">
+              <tr class="border-b border-gray-200">
+                <td class="px-4 py-3 text-gray-800">Noemi Romero</td>
+                <td class="px-4 py-3 text-gray-800">Cosmetology</td>
+                <td class="px-4 py-3 text-gray-600">2026-01-15</td>
+                <td class="px-4 py-3"><span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Enrolled</span></td>
+              </tr>
+              <tr class="border-b border-gray-200">
+                <td class="px-4 py-3 text-gray-800">Maria Garcia</td>
+                <td class="px-4 py-3 text-gray-800">Esthetician</td>
+                <td class="px-4 py-3 text-gray-600">2026-01-20</td>
+                <td class="px-4 py-3"><span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Enrolled</span></td>
+              </tr>
+              <tr class="border-b border-gray-200">
+                <td class="px-4 py-3 text-gray-800">Jessica Williams</td>
+                <td class="px-4 py-3 text-gray-800">Nail Technician</td>
+                <td class="px-4 py-3 text-gray-600">2026-02-10</td>
+                <td class="px-4 py-3"><span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Enrolled</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Función global para seleccionar pre-registrado
+window.selectPreregistrado = function(p) {
+  document.getElementById('pre_id_seleccionado').value = p.id || '';
+  document.getElementById('pre_nombre_hidden').value = p.nombre;
+  document.getElementById('pre_programa_hidden').value = p.programa;
+  document.getElementById('pre_nombre_display').textContent = p.nombre;
+  document.getElementById('pre_programa_display').textContent = p.programa;
+  document.getElementById('pre_telefono_display').textContent = p.telefono;
+  document.getElementById('pre_email_display').textContent = p.email;
+  document.getElementById('pre_nss_display').textContent = p.nss;
+  document.getElementById('pre_domicilio_display').textContent = p.domicilio;
+  if (document.getElementById('search-preregistro')) {
+    document.getElementById('search-preregistro').value = p.nombre;
+  }
+  document.getElementById('datos-precargados').style.display = 'block';
+  const preregistroList = document.getElementById('preregistro-list');
+  if (preregistroList) {
+    preregistroList.style.display = 'none';
+  }
+  document.getElementById('foto_presente').checked = true;
+  if (typeof app !== 'undefined') {
+    app.showToast('✓ Pre-registrado seleccionado: ' + p.nombre, 'success');
+  }
+};
+
+// Sistema robusto de inicialización de tabs
+(function initInscripcion() {
+  function setupTabs() {
+    const tabs = document.querySelectorAll('[data-tab]');
+    if (tabs.length === 0) return false;
+
+    tabs.forEach(btn => {
+      // Remover listeners anteriores
+      const newBtn = btn.cloneNode(true);
+      btn.parentNode.replaceChild(newBtn, btn);
+
+      // Agregar nuevo listener
+      newBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const tabName = this.dataset.tab;
+
+        // Remover activos
+        document.querySelectorAll('[data-tab]').forEach(b => {
+          b.classList.remove('border-secondary-400');
+          b.classList.add('border-transparent');
+        });
+        document.querySelectorAll('.tab-content').forEach(c => {
+          c.classList.add('hidden');
+        });
+
+        // Activar
+        this.classList.add('border-secondary-400');
+        this.classList.remove('border-transparent');
+
+        const content = document.getElementById(tabName + '-tab');
+        if (content) {
+          content.classList.remove('hidden');
+        }
+      });
+    });
+
+    return true;
+  }
+
+  // Intentar múltiples veces
+  let attempts = 0;
+  const maxAttempts = 20;
+
+  const trySetup = setInterval(() => {
+    if (setupTabs() || attempts >= maxAttempts) {
+      clearInterval(trySetup);
+    }
+    attempts++;
+  }, 50);
+})();
+
+// Pre-registro form
+(function() {
+  function setupForms() {
+    const preForm = document.getElementById('preregistro-form');
+    if (preForm) {
+      preForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        let apps = JSON.parse(localStorage.getItem('inscripciones') || '[]');
+        const nuevo = {
+          numero_aplicacion: 'APP-' + Date.now(),
+          nombre: document.getElementById('pre_nombre').value,
+          email: document.getElementById('pre_email').value,
+          telefono: document.getElementById('pre_telefono').value,
+          programa: document.getElementById('pre_programa').value,
+          domicilio: document.getElementById('pre_domicilio').value,
+          nss_itin: document.getElementById('pre_nss').value,
+          pago_aplicacion: document.getElementById('pre_pago').checked,
+          estado: 'applied',
+          fecha_aplicacion: new Date().toISOString().split('T')[0]
+        };
+
+        apps.push(nuevo);
+        localStorage.setItem('inscripciones', JSON.stringify(apps));
+        app.showToast('✓ Aplicación registrada exitosamente', 'success');
+        this.reset();
+      });
+    }
+
+    // Buscador de pre-registrados
+    const searchInput = document.getElementById('search-preregistro');
+    const preregistroList = document.getElementById('preregistro-list');
+    const preregistroItems = document.getElementById('preregistro-items');
+
+    const preregistrados = [
+      { id: 'PRE-001', nombre: 'Sofia Martinez', programa: 'Cosmetology', telefono: '(240) 555-0101', email: 'sofia.martinez@email.com', domicilio: '123 Main St, Laurel, MD 20707', nss: '123-45-6789' },
+      { id: 'PRE-002', nombre: 'Isabella Rodríguez', programa: 'Esthetician Specialized in Makeup', telefono: '(240) 555-0102', email: 'isabella.rodriguez@email.com', domicilio: '456 Oak Ave, Laurel, MD 20707', nss: '987-65-4321' },
+      { id: 'PRE-003', nombre: 'Daniela Torres', programa: 'Nail Technician', telefono: '(240) 555-0103', email: 'daniela.torres@email.com', domicilio: '789 Pine Rd, Laurel, MD 20707', nss: '456-78-9012' },
+      { id: 'PRE-004', nombre: 'Catalina Herrera', programa: 'Cosmetology', telefono: '(240) 555-0104', email: 'catalina.herrera@email.com', domicilio: '321 Elm St, Laurel, MD 20707', nss: '234-56-7890' },
+      { id: 'PRE-005', nombre: 'Alejandra López', programa: 'Esthetician Specialized in Makeup', telefono: '(240) 555-0105', email: 'alejandra.lopez@email.com', domicilio: '654 Maple Dr, Laurel, MD 20707', nss: '765-43-2109' }
+    ];
+
+    if (searchInput) {
+      searchInput.addEventListener('input', function(e) {
+        const query = e.target.value.toLowerCase();
+        const filtered = preregistrados.filter(p =>
+          p.nombre.toLowerCase().includes(query) ||
+          p.id.toLowerCase().includes(query)
+        );
+
+        preregistroItems.innerHTML = '';
+        if (query.length > 0) {
+          preregistroList.style.display = 'block';
+          if (filtered.length > 0) {
+            filtered.forEach(p => {
+              const item = document.createElement('div');
+              item.className = 'px-4 py-3 cursor-pointer hover:bg-blue-100 transition-colors';
+              item.innerHTML = `<p class="font-semibold text-gray-800">${p.nombre}</p><p class="text-xs text-gray-600">${p.id} - ${p.programa}</p>`;
+              item.addEventListener('click', () => selectPreregistrado(p));
+              preregistroItems.appendChild(item);
+            });
+          } else {
+            preregistroItems.innerHTML = '<div class="px-4 py-3 text-gray-500">No encontrado</div>';
+          }
+        } else {
+          preregistroList.style.display = 'none';
+        }
+      });
+    }
+
+
+    // Foto - Cámara y Galería
+    const btnCamara = document.getElementById('btn-camara');
+    const btnGaleria = document.getElementById('btn-galeria');
+    const fileInput = document.getElementById('file-input');
+    const fotoPreview = document.getElementById('foto-preview');
+
+    if (btnCamara) {
+      btnCamara.addEventListener('click', function(e) {
+        e.preventDefault();
+        fileInput.setAttribute('capture', 'environment');
+        fileInput.click();
+      });
+    }
+
+    if (btnGaleria) {
+      btnGaleria.addEventListener('click', function(e) {
+        e.preventDefault();
+        fileInput.removeAttribute('capture');
+        fileInput.click();
+      });
+    }
+
+    if (fileInput) {
+      fileInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(event) {
+            fotoPreview.innerHTML = `<img src="${event.target.result}" class="w-full h-full object-cover rounded-lg">`;
+            document.getElementById('foto_presente').checked = true;
+            app.showToast('✓ Foto capturada exitosamente', 'success');
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+
+    // Formulario de Inscripción
+    const insForm = document.getElementById('inscripcion-form');
+    if (insForm) {
+      insForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const nombre = document.getElementById('pre_nombre_hidden').value;
+        const programa = document.getElementById('pre_programa_hidden').value;
+
+        if (!nombre || !programa) {
+          app.showToast('✗ Debes seleccionar un pre-registrado', 'error');
+          return;
+        }
+
+        let estudiantes = JSON.parse(localStorage.getItem('estudiantes') || '[]');
+        const stu_id = 'STU' + (estudiantes.length + 1).toString().padStart(3, '0');
+
+        const nuevo = {
+          id: stu_id,
+          nombre: nombre,
+          programa: programa,
+          id_documento: document.getElementById('id_documento').value,
+          fecha_inicio: document.getElementById('fecha_inicio').value,
+          fecha_inscripcion: new Date().toISOString().split('T')[0],
+          estado: 'active',
+          horas_completadas: 0,
+          foto_presente: document.getElementById('foto_presente').checked,
+          contrato_firmado: document.getElementById('contrato_firmado').checked,
+          pago_inscripcion: document.getElementById('pago_inscripcion').checked
+        };
+
+        estudiantes.push(nuevo);
+        localStorage.setItem('estudiantes', JSON.stringify(estudiantes));
+        app.showToast('✓ Estudiante inscrito exitosamente - ID: ' + stu_id, 'success');
+        this.reset();
+        document.getElementById('datos-precargados').style.display = 'none';
+        fotoPreview.innerHTML = '<span>Vista previa de foto</span>';
+      });
+    }
+  }
+
+  setupForms();
+
+  // Botones "Inscribir" de la tabla
+  document.querySelectorAll('.btn-inscribir').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const nombre = this.getAttribute('data-nombre');
+      const programa = this.getAttribute('data-programa');
+      const email = this.getAttribute('data-email');
+      const telefono = this.getAttribute('data-telefono');
+      const nss = this.getAttribute('data-nss');
+      const domicilio = this.getAttribute('data-domicilio');
+
+      // Crear objeto pre-registrado
+      const preRegistrado = { nombre, programa, email, telefono, nss, domicilio };
+
+      // Cargar datos en el formulario de inscripción
+      selectPreregistrado(preRegistrado);
+
+      // Cambiar al tab de Inscripción
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('border-secondary-400', 'border-b-2'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+
+      const inscBtn = document.querySelector('[data-tab="inscripcion"]');
+      inscBtn.classList.add('border-secondary-400');
+      document.getElementById('inscripcion-tab').classList.remove('hidden');
+
+      app.showToast('✓ Abriendo formulario de inscripción para ' + nombre, 'success');
+    });
+  });
+})();
+</script>

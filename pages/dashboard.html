@@ -1,0 +1,265 @@
+<div class="animate-fadeInUp">
+  <!-- Welcome Section with Large Logo -->
+  <div class="mb-8 dashboard-welcome bg-gradient-to-b from-primary-800 to-primary-900 rounded-2xl shadow-2xl overflow-hidden" style="background-image: url('/assets/images/hero-bg.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <div class="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-[1fr_auto] gap-16 items-center py-16 lg:py-24">
+      <!-- Text Content -->
+      <div class="max-w-2xl text-white">
+        <div class="badge-mint mb-6">
+          <span class="badge-dot"></span>
+          <span class="badge-mint-text">Sistema Académico Adonay · Laurel, Maryland</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6" style="font-family: 'Playfair Display', serif;">
+          Instituto Internacional de Cosmetología<br>
+          <span class="italic text-secondary-400"> Adonay</span>
+        </h1>
+
+        <p class="text-white/75 text-lg leading-relaxed mb-8 max-w-xl">
+          Sistema de Gestión de Prácticas Académicas. Diseñado para registrar, monitorear y reportar el progreso de nuestras estudiantes en los programas de Cosmetología, Esthetics y Nail Technology.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#" onclick="app.loadPage('registro-diario')" class="btn-primary bg-secondary-400 hover:bg-secondary-500 text-white font-semibold px-8 py-3 rounded-full transition-all hover:scale-[1.05] hover:shadow-2xl text-center shadow-lg shadow-secondary-400/25 relative overflow-hidden group">
+            <span class="relative z-10">Registrar Práctica</span>
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+          </a>
+          <a href="#" onclick="app.loadPage('inscripcion')" class="border-2 border-white/30 hover:border-secondary-400 text-white hover:text-secondary-400 font-semibold px-8 py-3 rounded-full transition-all text-center hover:bg-white/10 backdrop-blur-sm">
+            Nueva Inscripción
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Key Metrics -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <!-- Total Estudiantes -->
+    <div class="bg-white rounded-lg shadow p-6 border-l-4 border-primary-600">
+      <p class="text-sm font-semibold text-gray-600 uppercase tracking-wide">Estudiantes Activos</p>
+      <p class="text-4xl font-bold text-primary-600 mt-2">3</p>
+      <p class="text-xs text-gray-500 mt-1">Matriculados en programas</p>
+    </div>
+
+    <!-- Total Horas Registradas Hoy -->
+    <div class="bg-white rounded-lg shadow p-6 border-l-4 border-secondary-500">
+      <p class="text-sm font-semibold text-gray-600 uppercase tracking-wide">Horas Registradas Hoy</p>
+      <p class="text-4xl font-bold text-secondary-500 mt-2">0 h</p>
+      <p class="text-xs text-gray-500 mt-1">Prácticas completadas</p>
+    </div>
+
+    <!-- Prácticas Completadas -->
+    <div class="bg-white rounded-lg shadow p-6 border-l-4 border-blue-600">
+      <p class="text-sm font-semibold text-gray-600 uppercase tracking-wide">Total Prácticas</p>
+      <p class="text-4xl font-bold text-blue-600 mt-2">20</p>
+      <p class="text-xs text-gray-500 mt-1">Últimos 7 días</p>
+    </div>
+
+    <!-- Pagos Pendientes -->
+    <div class="bg-white rounded-lg shadow p-6 border-l-4 border-accent-600">
+      <p class="text-sm font-semibold text-gray-600 uppercase tracking-wide">Pagos Pendientes</p>
+      <p class="text-4xl font-bold text-accent-600 mt-2">$2,000</p>
+      <p class="text-xs text-gray-500 mt-1">1 estudiante</p>
+    </div>
+  </div>
+
+  <!-- Quick Actions & Recent Activity -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Quick Actions -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <h2 class="text-2xl font-serif font-bold text-primary-900 mb-4">Acciones Rápidas</h2>
+      <div class="space-y-3">
+        <button onclick="app.loadPage('registro-diario')" class="w-full px-4 py-3 bg-secondary-500 hover:bg-secondary-600 text-white rounded font-semibold transition-all flex items-center justify-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+          </svg>
+          <span>Registrar Práctica</span>
+        </button>
+        <button onclick="app.loadPage('inscripcion')" class="w-full px-4 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded font-semibold transition-all flex items-center justify-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+          </svg>
+          <span>Nueva Inscripción</span>
+        </button>
+        <button onclick="app.loadPage('pagos')" class="w-full px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded font-semibold transition-all flex items-center justify-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h10m4 0a1 1 0 11-2 0m2 0a1 1 0 10-2 0m-7 4h8a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <span>Registrar Pago</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <h2 class="text-2xl font-serif font-bold text-primary-900 mb-4">Actividad Reciente</h2>
+      <div class="space-y-3 max-h-64 overflow-y-auto">
+        <div class="flex items-start gap-3 pb-3 border-b border-gray-200">
+          <div class="w-2 h-2 mt-2 rounded-full bg-secondary-500 flex-shrink-0"></div>
+          <div>
+            <p class="font-semibold text-gray-800 text-sm">Noemi Romero</p>
+            <p class="text-xs text-gray-600">Completó: Permanente Espiral (4 horas)</p>
+            <p class="text-xs text-gray-500">Hoy a las 16:00</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 pb-3 border-b border-gray-200">
+          <div class="w-2 h-2 mt-2 rounded-full bg-secondary-500 flex-shrink-0"></div>
+          <div>
+            <p class="font-semibold text-gray-800 text-sm">Maria Garcia</p>
+            <p class="text-xs text-gray-600">Completó: Permanente Curvatura (3 horas)</p>
+            <p class="text-xs text-gray-500">Ayer a las 14:15</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 pb-3 border-b border-gray-200">
+          <div class="w-2 h-2 mt-2 rounded-full bg-blue-500 flex-shrink-0"></div>
+          <div>
+            <p class="font-semibold text-gray-800 text-sm">Jessica Williams</p>
+            <p class="text-xs text-gray-600">Registró pago: $2,000</p>
+            <p class="text-xs text-gray-500">3 de Julio</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 pb-3">
+          <div class="w-2 h-2 mt-2 rounded-full bg-primary-600 flex-shrink-0"></div>
+          <div>
+            <p class="font-semibold text-gray-800 text-sm">Sofia Martinez</p>
+            <p class="text-xs text-gray-600">Nueva inscripción: Cosmetology</p>
+            <p class="text-xs text-gray-500">1 de Julio</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts Section -->
+  <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Prácticas por Categoría -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <h2 class="text-2xl font-serif font-bold text-primary-900 mb-4">Distribución de Prácticas</h2>
+      <canvas id="practicesChart" style="max-height: 300px;"></canvas>
+    </div>
+
+    <!-- Progreso de Estudiantes -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <h2 class="text-2xl font-serif font-bold text-primary-900 mb-4">Progreso de Estudiantes</h2>
+      <canvas id="progressChart" style="max-height: 300px;"></canvas>
+    </div>
+  </div>
+
+  <!-- Top Practices This Week -->
+  <div class="mt-8 bg-white rounded-lg shadow p-6">
+    <h2 class="text-2xl font-serif font-bold text-primary-900 mb-4">Prácticas Populares Esta Semana</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-gray-200 bg-gray-50">
+            <th class="px-4 py-3 text-left font-semibold text-gray-700">Práctica</th>
+            <th class="px-4 py-3 text-center font-semibold text-gray-700"># Completadas</th>
+            <th class="px-4 py-3 text-center font-semibold text-gray-700">Horas Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-200 hover:bg-gray-50">
+            <td class="px-4 py-3 text-gray-800">Corte Escalonado Bob Corto 45°</td>
+            <td class="px-4 py-3 text-center text-gray-600">3</td>
+            <td class="px-4 py-3 text-center font-semibold text-secondary-600">7.5 h</td>
+          </tr>
+          <tr class="border-b border-gray-200 hover:bg-gray-50">
+            <td class="px-4 py-3 text-gray-800">Permanente Básico</td>
+            <td class="px-4 py-3 text-center text-gray-600">2</td>
+            <td class="px-4 py-3 text-center font-semibold text-secondary-600">6 h</td>
+          </tr>
+          <tr class="border-b border-gray-200 hover:bg-gray-50">
+            <td class="px-4 py-3 text-gray-800">Planchado</td>
+            <td class="px-4 py-3 text-center text-gray-600">2</td>
+            <td class="px-4 py-3 text-center font-semibold text-secondary-600">3 h</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+document.addEventListener('pageLoaded', function(e) {
+  if (e.detail.page === 'dashboard') {
+    // Update fecha
+    const hoy = new Date();
+    document.getElementById('fecha-actual').textContent = hoy.toLocaleDateString('es-ES', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+
+    // Prácticas por Categoría - Pie Chart
+    const ctxPrac = document.getElementById('practicesChart');
+    if (ctxPrac && window.Chart) {
+      new Chart(ctxPrac, {
+        type: 'doughnut',
+        data: {
+          labels: ['Corte de Cabello', 'Peluquería', 'Textura Química'],
+          datasets: [{
+            data: [18.5, 6.5, 20.5],
+            backgroundColor: ['#00BFA5', '#2B5A9D', '#FF6B6B'],
+            borderColor: '#fff',
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                font: { size: 12 },
+                padding: 15
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Progreso de Estudiantes - Bar Chart
+    const ctxProg = document.getElementById('progressChart');
+    if (ctxProg && window.Chart) {
+      new Chart(ctxProg, {
+        type: 'bar',
+        data: {
+          labels: ['Noemi Romero', 'Maria Garcia', 'Jessica Williams'],
+          datasets: [{
+            label: 'Horas Completadas',
+            data: [26.5, 11, 8.5],
+            backgroundColor: ['#00BFA5', '#00BFA5', '#00BFA5'],
+            borderRadius: 5
+          }, {
+            label: 'Meta',
+            data: [1200, 600, 400],
+            backgroundColor: '#E0E0E0',
+            borderRadius: 5
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          },
+          plugins: {
+            legend: {
+              labels: {
+                font: { size: 12 }
+              }
+            }
+          }
+        }
+      });
+    }
+  }
+});
+</script>

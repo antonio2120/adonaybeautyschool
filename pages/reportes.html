@@ -1,0 +1,194 @@
+<div class="animate-fadeInUp">
+  <div class="max-w-6xl mx-auto">
+    <div class="mb-8">
+      <h1 class="font-serif text-4xl font-bold text-primary-900 mb-2">Reportes & Análisis</h1>
+      <div class="h-1 w-12 bg-secondary-400 my-3"></div>
+    </div>
+
+    <!-- Filtros -->
+    <div class="bg-white rounded-lg shadow p-6 mb-8">
+      <h2 class="text-lg font-bold text-gray-800 mb-4">Filtros</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Desde</label>
+          <input type="date" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Hasta</label>
+          <input type="date" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Estudiante</label>
+          <select class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
+            <option>Todos</option>
+            <option>Noemi Romero</option>
+            <option>Maria Garcia</option>
+            <option>Jessica Williams</option>
+          </select>
+        </div>
+        <div class="flex items-end gap-2">
+          <button class="flex-1 px-4 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg font-semibold text-sm">Aplicar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary Stats -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+      <div class="bg-white rounded-lg shadow p-6">
+        <p class="text-sm text-gray-600 uppercase font-semibold">Total Prácticas</p>
+        <p class="text-3xl font-bold text-primary-600 mt-2">20</p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-6">
+        <p class="text-sm text-gray-600 uppercase font-semibold">Total Horas</p>
+        <p class="text-3xl font-bold text-secondary-600 mt-2">45.5 h</p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-6">
+        <p class="text-sm text-gray-600 uppercase font-semibold">Estudiantes Activos</p>
+        <p class="text-3xl font-bold text-blue-600 mt-2">3</p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-6">
+        <p class="text-sm text-gray-600 uppercase font-semibold">Promedio Horas/Estudiante</p>
+        <p class="text-3xl font-bold text-accent-600 mt-2">15.2 h</p>
+      </div>
+    </div>
+
+    <!-- Report Tabs -->
+    <div class="flex gap-2 border-b border-gray-200 mb-6">
+      <button class="px-6 py-3 font-semibold text-gray-600 border-b-2 border-secondary-400 tab-btn active" data-tab="resumen">Resumen General</button>
+      <button class="px-6 py-3 font-semibold text-gray-600 border-b-2 border-transparent tab-btn" data-tab="practicas">Por Práctica</button>
+      <button class="px-6 py-3 font-semibold text-gray-600 border-b-2 border-transparent tab-btn" data-tab="estudiantes">Por Estudiante</button>
+    </div>
+
+    <!-- Resumen General -->
+    <div id="resumen" class="tab-content">
+      <div class="bg-white rounded-lg shadow p-6 mb-8">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Prácticas Más Realizadas</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 bg-gray-50">
+                <th class="px-4 py-3 text-left font-semibold text-gray-700">Práctica</th>
+                <th class="px-4 py-3 text-center font-semibold text-gray-700"># Completadas</th>
+                <th class="px-4 py-3 text-center font-semibold text-gray-700">Horas Total</th>
+                <th class="px-4 py-3 text-center font-semibold text-gray-700">% del Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-200">
+                <td class="px-4 py-3 text-gray-800">Corte Escalonado Bob Corto 45°</td>
+                <td class="px-4 py-3 text-center text-gray-600">3</td>
+                <td class="px-4 py-3 text-center font-semibold text-secondary-600">7.5 h</td>
+                <td class="px-4 py-3 text-center text-gray-600">16.5%</td>
+              </tr>
+              <tr class="border-b border-gray-200">
+                <td class="px-4 py-3 text-gray-800">Permanente Básico</td>
+                <td class="px-4 py-3 text-center text-gray-600">2</td>
+                <td class="px-4 py-3 text-center font-semibold text-secondary-600">6 h</td>
+                <td class="px-4 py-3 text-center text-gray-600">13.2%</td>
+              </tr>
+              <tr class="border-b border-gray-200">
+                <td class="px-4 py-3 text-gray-800">Planchado</td>
+                <td class="px-4 py-3 text-center text-gray-600">3</td>
+                <td class="px-4 py-3 text-center font-semibold text-secondary-600">4.5 h</td>
+                <td class="px-4 py-3 text-center text-gray-600">9.9%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Por Práctica -->
+    <div id="practicas" class="tab-content hidden">
+      <div class="bg-white rounded-lg shadow p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Desglose por Tipo de Práctica</h2>
+        <div class="space-y-4">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-semibold text-gray-700">Corte de Cabello</span>
+              <span class="text-sm font-bold text-gray-700">18.5 h (40.6%)</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-3">
+              <div class="bg-secondary-500 h-3 rounded-full" style="width: 40.6%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-semibold text-gray-700">Peluquería</span>
+              <span class="text-sm font-bold text-gray-700">6.5 h (14.3%)</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-3">
+              <div class="bg-blue-500 h-3 rounded-full" style="width: 14.3%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-semibold text-gray-700">Textura Química</span>
+              <span class="text-sm font-bold text-gray-700">20.5 h (45.1%)</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-3">
+              <div class="bg-primary-500 h-3 rounded-full" style="width: 45.1%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Por Estudiante -->
+    <div id="estudiantes" class="tab-content hidden">
+      <div class="bg-white rounded-lg shadow p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Progreso por Estudiante</h2>
+        <div class="space-y-6">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-semibold text-gray-800">Noemi Romero - Cosmetology</span>
+              <span class="text-sm text-gray-600">26.5 / 1200 h</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-4">
+              <div class="bg-secondary-500 h-4 rounded-full" style="width: 2.2%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-semibold text-gray-800">Maria Garcia - Esthetician</span>
+              <span class="text-sm text-gray-600">11 / 600 h</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-4">
+              <div class="bg-secondary-500 h-4 rounded-full" style="width: 1.8%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-semibold text-gray-800">Jessica Williams - Nail Technician</span>
+              <span class="text-sm text-gray-600">8.5 / 400 h</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-4">
+              <div class="bg-secondary-500 h-4 rounded-full" style="width: 2.1%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Export -->
+    <div class="mt-8 flex gap-3">
+      <button class="px-6 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold transition-all text-sm">
+        📊 Descargar PDF
+      </button>
+      <button class="px-6 py-2 bg-secondary-500 hover:bg-secondary-600 text-white rounded-lg font-semibold transition-all text-sm">
+        📋 Exportar CSV
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('border-secondary-400'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+    this.classList.add('border-secondary-400');
+    document.getElementById(this.dataset.tab).classList.remove('hidden');
+  });
+});
+</script>

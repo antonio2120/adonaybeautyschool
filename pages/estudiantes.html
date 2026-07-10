@@ -1,0 +1,268 @@
+<div class="animate-fadeInUp">
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-8">
+      <h1 class="font-serif text-4xl font-bold text-primary-900 mb-2">Listado de Estudiantes</h1>
+      <div class="h-1 w-12 bg-secondary-400 my-3"></div>
+    </div>
+
+    <div class="bg-white rounded-lg shadow p-6">
+      <!-- Controles de búsqueda y filtrado -->
+      <div class="mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Buscar</label>
+          <input type="text" id="search-input" placeholder="Nombre, ID o programa..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400">
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Filtrar por Programa</label>
+          <select id="filter-programa" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400">
+            <option value="">-- Todos --</option>
+            <option value="Cosmetology">Cosmetology</option>
+            <option value="Esthetician">Esthetician</option>
+            <option value="Nail Technician">Nail Technician</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Filtrar por Estado</label>
+          <select id="filter-estado" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400">
+            <option value="">-- Todos --</option>
+            <option value="Activo">Activo</option>
+            <option value="Inactivo">Inactivo</option>
+            <option value="Completado">Completado</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Info de resultados -->
+      <div class="mb-4 flex justify-between items-center">
+        <p class="text-sm text-gray-600">Mostrando <span id="results-count">23</span> de <span id="total-count">23</span> estudiantes</p>
+        <button id="reset-filters" class="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-lg text-sm font-semibold transition-all">Limpiar Filtros</button>
+      </div>
+
+      <!-- Tabla -->
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-gray-200 bg-gray-50">
+              <th class="px-4 py-3 text-center font-semibold text-gray-700">Foto</th>
+              <th class="px-4 py-3 text-left font-semibold text-gray-700 cursor-pointer hover:bg-gray-100" data-sort="id">
+                ID
+                <span class="sort-indicator">↕</span>
+              </th>
+              <th class="px-4 py-3 text-left font-semibold text-gray-700 cursor-pointer hover:bg-gray-100" data-sort="nombre">
+                Nombre
+                <span class="sort-indicator">↕</span>
+              </th>
+              <th class="px-4 py-3 text-left font-semibold text-gray-700 cursor-pointer hover:bg-gray-100" data-sort="programa">
+                Programa
+                <span class="sort-indicator">↕</span>
+              </th>
+              <th class="px-4 py-3 text-left font-semibold text-gray-700 cursor-pointer hover:bg-gray-100" data-sort="grupo">
+                Grupo
+                <span class="sort-indicator">↕</span>
+              </th>
+              <th class="px-4 py-3 text-center font-semibold text-gray-700 cursor-pointer hover:bg-gray-100" data-sort="horas_requeridas">
+                Horas Req.
+                <span class="sort-indicator">↕</span>
+              </th>
+              <th class="px-4 py-3 text-center font-semibold text-gray-700 cursor-pointer hover:bg-gray-100" data-sort="completadas">
+                Completadas
+                <span class="sort-indicator">↕</span>
+              </th>
+              <th class="px-4 py-3 text-center font-semibold text-gray-700 cursor-pointer hover:bg-gray-100" data-sort="porcentaje">
+                %
+                <span class="sort-indicator">↕</span>
+              </th>
+              <th class="px-4 py-3 text-left font-semibold text-gray-700 cursor-pointer hover:bg-gray-100" data-sort="estado">
+                Estado
+                <span class="sort-indicator">↕</span>
+              </th>
+              <th class="px-4 py-3 text-center font-semibold text-gray-700">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="students-tbody">
+            <!-- Se llena dinámicamente con JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const estudiantes = [
+    { id: 'STU001', nombre: 'Noemi Romero', programa: 'Cosmetology', grupo: 'GRP-001', horas_requeridas: 1200, completadas: 26.5, porcentaje: 2.2, estado: 'Activo' },
+    { id: 'STU002', nombre: 'Maria Garcia', programa: 'Esthetician', grupo: 'GRP-002', horas_requeridas: 600, completadas: 11, porcentaje: 1.8, estado: 'Activo' },
+    { id: 'STU003', nombre: 'Jessica Williams', programa: 'Nail Technician', grupo: 'GRP-003', horas_requeridas: 400, completadas: 8.5, porcentaje: 2.1, estado: 'Activo' },
+    { id: 'STU004', nombre: 'Sofia Martinez', programa: 'Cosmetology', grupo: 'GRP-001', horas_requeridas: 1200, completadas: 145, porcentaje: 12.1, estado: 'Activo' },
+    { id: 'STU005', nombre: 'Isabella Rodríguez', programa: 'Esthetician', grupo: 'GRP-002', horas_requeridas: 600, completadas: 89, porcentaje: 14.8, estado: 'Activo' },
+    { id: 'STU006', nombre: 'Daniela Torres', programa: 'Nail Technician', grupo: 'GRP-003', horas_requeridas: 400, completadas: 72, porcentaje: 18.0, estado: 'Activo' },
+    { id: 'STU007', nombre: 'Catalina Herrera', programa: 'Cosmetology', grupo: 'GRP-004', horas_requeridas: 1200, completadas: 234, porcentaje: 19.5, estado: 'Activo' },
+    { id: 'STU008', nombre: 'Alejandra López', programa: 'Esthetician', grupo: 'GRP-005', horas_requeridas: 600, completadas: 156, porcentaje: 26.0, estado: 'Activo' },
+    { id: 'STU009', nombre: 'Valentina Sánchez', programa: 'Nail Technician', grupo: 'GRP-006', horas_requeridas: 400, completadas: 95, porcentaje: 23.8, estado: 'Activo' },
+    { id: 'STU010', nombre: 'Gabriela Flores', programa: 'Cosmetology', grupo: 'GRP-004', horas_requeridas: 1200, completadas: 567, porcentaje: 47.3, estado: 'Activo' },
+    { id: 'STU011', nombre: 'Mariana Gutiérrez', programa: 'Esthetician', grupo: 'GRP-005', horas_requeridas: 600, completadas: 312, porcentaje: 52.0, estado: 'Activo' },
+    { id: 'STU012', nombre: 'Lucía Mendoza', programa: 'Nail Technician', grupo: 'GRP-006', horas_requeridas: 400, completadas: 234, porcentaje: 58.5, estado: 'Activo' },
+    { id: 'STU013', nombre: 'Carmen Rivas', programa: 'Cosmetology', grupo: 'GRP-007', horas_requeridas: 1200, completadas: 890, porcentaje: 74.2, estado: 'Activo' },
+    { id: 'STU014', nombre: 'Rosario García', programa: 'Esthetician', grupo: 'GRP-008', horas_requeridas: 600, completadas: 450, porcentaje: 75.0, estado: 'Activo' },
+    { id: 'STU015', nombre: 'Elena Castillo', programa: 'Nail Technician', grupo: 'GRP-003', horas_requeridas: 400, completadas: 325, porcentaje: 81.3, estado: 'Activo' },
+    { id: 'STU016', nombre: 'Patricia Jiménez', programa: 'Cosmetology', grupo: 'GRP-007', horas_requeridas: 1200, completadas: 1189, porcentaje: 99.1, estado: 'Activo' },
+    { id: 'STU017', nombre: 'Adriana Vega', programa: 'Esthetician', grupo: 'GRP-008', horas_requeridas: 600, completadas: 598, porcentaje: 99.7, estado: 'Activo' },
+    { id: 'STU018', nombre: 'Lorena Fuentes', programa: 'Nail Technician', grupo: 'GRP-006', horas_requeridas: 400, completadas: 400, porcentaje: 100.0, estado: 'Completado' },
+    { id: 'STU019', nombre: 'Natalia Reyes', programa: 'Cosmetology', grupo: 'GRP-001', horas_requeridas: 1200, completadas: 1200, porcentaje: 100.0, estado: 'Completado' },
+    { id: 'STU020', nombre: 'Viviana Peña', programa: 'Esthetician', grupo: 'GRP-002', horas_requeridas: 600, completadas: 45, porcentaje: 7.5, estado: 'Activo' },
+    { id: 'STU021', nombre: 'Miriam Silva', programa: 'Nail Technician', grupo: 'GRP-003', horas_requeridas: 400, completadas: 12, porcentaje: 3.0, estado: 'Activo' },
+    { id: 'STU022', nombre: 'Fabiola Morales', programa: 'Cosmetology', grupo: 'GRP-004', horas_requeridas: 1200, completadas: 0, porcentaje: 0.0, estado: 'Inactivo' },
+    { id: 'STU023', nombre: 'Yanira Cortés', programa: 'Esthetician', grupo: 'GRP-005', horas_requeridas: 600, completadas: 38, porcentaje: 6.3, estado: 'Activo' }
+  ];
+
+  let estudiantesFiltrados = [...estudiantes];
+  let ordenarPor = null;
+  let ordenarDireccion = 'asc';
+
+  const searchInput = document.getElementById('search-input');
+  const filterPrograma = document.getElementById('filter-programa');
+  const filterEstado = document.getElementById('filter-estado');
+  const resetButton = document.getElementById('reset-filters');
+  const tbody = document.getElementById('students-tbody');
+  const resultsCount = document.getElementById('results-count');
+  const totalCount = document.getElementById('total-count');
+
+  totalCount.textContent = estudiantes.length;
+
+  function renderTable() {
+    tbody.innerHTML = '';
+    estudiantesFiltrados.forEach(est => {
+      const estadoColor = est.estado === 'Completado' ? 'bg-blue-100 text-blue-800' :
+                          est.estado === 'Activo' ? 'bg-green-100 text-green-800' :
+                          'bg-yellow-100 text-yellow-800';
+
+      const row = document.createElement('tr');
+      row.className = 'border-b border-gray-200 hover:bg-gray-50';
+      row.innerHTML = `
+        <td class="px-4 py-3 text-center">
+          <div class="w-10 h-10 bg-gradient-to-br from-secondary-300 to-secondary-500 rounded-full flex items-center justify-center text-white cursor-pointer hover:scale-110 transition-transform" title="Ver foto">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+        </td>
+        <td class="px-4 py-3 font-mono text-gray-800">${est.id}</td>
+        <td class="px-4 py-3 text-gray-800">${est.nombre}</td>
+        <td class="px-4 py-3 text-gray-800">${est.programa}</td>
+        <td class="px-4 py-3 text-center"><span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold hover:bg-blue-200 cursor-pointer transition-colors" title="Ver grupo">${est.grupo}</span></td>
+        <td class="px-4 py-3 text-center text-gray-600">${est.horas_requeridas}</td>
+        <td class="px-4 py-3 text-center font-semibold text-secondary-600">${est.completadas}</td>
+        <td class="px-4 py-3 text-center text-gray-600">${est.porcentaje.toFixed(1)}%</td>
+        <td class="px-4 py-3"><span class="px-3 py-1 ${estadoColor} rounded-full text-xs font-semibold">${est.estado}</span></td>
+        <td class="px-4 py-3 text-center">
+          <button class="ver-practicas-btn px-3 py-1 bg-secondary-500 hover:bg-secondary-600 text-white rounded text-xs font-semibold transition-all" data-nombre="${est.nombre}" data-programa="${est.programa}" data-horas-requeridas="${est.horas_requeridas}" data-completadas="${est.completadas}" data-porcentaje="${est.porcentaje}">
+            📋 Ver Prácticas
+          </button>
+        </td>
+      `;
+      tbody.appendChild(row);
+    });
+    resultsCount.textContent = estudiantesFiltrados.length;
+  }
+
+  function filtrarYOrdenar() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const programaFilter = filterPrograma.value;
+    const estadoFilter = filterEstado.value;
+
+    estudiantesFiltrados = estudiantes.filter(est => {
+      const searchMatch = est.nombre.toLowerCase().includes(searchTerm) ||
+                         est.id.toLowerCase().includes(searchTerm) ||
+                         est.programa.toLowerCase().includes(searchTerm);
+      const programaMatch = !programaFilter || est.programa === programaFilter;
+      const estadoMatch = !estadoFilter || est.estado === estadoFilter;
+      return searchMatch && programaMatch && estadoMatch;
+    });
+
+    if (ordenarPor) {
+      estudiantesFiltrados.sort((a, b) => {
+        let valA = a[ordenarPor];
+        let valB = b[ordenarPor];
+
+        if (typeof valA === 'string') {
+          valA = valA.toLowerCase();
+          valB = valB.toLowerCase();
+        }
+
+        if (valA < valB) return ordenarDireccion === 'asc' ? -1 : 1;
+        if (valA > valB) return ordenarDireccion === 'asc' ? 1 : -1;
+        return 0;
+      });
+    }
+
+    renderTable();
+  }
+
+  // Eventos de búsqueda y filtrado
+  searchInput.addEventListener('input', filtrarYOrdenar);
+  filterPrograma.addEventListener('change', filtrarYOrdenar);
+  filterEstado.addEventListener('change', filtrarYOrdenar);
+
+  // Botón limpiar
+  resetButton.addEventListener('click', () => {
+    searchInput.value = '';
+    filterPrograma.value = '';
+    filterEstado.value = '';
+    ordenarPor = null;
+    ordenarDireccion = 'asc';
+    document.querySelectorAll('th .sort-indicator').forEach(el => el.textContent = '↕');
+    filtrarYOrdenar();
+  });
+
+  // Ordenamiento por columnas
+  document.querySelectorAll('th[data-sort]').forEach(th => {
+    th.addEventListener('click', () => {
+      const sortField = th.getAttribute('data-sort');
+
+      if (ordenarPor === sortField) {
+        ordenarDireccion = ordenarDireccion === 'asc' ? 'desc' : 'asc';
+      } else {
+        ordenarPor = sortField;
+        ordenarDireccion = 'asc';
+      }
+
+      // Actualizar indicadores visuales
+      document.querySelectorAll('th .sort-indicator').forEach(el => el.textContent = '↕');
+      th.querySelector('.sort-indicator').textContent = ordenarDireccion === 'asc' ? '↑' : '↓';
+
+      filtrarYOrdenar();
+    });
+  });
+
+  // Renderizar tabla inicial
+  renderTable();
+
+  // Event listeners para botones "Ver Prácticas"
+  function setupVerPracticasButtons() {
+    document.querySelectorAll('.ver-practicas-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const nombre = this.getAttribute('data-nombre');
+        const programa = this.getAttribute('data-programa');
+        const horasRequeridas = this.getAttribute('data-horas-requeridas');
+        const completadas = this.getAttribute('data-completadas');
+        const porcentaje = this.getAttribute('data-porcentaje');
+
+        // Guardar datos en sessionStorage
+        sessionStorage.setItem('estudianteSeleccionado', JSON.stringify({
+          nombre,
+          programa,
+          horas_requeridas: horasRequeridas,
+          completadas,
+          porcentaje
+        }));
+
+        // Navegar a mis-practicas
+        app.loadPage('mis-practicas');
+      });
+    });
+  }
+
+  setupVerPracticasButtons();
+})();
+</script>

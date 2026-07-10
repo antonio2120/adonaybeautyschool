@@ -1,0 +1,303 @@
+<div class="animate-fadeInUp">
+  <div>
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="font-serif text-4xl font-bold text-primary-900 mb-2">School Website Manager</h1>
+      <div class="h-1 w-12 bg-primary-400 my-3"></div>
+      <p class="text-gray-700">Manage and update school website content</p>
+    </div>
+
+    <!-- Website Preview -->
+    <div class="card-featured mb-8 overflow-hidden">
+      <div class="hero text-center p-8 md:p-12">
+        <div class="max-w-3xl">
+          <div class="text-6xl mb-4">💄</div>
+          <h1 class="text-4xl md:text-5xl font-bold mb-4">Adonis Beauty School</h1>
+          <p class="text-lg text-primary-100 mb-6">Excellence in Beauty Education & Professional Training</p>
+          <button onclick="document.getElementById('website-editor').scrollIntoView({behavior: 'smooth'})" class="btn-primary">
+            Edit Website Content
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Editor -->
+    <div id="website-editor" class="card-featured mb-8">
+      <h2 class="text-2xl font-serif font-bold text-primary-900 mb-6 pb-4 border-b-2 border-primary-200">Website Content Editor</h2>
+
+      <div class="space-y-8">
+        <!-- About Section -->
+        <div class="border-l-4 border-primary-600 pl-6">
+          <h3 class="text-lg font-bold text-gray-800 mb-3">About Us Section</h3>
+          <textarea id="about-content" class="form-input" rows="5" placeholder="Write about your beauty school...">Adonis Beauty School is dedicated to providing exceptional education in cosmetology, esthetics, nail care, and makeup artistry. Our experienced instructors combine traditional techniques with modern trends to prepare students for successful careers in the beauty industry.</textarea>
+          <button onclick="saveSection('about')" class="mt-3 btn-secondary">Save Section</button>
+        </div>
+
+        <!-- Services Section -->
+        <div class="border-l-4 border-secondary-600 pl-6">
+          <h3 class="text-lg font-bold text-gray-800 mb-3">Our Programs</h3>
+          <div id="programs-list" class="space-y-3 mb-4">
+            <!-- Populated from sessions -->
+          </div>
+          <button onclick="editPrograms()" class="btn-secondary">Add/Edit Programs</button>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="border-l-4 border-blue-600 pl-6">
+          <h3 class="text-lg font-bold text-gray-800 mb-3">Contact Information</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="form-label">Phone Number</label>
+              <input type="tel" id="contact-phone" class="form-input" placeholder="(555) 123-4567" value="(555) 123-4567">
+            </div>
+            <div>
+              <label class="form-label">Email Address</label>
+              <input type="email" id="contact-email" class="form-input" placeholder="info@adonaisbeautyschool.com" value="info@adonaisbeautyschool.com">
+            </div>
+          </div>
+          <div>
+            <label class="form-label">Address</label>
+            <input type="text" id="contact-address" class="form-input" placeholder="123 Beauty Lane, City, State" value="123 Beauty Lane, Elegance City, CA 90210">
+          </div>
+          <div>
+            <label class="form-label">Hours of Operation</label>
+            <textarea id="contact-hours" class="form-input" rows="3">Monday - Friday: 9:00 AM - 6:00 PM
+Saturday: 10:00 AM - 4:00 PM
+Sunday: Closed</textarea>
+          </div>
+          <button onclick="saveSection('contact')" class="mt-3 btn-secondary">Save Contact Info</button>
+        </div>
+
+        <!-- Social Media -->
+        <div class="border-l-4 border-purple-600 pl-6">
+          <h3 class="text-lg font-bold text-gray-800 mb-3">Social Media Links</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="form-label">Facebook URL</label>
+              <input type="url" id="social-facebook" class="form-input" placeholder="https://facebook.com/adonaisbeautyschool">
+            </div>
+            <div>
+              <label class="form-label">Instagram URL</label>
+              <input type="url" id="social-instagram" class="form-input" placeholder="https://instagram.com/adonaisbeautyschool">
+            </div>
+            <div>
+              <label class="form-label">TikTok URL</label>
+              <input type="url" id="social-tiktok" class="form-input" placeholder="https://tiktok.com/@adonaisbeautyschool">
+            </div>
+            <div>
+              <label class="form-label">YouTube URL</label>
+              <input type="url" id="social-youtube" class="form-input" placeholder="https://youtube.com/c/adonaisbeautyschool">
+            </div>
+          </div>
+          <button onclick="saveSection('social')" class="mt-3 btn-secondary">Save Social Links</button>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="border-l-4 border-green-600 pl-6">
+          <h3 class="text-lg font-bold text-gray-800 mb-3">Student Testimonials</h3>
+          <div id="testimonials-list" class="space-y-4 mb-4">
+            <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+              <p class="text-gray-700 italic mb-2">"This school changed my life. The instructors are amazing and I'm now running my own salon!"</p>
+              <p class="font-semibold text-gray-900">— Sarah Johnson, Cosmetology Graduate</p>
+            </div>
+            <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+              <p class="text-gray-700 italic mb-2">"Excellent training and great support. I got a job before I even graduated!"</p>
+              <p class="font-semibold text-gray-900">— Maria Garcia, Esthetics Graduate</p>
+            </div>
+          </div>
+          <button onclick="addTestimonial()" class="btn-secondary">Add Testimonial</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Preview & Actions -->
+    <div class="card-featured">
+      <h2 class="text-2xl font-serif font-bold text-primary-900 mb-6">Website Actions</h2>
+      <div class="flex flex-col md:flex-row gap-3">
+        <button onclick="previewWebsite()" class="btn-primary flex-1">
+          👁️ Preview Website
+        </button>
+        <button onclick="publishWebsite()" class="btn-secondary flex-1">
+          🚀 Publish Changes
+        </button>
+        <button onclick="downloadSite()" class="btn-outline flex-1">
+          ⬇️ Download HTML
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Preview Modal -->
+  <div id="preview-modal" data-modal class="modal">
+    <div class="modal-content max-w-4xl">
+      <div class="p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-2xl font-serif font-bold text-primary-900">Website Preview</h2>
+          <button data-modal-close type="button" class="text-gray-400 hover:text-gray-600 text-2xl">✕</button>
+        </div>
+        <div id="preview-content" class="bg-white rounded-lg border border-gray-200">
+          <!-- Preview content -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('page-title').textContent = 'Website Manager';
+
+  let sessionsData = [];
+
+  async function loadData() {
+    try {
+      const sessionsRes = await fetch('data/sessions.json');
+      const sessionsJson = await sessionsRes.json();
+      sessionsData = sessionsJson.sessions;
+
+      populateProgramsList();
+      loadWebsiteContent();
+    } catch (error) {
+      console.error('Error loading data:', error);
+    }
+  }
+
+  function populateProgramsList() {
+    const list = document.getElementById('programs-list');
+    const courses = [...new Set(sessionsData.map(s => s.course))];
+
+    list.innerHTML = courses.map(course => {
+      const sessions = sessionsData.filter(s => s.course === course);
+      return `
+        <div class="p-3 bg-gray-50 rounded-lg border border-gray-200">
+          <p class="font-semibold text-gray-900">${course}</p>
+          <p class="text-xs text-gray-600">${sessions.length} available sessions</p>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function saveSection(section) {
+    let data = {};
+
+    switch(section) {
+      case 'about':
+        data = { about: document.getElementById('about-content').value };
+        break;
+      case 'contact':
+        data = {
+          phone: document.getElementById('contact-phone').value,
+          email: document.getElementById('contact-email').value,
+          address: document.getElementById('contact-address').value,
+          hours: document.getElementById('contact-hours').value
+        };
+        break;
+      case 'social':
+        data = {
+          facebook: document.getElementById('social-facebook').value,
+          instagram: document.getElementById('social-instagram').value,
+          tiktok: document.getElementById('social-tiktok').value,
+          youtube: document.getElementById('social-youtube').value
+        };
+        break;
+    }
+
+    const websiteContent = JSON.parse(localStorage.getItem('websiteContent') || '{}');
+    websiteContent[section] = data;
+    localStorage.setItem('websiteContent', JSON.stringify(websiteContent));
+
+    window.app.showToast('✓ Section saved successfully', 'success');
+  }
+
+  function loadWebsiteContent() {
+    const content = JSON.parse(localStorage.getItem('websiteContent') || '{}');
+
+    if (content.about) {
+      document.getElementById('about-content').value = content.about.about || '';
+    }
+    if (content.contact) {
+      document.getElementById('contact-phone').value = content.contact.phone || '';
+      document.getElementById('contact-email').value = content.contact.email || '';
+      document.getElementById('contact-address').value = content.contact.address || '';
+      document.getElementById('contact-hours').value = content.contact.hours || '';
+    }
+    if (content.social) {
+      document.getElementById('social-facebook').value = content.social.facebook || '';
+      document.getElementById('social-instagram').value = content.social.instagram || '';
+      document.getElementById('social-tiktok').value = content.social.tiktok || '';
+      document.getElementById('social-youtube').value = content.social.youtube || '';
+    }
+  }
+
+  window.addTestimonial = function() {
+    const name = prompt('Student name:');
+    const message = prompt('Testimonial message:');
+
+    if (name && message) {
+      const list = document.getElementById('testimonials-list');
+      const div = document.createElement('div');
+      div.className = 'p-4 bg-gray-50 rounded-lg border border-gray-200';
+      div.innerHTML = `
+        <p class="text-gray-700 italic mb-2">"${message}"</p>
+        <p class="font-semibold text-gray-900">— ${name}</p>
+      `;
+      list.appendChild(div);
+
+      window.app.showToast('✓ Testimonial added', 'success');
+    }
+  };
+
+  window.previewWebsite = function() {
+    const about = document.getElementById('about-content').value;
+    const phone = document.getElementById('contact-phone').value;
+    const email = document.getElementById('contact-email').value;
+
+    const preview = `
+      <div class="p-8">
+        <div class="mb-8">
+          <h1 class="text-4xl font-bold text-primary-900 mb-4">Adonis Beauty School</h1>
+          <p class="text-gray-700 text-lg">${about}</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg">
+          <h3 class="font-bold text-gray-900 mb-3">Contact Us</h3>
+          <p><strong>Phone:</strong> ${phone}</p>
+          <p><strong>Email:</strong> ${email}</p>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('preview-content').innerHTML = preview;
+    window.app.openModal('preview-modal');
+  };
+
+  window.publishWebsite = function() {
+    const content = {
+      about: document.getElementById('about-content').value,
+      contact: {
+        phone: document.getElementById('contact-phone').value,
+        email: document.getElementById('contact-email').value,
+        address: document.getElementById('contact-address').value,
+        hours: document.getElementById('contact-hours').value
+      },
+      social: {
+        facebook: document.getElementById('social-facebook').value,
+        instagram: document.getElementById('social-instagram').value,
+        tiktok: document.getElementById('social-tiktok').value,
+        youtube: document.getElementById('social-youtube').value
+      },
+      publishedDate: new Date().toISOString()
+    };
+
+    localStorage.setItem('websiteContent', JSON.stringify(content));
+    window.app.showToast('✓ Website published successfully', 'success');
+  };
+
+  window.downloadSite = function() {
+    window.app.showToast('✓ Download feature coming soon', 'info');
+  };
+
+  window.editPrograms = function() {
+    window.app.showToast('✓ Programs are managed in the Sessions page', 'info');
+  };
+
+  loadData();
+</script>
