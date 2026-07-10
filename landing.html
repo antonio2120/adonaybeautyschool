@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="es" id="htmlElement">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adonay Beauty School | Instituto Internacional de Cosmetología</title>
+  <meta name="description" content="Instituto Internacional de Cosmetología Adonay. Programas profesionales licenciados en Maryland en Cosmetología, Esthetics y Nail Technology. Ubicado en Laurel, Maryland.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600;1,700&family=DM+Sans:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Chat widget -->
+  <script>
+    (function() {
+      window.chatWidgetConfig = {
+        position: 'bottom-right',
+        title: 'Adonay Beauty School',
+        subtitle: 'We are here to help'
+      };
+    })();
+  </script>
+
+  <style>
+    :root {
+      --primary: #2B5A9D;
+      --accent: #00BFA5;
+      --dark: #0A1628;
+      --dark-text: #0E1C2F;
+      --light-bg: #FAFBFF;
+      --muted: #5A6A80;
+      --light-mint: #E8F7F5;
+    }
+
+    * {
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    body {
+      background-color: var(--light-bg);
+      color: var(--dark-text);
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: white;
+      padding: 1rem 2.25rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      box-shadow: 0 10px 25px rgba(0, 191, 165, 0.25);
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #00A896;
+      transform: scale(1.03);
+    }
+
+    .btn-secondary {
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 1rem 2.25rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .section-title {
+      font-size: 2.25rem;
+      line-height: 1.3;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      .section-title {
+        font-size: 3rem;
+      }
+    }
+
+    .stat-badge {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      .stat-badge {
+        font-size: 2.25rem;
+      }
+    }
+
+    .card-program {
+      background: white;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      border: 1px solid rgba(43, 90, 157, 0.12);
+      transition: all 0.3s;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-program:hover {
+      box-shadow: 0 25px 50px rgba(43, 90, 157, 0.1);
+      transform: translateY(-6px);
+    }
+
+    .card-program img {
+      transition: transform 0.5s;
+    }
+
+    .card-program:hover img {
+      transform: scale(1.05);
+    }
+
+    .testimonial-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      transition: all 0.3s;
+      color: white;
+    }
+
+    .testimonial-card:hover {
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .star {
+      display: inline-block;
+      color: var(--accent);
+      margin-right: 2px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      auto-rows: 220px;
+    }
+
+    @media (min-width: 1024px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .gallery-item {
+      border-radius: 1.5rem;
+      overflow: hidden;
+      background: #C8D8EF;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-tall {
+      grid-row: span 2;
+    }
+
+    .gallery-wide {
+      grid-column: span 2;
+    }
+
+    @media (min-width: 1024px) {
+      .gallery-wide {
+        grid-column: span 1;
+      }
+    }
+
+    .animate-pulse {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .hero-section {
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background-image: url('/assets/images/hero-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--dark) 0%, var(--dark) 50%, rgba(10, 22, 40, 0.3) 85%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 0%, var(--dark) 95%);
+      pointer-events: none;
+    }
+
+    .hero-mint-accent {
+      position: absolute;
+      left: 0;
+      top: 25%;
+      width: 4px;
+      height: 128px;
+      background: var(--accent);
+      border-radius: 0 9999px 9999px 0;
+      opacity: 0.8;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+    }
+
+    .nav-item {
+      color: rgba(255, 255, 255, 0.75);
+      font-weight: 500;
+      font-size: 0.875rem;
+      transition: all 0.3s;
+      letter-spacing: 0.025em;
+    }
+
+    .nav-item:hover {
+      color: var(--accent);
+    }
+
+    .badge-mint {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      background: rgba(0, 191, 165, 0.15);
+      border: 1px solid rgba(0, 191, 165, 0.35);
+      border-radius: 9999px;
+      padding: 0.375rem 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .badge-mint-text {
+      color: var(--accent);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .stats-section {
+      background: var(--primary);
+      padding: 2.5rem;
+      color: white;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .stats-grid > div {
+        padding: 0 2rem;
+        border-right: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .stats-grid > div:last-child {
+        border-right: none;
+      }
+    }
+
+    .stat-value {
+      font-size: 2.25rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    @media (min-width: 1024px) {
+      .stat-value {
+        font-size: 3rem;
+      }
+    }
+
+    .stat-label {
+      color: var(--accent);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* Language Toggle */
+    .lang-toggle {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 9999px;
+      padding: 0.25rem;
+    }
+
+    .lang-btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      background: transparent;
+      color: white;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      border-radius: 9999px;
+      transition: all 0.3s;
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      color: white;
+    }
+
+    .lang-btn:hover:not(.active) {
+      color: var(--accent);
+    }
+
+    /* Chat Widget */
+    .chat-widget {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 350px;
+      max-width: 90vw;
+      background: white;
+      border-radius: 1.5rem;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+      z-index: 1000;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .chat-widget.hidden {
+      display: none;
+    }
+
+    .chat-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 1.5rem 1.5rem 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-header h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .chat-header p {
+      margin: 0;
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+
+    .chat-close {
+      background: transparent;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 1.5rem;
+      padding: 0;
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chat-body {
+      flex: 1;
+      padding: 1.5rem;
+      overflow-y: auto;
+      min-height: 300px;
+      max-height: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .chat-message {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .chat-message.bot {
+      justify-content: flex-start;
+    }
+
+    .chat-message.user {
+      justify-content: flex-end;
+    }
+
+    .chat-bubble {
+      max-width: 80%;
+      padding: 0.75rem 1rem;
+      border-radius: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .chat-message.bot .chat-bubble {
+      background: #F0F4F8;
+      color: var(--dark-text);
+    }
+
+    .chat-message.user .chat-bubble {
+      background: var(--accent);
+      color: white;
+    }
+
+    .chat-footer {
+      padding: 1rem;
+      border-top: 1px solid #E0E0E0;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .chat-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 1px solid #E0E0E0;
+      border-radius: 0.75rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+    }
+
+    .chat-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0, 191, 165, 0.1);
+    }
+
+    .chat-send {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .chat-send:hover {
+      background: #00A896;
+    }
+
+    .chat-button {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0, 191, 165, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      z-index: 999;
+    }
+
+    .chat-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 15px 35px rgba(0, 191, 165, 0.4);
+    }
+
+    .chat-button.hidden {
+      display: none;
+    }
+
+    /* Hide chat widget initially */
+    .translations-hidden {
+      display: none !important;
+    }
+
+    /* ANIMACIONES DE ICONOS */
+
+    /* Hover rotate */
+    .icon-rotate:hover {
+      animation: iconRotate 0.6s ease-in-out;
+    }
+
+    @keyframes iconRotate {
+      0% { transform: rotate(0deg); }
+      50% { transform: rotate(180deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Hover scale bounce */
+    .icon-scale:hover {
+      animation: iconScale 0.5s ease-in-out;
+    }
+
+    @keyframes iconScale {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    /* Hover flip */
+    .icon-flip:hover {
+      animation: iconFlip 0.6s ease-in-out;
+    }
+
+    @keyframes iconFlip {
+      0% { transform: scaleX(1); }
+      50% { transform: scaleX(-1); }
+      100% { transform: scaleX(1); }
+    }
+
+    /* Hover pulse */
+    .icon-pulse:hover {
+      animation: iconPulse 0.6s ease-in-out;
+    }
+
+    @keyframes iconPulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(0.8); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Hover wiggle */
+    .icon-wiggle:hover {
+      animation: iconWiggle 0.5s ease-in-out;
+    }
+
+    @keyframes iconWiggle {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-3px); }
+      75% { transform: translateX(3px); }
+    }
+
+    /* Hover bounce */
+    .icon-bounce:hover {
+      animation: iconBounce 0.6s ease-in-out;
+    }
+
+    @keyframes iconBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* Hover color change */
+    .icon-color:hover {
+      animation: iconColorChange 0.6s ease-in-out;
+    }
+
+    @keyframes iconColorChange {
+      0% { color: var(--accent); }
+      50% { color: var(--primary); }
+      100% { color: var(--accent); }
+    }
+
+    /* Smooth transition para iconos */
+    svg {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Glow effect en hover */
+    .icon-glow:hover {
+      filter: drop-shadow(0 0 8px rgba(0, 191, 165, 0.6));
+    }
+
+    /* ANIMACIONES HERO */
+
+    /* Float animation más suave */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .animate-float {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    /* Pulse dot en badge */
+    @keyframes heroFloat {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(5deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+
+    .animate-hero-float {
+      animation: heroFloat 6s ease-in-out infinite;
+    }
+
+    /* Shimmer effect */
+    @keyframes shimmer {
+      0% { opacity: 0.5; transform: translateX(-100%); }
+      100% { opacity: 1; transform: translateX(100%); }
+    }
+
+    .animate-shimmer::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    /* Glow pulse */
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(0, 191, 165, 0.3); }
+      50% { box-shadow: 0 0 40px rgba(0, 191, 165, 0.6); }
+    }
+
+    .animate-glow-pulse {
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+
+    /* VARIACIONES DE COLOR POR CONTEXTO */
+
+    /* Programa - color por tipo */
+    .program-card-cosmo {
+      --accent-color: #FF6B9D;  /* Rosa cosmético */
+    }
+
+    .program-card-cosmo:hover {
+      border-color: #FF6B9D;
+    }
+
+    .program-card-esth {
+      --accent-color: #4ECDC4;  /* Turquesa spa */
+    }
+
+    .program-card-esth:hover {
+      border-color: #4ECDC4;
+    }
+
+    .program-card-nail {
+      --accent-color: #FFD93D;  /* Oro uñas */
+    }
+
+    .program-card-nail:hover {
+      border-color: #FFD93D;
+    }
+
+    /* Testimonial colors */
+    .testimonial-color-1 { --tint: rgba(255, 107, 157, 0.1); }
+    .testimonial-color-2 { --tint: rgba(78, 205, 196, 0.1); }
+    .testimonial-color-3 { --tint: rgba(255, 217, 61, 0.1); }
+
+    /* ANIMACIONES DE TEXTO */
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .animate-slide-left {
+      animation: slideInLeft 0.8s ease-out;
+    }
+
+    .animate-slide-right {
+      animation: slideInRight 0.8s ease-out;
+    }
+
+    /* LOGO TEXT */
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      line-height: 1.1;
+    }
+
+    .logo-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      color: white;
+      line-height: 1;
+      font-style: italic;
+    }
+
+    .logo-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.55rem;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      line-height: 1;
+      text-transform: uppercase;
+      margin-top: 0px;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVIGATION -->
+  <nav class="fixed w-full z-50 bg-[var(--primary)]/96 backdrop-blur-md shadow-md shadow-[var(--primary)]/20">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3">
+        <img src="assets/logo.png" alt="Adonay Beauty School" class="h-12 lg:h-14 w-auto object-contain">
+        <div class="logo-text hidden lg:flex">
+          <span class="logo-title">Adonay</span>
+          <span class="logo-sub">BEAUTY SCHOOL</span>
+        </div>
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="#inicio" class="nav-item">Inicio</a>
+        <a href="#programs" class="nav-item">Programas</a>
+        <a href="#about" class="nav-item">Nosotros</a>
+        <a href="#gallery" class="nav-item">Galería</a>
+        <a href="#testimonials" class="nav-item">Testimonios</a>
+        <a href="#contact" class="nav-item">Contacto</a>
+      </div>
+
+      <!-- Language Toggle -->
+      <div class="hidden lg:flex lang-toggle">
+        <button class="lang-btn active" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+
+      <a href="#contact" class="hidden lg:inline-flex btn-primary bg-[var(--accent)] hover:bg-[#00A896] text-white text-sm font-semibold px-6 py-2.5 rounded-full transition-colors shadow">
+        <span class="lang-text" data-es="Inscribirse Ahora" data-en="Enroll Now">Inscribirse Ahora</span>
+      </a>
+
+      <!-- Mobile menu toggle -->
+      <button id="mobile-menu-btn" class="lg:hidden text-white p-1.5">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-[var(--primary)] border-t border-white/10 px-6 py-5 flex flex-col gap-4">
+      <a href="#inicio" class="text-white/80 hover:text-[var(--accent)] text-base font-medium transition-colors">Inicio</a>
+      <a href="#programs" class="text-white/80 hover:text-[var(--accent)] text-base font-medium transition-colors">Programas</a>
+      <a href="#about" class="text-white/80 hover:text-[var(--accent)] text-base font-medium transition-colors">Nosotros</a>
+      <a href="#gallery" class="text-white/80 hover:text-[var(--accent)] text-base font-medium transition-colors">Galería</a>
+      <a href="#testimonials" class="text-white/80 hover:text-[var(--accent)] text-base font-medium transition-colors">Testimonios</a>
+      <a href="#contact" class="text-white/80 hover:text-[var(--accent)] text-base font-medium transition-colors">Contacto</a>
+      <a href="#contact" class="btn-primary bg-[var(--accent)] hover:bg-[#00A896] text-white text-center text-sm font-semibold px-6 py-3 rounded-full mt-2">
+        Inscribirse Ahora
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section id="inicio" class="hero-section pt-24 pb-16 md:py-32">
+    <div class="hero-mint-accent"></div>
+
+    <div class="max-w-7xl mx-auto px-6 hero-content w-full grid lg:grid-cols-[1fr_auto] gap-16 items-center py-28 lg:py-36">
+      <!-- Text Content -->
+      <div class="max-w-2xl">
+        <div class="badge-mint">
+          <span class="badge-dot"></span>
+          <span class="badge-mint-text">Ahora Aceptando Inscriciones · Laurel, Maryland</span>
+        </div>
+
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
+          Comienza tu<br>
+          <span class="italic text-[var(--accent)]">Carrera en Belleza</span>
+        </h1>
+
+        <p class="text-white/65 text-lg leading-relaxed mb-10 max-w-xl">
+          Instituto Internacional de Cosmetología Adonay ofrece programas profesionales licenciados por Maryland diseñados para llevarte de estudiante a lista para trabajar — con entrenamiento práctico, experiencia en salón real y preparación completa para exámenes.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#contact" class="btn-primary bg-[var(--accent)] hover:bg-[#00A896] text-white font-semibold px-9 py-4 rounded-full transition-all hover:scale-[1.05] hover:shadow-2xl text-center shadow-lg shadow-[var(--accent)]/25 relative overflow-hidden group">
+            <span class="relative z-10">Comienza tu Viaje</span>
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+          </a>
+          <a href="#programs" class="btn-secondary border border-white/30 hover:border-[var(--accent)] text-white hover:text-[var(--accent)] font-semibold px-9 py-4 rounded-full transition-all text-center hover:bg-white/10 backdrop-blur-sm">
+            Explorar Programas
+          </a>
+        </div>
+      </div>
+
+      <!-- Floating Image Card -->
+      <div class="hidden lg:block relative flex-shrink-0">
+        <div class="w-72 h-[420px] rounded-2xl overflow-hidden border border-[var(--accent)]/30 shadow-2xl bg-[#1a2e4a] animate-glow-pulse hover:shadow-2xl transition-shadow duration-300">
+          <img src="assets/images/nail-tech.jpg" alt="Estudiante recibiendo entrenamiento profesional en maquillaje" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+        </div>
+        <!-- Stat card -->
+        <div class="absolute -bottom-5 -left-8 bg-white rounded-2xl px-5 py-4 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-default">
+          <p class="text-[var(--primary)] font-bold text-3xl leading-none" style="font-family: 'Playfair Display', serif;">
+            98%
+          </p>
+          <p class="text-[var(--muted)] text-xs mt-1 font-medium">Tasa de Aprobación en Examen Estatal</p>
+        </div>
+        <!-- Badge -->
+        <div class="absolute -top-4 -right-4 bg-[var(--accent)] rounded-2xl p-4 shadow-xl text-white text-center hover:shadow-2xl transition-all duration-300 hover:scale-110 animate-hero-float">
+          <svg class="w-6 h-6 mx-auto mb-1 text-white icon-bounce" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <p class="text-[0.6875rem] font-semibold leading-tight">Certificado por<br>Maryland</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <section class="stats-section">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="stats-grid">
+        <div class="text-center">
+          <p class="stat-value">98%</p>
+          <p class="stat-label">Tasa de Aprobación en Examen Estatal</p>
+        </div>
+        <div class="text-center">
+          <p class="stat-value">500+</p>
+          <p class="stat-label">Graduadas Colocadas</p>
+        </div>
+        <div class="text-center">
+          <p class="stat-value">15+</p>
+          <p class="stat-label">Años de Excelencia</p>
+        </div>
+        <div class="text-center">
+          <p class="stat-value">3</p>
+          <p class="stat-label">Programas Licenciados</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS SECTION -->
+  <section id="programs" class="py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-14">
+        <div>
+          <p class="text-[var(--accent)] text-xs font-semibold tracking-[0.22em] uppercase mb-3">
+            Programas Licenciados
+          </p>
+          <h2 class="section-title text-[var(--dark-text)]">
+            Elige tu Camino
+          </h2>
+        </div>
+        <p class="text-[var(--muted)] max-w-md leading-relaxed">
+          Currículos acreditados por Maryland Board of Cosmetology con horas de clínica prácticas y preparación completa para examen estatal.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-7">
+        <!-- Program 1: Cosmetology -->
+        <div class="card-program border-l-4 border-transparent hover:border-[#FF6B9D] transition-all duration-300">
+          <div class="relative h-56 bg-[#C8D8EF] overflow-hidden">
+            <img src="assets/images/cosmetology.jpg" alt="Corte de cabello profesional en salón" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-[var(--dark-text)]/60 via-transparent to-transparent"></div>
+            <div class="absolute top-4 left-4 bg-[var(--accent)] text-white text-[0.6875rem] font-semibold px-3 py-1 rounded-full shadow">
+              Más Popular
+            </div>
+            <div class="absolute bottom-4 right-4 bg-[var(--primary)] text-white text-[0.6875rem] font-mono font-medium px-3 py-1.5 rounded-full shadow">
+              1500 Horas
+            </div>
+          </div>
+          <div class="p-7 flex-1 flex flex-col">
+            <div class="flex items-center gap-2.5 mb-3">
+              <svg class="w-6 h-6 text-[#FF6B9D] icon-rotate" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <h3 class="text-2xl font-bold text-[var(--dark-text)]">Cosmetology</h3>
+            </div>
+            <p class="text-[var(--muted)] text-sm leading-relaxed mb-6 flex-1">
+              Domina cortes, coloración, tratamientos químicos y esenciales de negocios de salón. Preparación completa para examen estatal de Maryland incluida.
+            </p>
+            <a href="#contact" class="inline-flex items-center gap-1.5 text-[var(--primary)] font-semibold text-sm hover:text-[var(--accent)] transition-colors group">
+              Solicitar Información
+              <svg class="w-5 h-5 text-[var(--primary)] group-hover:text-[var(--accent)] transition-colors" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Program 2: Esthetician -->
+        <div class="card-program border-l-4 border-transparent hover:border-[#4ECDC4] transition-all duration-300">
+          <div class="relative h-56 bg-[#C8D8EF] overflow-hidden">
+            <img src="assets/images/esthetician.jpg" alt="Tratamiento profesional de cuidado facial en spa" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-[var(--dark-text)]/60 via-transparent to-transparent"></div>
+            <div class="absolute bottom-4 right-4 bg-[var(--primary)] text-white text-[0.6875rem] font-mono font-medium px-3 py-1.5 rounded-full shadow">
+              600 Horas
+            </div>
+          </div>
+          <div class="p-7 flex-1 flex flex-col">
+            <div class="flex items-center gap-2.5 mb-3">
+              <svg class="w-6 h-6 text-[#4ECDC4] icon-scale" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12a9 9 0 11-18 0 9 9 0 0118 0m-9 5h.01"></path>
+              </svg>
+              <h3 class="text-2xl font-bold text-[var(--dark-text)]">Esthetician</h3>
+            </div>
+            <p class="text-[var(--muted)] text-sm leading-relaxed mb-6 flex-1">
+              Cuidado avanzado de la piel, tratamientos faciales, depilación y terapias de spa. Aprende la ciencia de la piel y técnicas cosméticas profesionales.
+            </p>
+            <a href="#contact" class="inline-flex items-center gap-1.5 text-[var(--primary)] font-semibold text-sm hover:text-[var(--accent)] transition-colors group">
+              Solicitar Información
+              <svg class="w-5 h-5 text-[var(--primary)] group-hover:text-[var(--accent)] transition-colors" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Program 3: Nail Technology -->
+        <div class="card-program border-l-4 border-transparent hover:border-[#FFD93D] transition-all duration-300">
+          <div class="relative h-56 bg-[#C8D8EF] overflow-hidden">
+            <img src="assets/images/nail-tech.jpg" alt="Entrenamiento profesional en aplicación de belleza" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-[var(--dark-text)]/60 via-transparent to-transparent"></div>
+            <div class="absolute bottom-4 right-4 bg-[var(--primary)] text-white text-[0.6875rem] font-mono font-medium px-3 py-1.5 rounded-full shadow">
+              250 Horas
+            </div>
+          </div>
+          <div class="p-7 flex-1 flex flex-col">
+            <div class="flex items-center gap-2.5 mb-3">
+              <svg class="w-6 h-6 text-[#FFD93D] icon-bounce" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+              <h3 class="text-2xl font-bold text-[var(--dark-text)]">Nail Technology</h3>
+            </div>
+            <p class="text-[var(--muted)] text-sm leading-relaxed mb-6 flex-1">
+              Cuidado completo de uñas: manicure, pedicure, arte de uñas, acrílicos y aplicaciones de gel usando herramientas estándar de la industria.
+            </p>
+            <a href="#contact" class="inline-flex items-center gap-1.5 text-[var(--primary)] font-semibold text-sm hover:text-[var(--accent)] transition-colors group">
+              Solicitar Información
+              <svg class="w-5 h-5 text-[var(--primary)] group-hover:text-[var(--accent)] transition-colors" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="py-24 bg-[#EEF4FC]">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Image block -->
+      <div class="relative">
+        <div class="rounded-2xl overflow-hidden h-[520px] bg-[#C0D4EF] shadow-xl">
+          <img src="assets/images/gallery-2.jpg" alt="Entorno profesional de entrenamiento en salón con equipamiento moderno" class="w-full h-full object-cover">
+        </div>
+        <!-- Accent shape -->
+        <div class="absolute -bottom-4 -left-4 w-32 h-32 rounded-2xl bg-[var(--accent)]/15 border border-[var(--accent)]/25 -z-10"></div>
+        <!-- Alumni card -->
+        <div class="absolute -bottom-6 -right-4 lg:-right-8 bg-[var(--primary)] text-white rounded-2xl p-5 shadow-2xl max-w-[200px]">
+          <svg class="w-6 h-6 text-[var(--accent)] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 8.048M12 4.354l4 4.048M12 4.354l-4 4.048"></path>
+          </svg>
+          <p class="text-3xl font-bold leading-none" style="font-family: 'Playfair Display', serif;">
+            500+
+          </p>
+          <p class="text-white/65 text-[0.6875rem] mt-1.5 leading-snug">
+            Egresadas trabajando en Maryland, DC y Virginia
+          </p>
+        </div>
+      </div>
+
+      <!-- Text content -->
+      <div>
+        <p class="text-[var(--accent)] text-xs font-semibold tracking-[0.22em] uppercase mb-3">
+          Acerca del Instituto
+        </p>
+        <h2 class="section-title text-[var(--dark-text)]">
+          Instituto de Belleza<br>
+          <span class="italic">Líder en Maryland</span>
+        </h2>
+        <p class="text-[var(--muted)] leading-relaxed mb-5">
+          Instituto Internacional de Cosmetología Adonay ha estado formando a la próxima generación de profesionales de belleza en Laurel, Maryland durante más de 15 años. Nuestros programas licenciados por el estado combinan técnicas prácticas con habilidades comerciales, para que cada egresada salga lista para trabajar.
+        </p>
+        <p class="text-[var(--muted)] leading-relaxed mb-10">
+          Nuestras instructoras licenciadas traen experiencia real de salón a cada clase. Cohortes pequeñas significan instrucción personalizada, y nuestras instalaciones modernas te dan acceso a equipamiento de grado profesional desde el primer día.
+        </p>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div class="flex items-center gap-3 bg-white rounded-xl px-4 py-3.5 border border-[rgba(43,90,157,0.12)] shadow-sm">
+            <svg class="w-5 h-5 text-[var(--accent)] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span class="text-[var(--dark-text)] text-sm font-medium">Licenciada Maryland</span>
+          </div>
+          <div class="flex items-center gap-3 bg-white rounded-xl px-4 py-3.5 border border-[rgba(43,90,157,0.12)] shadow-sm">
+            <svg class="w-5 h-5 text-[var(--accent)] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C6.5 6.253 2 10.998 2 17.25c0 5.079 3.855 9.26 8.75 9.589m0-13c5.5 0 10 4.745 10 10.25 0 5.079-3.855 9.26-8.75 9.589M9 9h6m-6 4h6m6-7a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span class="text-[var(--dark-text)] text-sm font-medium">Ayuda Financiera</span>
+          </div>
+          <div class="flex items-center gap-3 bg-white rounded-xl px-4 py-3.5 border border-[rgba(43,90,157,0.12)] shadow-sm">
+            <svg class="w-5 h-5 text-[var(--accent)] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 8.048M12 4.354l4 4.048M12 4.354l-4 4.048M9 20h6a2 2 0 002-2V8a2 2 0 00-2-2H9a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+            <span class="text-[var(--dark-text)] text-sm font-medium">Clases Pequeñas</span>
+          </div>
+          <div class="flex items-center gap-3 bg-white rounded-xl px-4 py-3.5 border border-[rgba(43,90,157,0.12)] shadow-sm">
+            <svg class="w-5 h-5 text-[var(--accent)] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            </svg>
+            <span class="text-[var(--dark-text)] text-sm font-medium">Apoyo en Colocación</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY SECTION -->
+  <section id="gallery" class="py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <p class="text-[var(--accent)] text-xs font-semibold tracking-[0.22em] uppercase mb-3">
+          Galería de Graduación
+        </p>
+        <h2 class="section-title text-[var(--dark-text)]">
+          Celebrando Nuestras y Nuestros Egresadas y Egresados
+        </h2>
+        <p class="text-[var(--muted)] mt-4 max-w-lg mx-auto leading-relaxed">
+          Cada graduación marca el comienzo de una hermosa carrera. Celebramos a cada clase de egresadas de Adonay con orgullo.
+        </p>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="gallery-grid">
+        <div class="gallery-item gallery-tall">
+          <img src="assets/images/gallery-1.jpg" alt="Egresada lanzando su gorro en celebración">
+        </div>
+        <div class="gallery-item">
+          <img src="assets/images/gallery-2.jpg" alt="Egresadas en vestidos académicos en ceremonia">
+        </div>
+        <div class="gallery-item">
+          <img src="assets/images/gallery-3.jpg" alt="Estudiantes en entrenamiento profesional de belleza">
+        </div>
+        <div class="gallery-item gallery-wide">
+          <img src="assets/images/gallery-4.jpg" alt="Estudiantes lanzando gorros de graduación">
+        </div>
+        <div class="gallery-item">
+          <img src="assets/images/gallery-5.jpg" alt="Mujer celebrando su logro de graduación">
+        </div>
+        <div class="gallery-item">
+          <img src="assets/images/gallery-6.jpg" alt="Ceremonia de graduación profesional">
+        </div>
+        <div class="gallery-item gallery-tall">
+          <img src="assets/images/gallery-8.jpg" alt="Egresada en traje académico">
+        </div>
+        <div class="gallery-item">
+          <img src="assets/images/gallery-9.jpg" alt="Estudiante de belleza en sesión de práctica">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS SECTION -->
+  <section id="testimonials" class="py-24 bg-[var(--primary)] relative overflow-hidden">
+    <!-- Decorative circles -->
+    <div class="absolute top-0 right-0 w-72 h-72 rounded-full bg-[var(--accent)]/10 -translate-y-1/2 translate-x-1/3"></div>
+    <div class="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-white/5 translate-y-1/2 -translate-x-1/3"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <p class="text-[var(--accent)] text-xs font-semibold tracking-[0.22em] uppercase mb-3">
+          Historias de Estudiantes
+        </p>
+        <h2 class="section-title text-white">
+          Palabras de Nuestras Egresadas
+        </h2>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-7">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:bg-white/[0.16] cursor-default">
+          <div class="flex items-center gap-1 mb-5 text-[#FF6B9D]">
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+          </div>
+          <p class="text-white/85 leading-relaxed mb-7 italic text-sm">
+            "Adonay me dio las habilidades y confianza para abrir mi propio salón dentro de un año de graduarme. Las instructoras genuinamente se preocupan por tu éxito y te impulsan a ser lo mejor."
+          </p>
+          <div class="flex items-center gap-3 pt-5 border-t border-white/15">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FF6B9D] to-[#FF9ECE] flex items-center justify-center flex-shrink-0 shadow border border-white/20 hover:shadow-lg hover:scale-110 transition-all duration-300">
+              <span class="text-white font-bold text-sm">JW</span>
+            </div>
+            <div>
+              <p class="text-white font-semibold text-sm">Jasmine Williams</p>
+              <p class="text-[var(--accent)] text-[0.6875rem] mt-0.5">Cosmetology · Clase 2023</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:bg-white/[0.16] cursor-default">
+          <div class="flex items-center gap-1 mb-5 text-[#4ECDC4]">
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+          </div>
+          <p class="text-white/85 leading-relaxed mb-7 italic text-sm">
+            "El programa de Esthetician es de clase mundial. Aprobé mi examen de junta estatal en el primer intento y conseguí un puesto en un spa de lujo inmediatamente. Vale cada centavo."
+          </p>
+          <div class="flex items-center gap-3 pt-5 border-t border-white/15">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#4ECDC4] to-[#7EE7D6] flex items-center justify-center flex-shrink-0 shadow border border-white/20 hover:shadow-lg hover:scale-110 transition-all duration-300">
+              <span class="text-white font-bold text-sm">SR</span>
+            </div>
+            <div>
+              <p class="text-white font-semibold text-sm">Sofia Rodriguez</p>
+              <p class="text-[var(--accent)] text-[0.6875rem] mt-0.5">Esthetician · Clase 2024</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:bg-white/[0.16] cursor-default">
+          <div class="flex items-center gap-1 mb-5 text-[#FFD93D]">
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+          </div>
+          <p class="text-white/85 leading-relaxed mb-7 italic text-sm">
+            "Llegué sin experiencia y me fui como técnica de uñas certificada con un libro de clientes lleno. El entrenamiento práctico aquí no tiene igual en el área de DMV."
+          </p>
+          <div class="flex items-center gap-3 pt-5 border-t border-white/15">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFD93D] to-[#FFE066] flex items-center justify-center flex-shrink-0 shadow border border-white/20 hover:shadow-lg hover:scale-110 transition-all duration-300">
+              <span class="text-gray-900 font-bold text-sm">AJ</span>
+            </div>
+            <div>
+              <p class="text-white font-semibold text-sm">Amara Johnson</p>
+              <p class="text-[var(--accent)] text-[0.6875rem] mt-0.5">Nail Technology · Clase 2023</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="py-24">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-start">
+      <!-- Info -->
+      <div>
+        <p class="text-[var(--accent)] text-xs font-semibold tracking-[0.22em] uppercase mb-3">
+          Inscribirse Hoy
+        </p>
+        <h2 class="section-title text-[var(--dark-text)]">
+          Comienza tu<br>
+          <span class="italic">Carrera en Belleza</span>
+        </h2>
+        <p class="text-[var(--muted)] leading-relaxed mb-10 max-w-md">
+          ¿Listo para dar el primer paso? Completa el formulario y uno de nuestros asesores de inscripción se comunicará dentro de 24 horas para discutir programas, ayuda financiera y fechas de inicio de clases.
+        </p>
+
+        <div class="flex flex-col gap-5">
+          <div class="flex items-center gap-4">
+            <div class="w-11 h-11 rounded-full bg-[var(--light-mint)] flex items-center justify-center flex-shrink-0 shadow-sm">
+              <svg class="w-6 h-6 text-[var(--accent)] icon-glow" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+            </div>
+            <div>
+              <p class="text-[var(--dark-text)] font-semibold text-sm">Ubicación</p>
+              <p class="text-[var(--muted)] text-sm">Laurel, Maryland, USA</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="w-11 h-11 rounded-full bg-[var(--light-mint)] flex items-center justify-center flex-shrink-0 shadow-sm">
+              <svg class="w-6 h-6 text-[var(--accent)] icon-glow" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 00.948.684l1.498 7.413a1 1 0 00.502.909l2.821 1.821a1 1 0 00.275 1.638l-2.805 1.872a1 1 0 00-.523 1.179L19.8 20.236a2 2 0 001.964 1.529h2.16M4.464 6.464L16.94 18.94"></path>
+              </svg>
+            </div>
+            <div>
+              <p class="text-[var(--dark-text)] font-semibold text-sm">Teléfono</p>
+              <p class="text-[var(--muted)] text-sm">(240) 431-9570</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="w-11 h-11 rounded-full bg-[var(--light-mint)] flex items-center justify-center flex-shrink-0 shadow-sm">
+              <svg class="w-6 h-6 text-[var(--accent)] icon-glow" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <div>
+              <p class="text-[var(--dark-text)] font-semibold text-sm">Email</p>
+              <p class="text-[var(--muted)] text-sm">info@adonayinstitute.com</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Small gallery teaser -->
+        <div class="mt-10 grid grid-cols-3 gap-3">
+          <div class="h-24 rounded-xl overflow-hidden bg-[#C8D8EF]">
+            <img src="assets/images/cosmetology.jpg" alt="Profesional de belleza" class="w-full h-full object-cover">
+          </div>
+          <div class="h-24 rounded-xl overflow-hidden bg-[#C8D8EF]">
+            <img src="assets/images/esthetician.jpg" alt="Tratamiento de spa" class="w-full h-full object-cover">
+          </div>
+          <div class="h-24 rounded-xl overflow-hidden bg-[#C8D8EF]">
+            <img src="assets/images/nail-tech.jpg" alt="Entrenamiento de belleza" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form id="enrollment-form" class="bg-white border border-[rgba(43,90,157,0.12)] rounded-2xl p-8 shadow-lg">
+        <h3 class="text-2xl font-bold text-[var(--dark-text)] mb-6" style="font-family: 'Playfair Display', serif;">
+          Formulario de Pre-Registro
+        </h3>
+
+        <div class="space-y-5">
+          <!-- Programa -->
+          <div>
+            <label for="program" class="block text-sm font-medium text-[var(--dark-text)] mb-2">
+              Programa que Cursará <span class="text-red-500">*</span>
+            </label>
+            <select id="program" name="program" class="w-full px-4 py-3 rounded-lg border border-[rgba(43,90,157,0.12)] bg-[#F0F4F8] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]" required>
+              <option value="">Selecciona un programa</option>
+              <option value="cosmetology">Cosmetology (1500 Horas)</option>
+              <option value="esthetician">Esthetician Specialized in Makeup (600 Horas)</option>
+              <option value="nail">Nail Technician (250 Horas)</option>
+            </select>
+          </div>
+
+          <!-- Nombre -->
+          <div>
+            <label for="name" class="block text-sm font-medium text-[var(--dark-text)] mb-2">
+              Nombre Completo <span class="text-red-500">*</span>
+            </label>
+            <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg border border-[rgba(43,90,157,0.12)] bg-[#F0F4F8] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]" placeholder="Tu nombre completo" required>
+          </div>
+
+          <!-- Domicilio -->
+          <div>
+            <label for="address" class="block text-sm font-medium text-[var(--dark-text)] mb-2">
+              Domicilio <span class="text-red-500">*</span>
+            </label>
+            <input type="text" id="address" name="address" class="w-full px-4 py-3 rounded-lg border border-[rgba(43,90,157,0.12)] bg-[#F0F4F8] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]" placeholder="Calle, número, ciudad, estado, código postal" required>
+          </div>
+
+          <!-- NSS o ITIN -->
+          <div>
+            <label for="ssn" class="block text-sm font-medium text-[var(--dark-text)] mb-2">
+              NSS o ITIN Number <span class="text-red-500">*</span>
+            </label>
+            <input type="text" id="ssn" name="ssn" class="w-full px-4 py-3 rounded-lg border border-[rgba(43,90,157,0.12)] bg-[#F0F4F8] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]" placeholder="XXX-XX-XXXX (Indispensable para obtener la Licencia)" required>
+            <p class="text-xs text-[var(--muted)] mt-2">Indispensable para obtener la Licencia como Cosmetóloga, Técnico en uñas o Esteticista en el estado de Maryland</p>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label for="email" class="block text-sm font-medium text-[var(--dark-text)] mb-2">
+              Correo Electrónico <span class="text-red-500">*</span>
+            </label>
+            <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg border border-[rgba(43,90,157,0.12)] bg-[#F0F4F8] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]" placeholder="tu@correo.com" required>
+          </div>
+
+          <!-- Teléfono -->
+          <div>
+            <label for="phone" class="block text-sm font-medium text-[var(--dark-text)] mb-2">
+              Teléfono <span class="text-red-500">*</span>
+            </label>
+            <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-lg border border-[rgba(43,90,157,0.12)] bg-[#F0F4F8] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]" placeholder="(240) 000-0000" required>
+          </div>
+
+          <!-- Pago Zelle -->
+          <div class="bg-gradient-to-r from-[var(--accent)]/10 to-[var(--primary)]/10 rounded-lg p-6">
+            <h4 class="text-lg font-semibold text-[var(--dark-text)] mb-4">Pago de Aplicación - Zelle</h4>
+
+            <!-- QR Code Simulado -->
+            <div class="bg-white rounded-lg p-4 mb-4">
+              <div class="flex flex-col items-center">
+                <svg class="w-32 h-32 mb-3" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <!-- QR Code Simulado (patrón visual) -->
+                  <rect width="100" height="100" fill="white"/>
+                  <rect x="5" y="5" width="30" height="30" fill="black"/>
+                  <rect x="65" y="5" width="30" height="30" fill="black"/>
+                  <rect x="5" y="65" width="30" height="30" fill="black"/>
+                  <rect x="15" y="15" width="10" height="10" fill="white"/>
+                  <rect x="75" y="15" width="10" height="10" fill="white"/>
+                  <rect x="15" y="75" width="10" height="10" fill="white"/>
+                  <rect x="40" y="40" width="20" height="20" fill="black"/>
+                  <rect x="45" y="45" width="10" height="10" fill="white"/>
+                  <!-- Patrón aleatorio -->
+                  <circle cx="25" cy="50" r="2" fill="black"/>
+                  <circle cx="50" cy="25" r="2" fill="black"/>
+                  <circle cx="75" cy="50" r="2" fill="black"/>
+                  <circle cx="50" cy="75" r="2" fill="black"/>
+                  <rect x="30" y="30" width="3" height="3" fill="black"/>
+                  <rect x="55" y="55" width="3" height="3" fill="black"/>
+                  <rect x="70" y="70" width="3" height="3" fill="black"/>
+                  <rect x="20" y="70" width="3" height="3" fill="black"/>
+                </svg>
+                <p class="text-sm text-[var(--muted)] text-center">Código QR de Zelle</p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 mb-4">
+              <div class="text-center">
+                <p class="text-xs text-[var(--muted)] mb-2">Envía el pago a:</p>
+                <p class="font-semibold text-[var(--dark-text)]">Adonay Beauty School</p>
+                <p class="text-sm text-[var(--muted)]">zelle@adonaybeautyschool.com</p>
+                <p class="text-lg font-bold text-[var(--primary)] mt-2">Monto: $150 USD</p>
+              </div>
+            </div>
+
+            <a href="https://www.zelle.com/" target="_blank" class="block text-center py-2 px-4 bg-[var(--primary)] text-white rounded-lg text-sm font-semibold hover:bg-[var(--primary)]/90 transition-colors">
+              Abrir Zelle
+            </a>
+          </div>
+
+          <!-- Checkbox de aceptación -->
+          <div class="flex items-start gap-3">
+            <input type="checkbox" id="accept" name="accept" class="mt-1 rounded" required>
+            <label for="accept" class="text-xs text-[var(--muted)]">
+              Acepto los términos y condiciones. Confirmo que he revisado los requisitos necesarios para obtener la licencia en Maryland.
+            </label>
+          </div>
+
+          <button type="submit" class="w-full btn-primary bg-[var(--accent)] hover:bg-[#00A896] text-white font-semibold py-3 rounded-lg transition-all">
+            Enviar Pre-Registro
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-[var(--dark-text)] text-white py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h4 class="font-bold mb-4">Instituto Adonay</h4>
+          <p class="text-white/65 text-sm">Instituto Internacional de Cosmetología ubicado en Laurel, Maryland.</p>
+        </div>
+        <div>
+          <h4 class="font-bold mb-4">Programas</h4>
+          <ul class="text-white/65 text-sm space-y-2">
+            <li><a href="#programs" class="hover:text-[var(--accent)] transition-colors">Cosmetology</a></li>
+            <li><a href="#programs" class="hover:text-[var(--accent)] transition-colors">Esthetician</a></li>
+            <li><a href="#programs" class="hover:text-[var(--accent)] transition-colors">Nail Technology</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold mb-4">Acceso Rápido</h4>
+          <ul class="text-white/65 text-sm space-y-2">
+            <li><a href="#about" class="hover:text-[var(--accent)] transition-colors">Sobre Nosotros</a></li>
+            <li><a href="#gallery" class="hover:text-[var(--accent)] transition-colors">Galería</a></li>
+            <li><a href="#testimonials" class="hover:text-[var(--accent)] transition-colors">Testimonios</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold mb-4">Contacto</h4>
+          <p class="text-white/65 text-sm mb-2">
+            <strong>Ubicación:</strong> 628 Main Street, Laurel, MD 20707
+          </p>
+          <p class="text-white/65 text-sm mb-2">
+            <strong>Teléfono:</strong> (240) 431-9570
+          </p>
+          <p class="text-white/65 text-sm">
+            <strong>Email:</strong> info@adonayinstitute.com
+          </p>
+        </div>
+      </div>
+
+      <div class="border-t border-white/10 pt-8 text-center text-white/50 text-sm">
+        <p>&copy; 2026 Instituto Internacional de Cosmetología Adonay. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CHAT WIDGET -->
+  <button id="chatButton" class="chat-button">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+  </button>
+
+  <div id="chatWidget" class="chat-widget hidden">
+    <div class="chat-header">
+      <div>
+        <h3 class="lang-text" data-es="Adonay Beauty School" data-en="Adonay Beauty School">Adonay Beauty School</h3>
+        <p class="lang-text" data-es="Estamos aquí para ayudarte" data-en="We are here to help">Estamos aquí para ayudarte</p>
+      </div>
+      <button id="chatClose" class="chat-close">×</button>
+    </div>
+    <div class="chat-body" id="chatBody">
+      <div class="chat-message bot">
+        <div class="chat-bubble lang-text" data-es="¡Hola! ¿Cómo podemos ayudarte hoy?" data-en="Hello! How can we help you today?">¡Hola! ¿Cómo podemos ayudarte hoy?</div>
+      </div>
+    </div>
+    <div class="chat-footer">
+      <input type="text" id="chatInput" class="chat-input" placeholder="Escribe tu mensaje...">
+      <button id="chatSend" class="chat-send">Enviar</button>
+    </div>
+  </div>
+
+  <script>
+    // Language Translation Dictionary
+    const translations = {
+      es: {
+        'Inscribirse Ahora': 'Inscribirse Ahora',
+        'Estamos aquí para ayudarte': 'Estamos aquí para ayudarte',
+        'Escriba su mensaje...': 'Escribe tu mensaje...',
+        'Inicio': 'Inicio',
+        'Programas': 'Programas',
+        'Nosotros': 'Nosotros',
+        'Galería': 'Galería',
+        'Testimonios': 'Testimonios',
+        'Contacto': 'Contacto',
+      },
+      en: {
+        'Inscribirse Ahora': 'Enroll Now',
+        'Estamos aquí para ayudarte': 'We are here to help',
+        'Escribe tu mensaje...': 'Type your message...',
+        'Inicio': 'Home',
+        'Programas': 'Programs',
+        'Nosotros': 'About Us',
+        'Galería': 'Gallery',
+        'Testimonios': 'Testimonials',
+        'Contacto': 'Contact',
+        '¡Hola! ¿Cómo podemos ayudarte hoy?': 'Hello! How can we help you today?',
+        'Adonay Beauty School': 'Adonay Beauty School',
+      }
+    };
+
+    // Current language
+    let currentLang = 'es';
+
+    // Language Toggle
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentLang = btn.getAttribute('data-lang');
+
+        // Update active button
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Update page language
+        updatePageLanguage(currentLang);
+      });
+    });
+
+    function updatePageLanguage(lang) {
+      document.querySelectorAll('.lang-text').forEach(elem => {
+        const text = elem.getAttribute(`data-${lang}`);
+        if (text) {
+          elem.textContent = text;
+        }
+      });
+
+      // Update chat input placeholder
+      const chatInput = document.getElementById('chatInput');
+      chatInput.placeholder = lang === 'es' ? 'Escribe tu mensaje...' : 'Type your message...';
+
+      // Update HTML lang attribute
+      document.getElementById('htmlElement').lang = lang;
+    }
+
+    // Chat Widget Functions
+    const chatButton = document.getElementById('chatButton');
+    const chatWidget = document.getElementById('chatWidget');
+    const chatClose = document.getElementById('chatClose');
+    const chatSend = document.getElementById('chatSend');
+    const chatInput = document.getElementById('chatInput');
+    const chatBody = document.getElementById('chatBody');
+
+    chatButton.addEventListener('click', () => {
+      chatWidget.classList.remove('hidden');
+      chatButton.classList.add('hidden');
+      chatInput.focus();
+    });
+
+    chatClose.addEventListener('click', () => {
+      chatWidget.classList.add('hidden');
+      chatButton.classList.remove('hidden');
+    });
+
+    chatSend.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+
+    function sendMessage() {
+      const message = chatInput.value.trim();
+      if (!message) return;
+
+      // Add user message
+      const userMsg = document.createElement('div');
+      userMsg.className = 'chat-message user';
+      userMsg.innerHTML = `<div class="chat-bubble">${message}</div>`;
+      chatBody.appendChild(userMsg);
+
+      chatInput.value = '';
+
+      // Auto-response from bot
+      setTimeout(() => {
+        const botMsg = document.createElement('div');
+        botMsg.className = 'chat-message bot';
+        const responses = {
+          es: [
+            'Gracias por tu mensaje. Un asesor se comunicará pronto.',
+            '¿Te gustaría conocer más sobre nuestros programas?',
+            'Nos encantaría ayudarte a iniciar tu carrera en belleza.',
+            'Para solicitudes de información, por favor completa el formulario de abajo.'
+          ],
+          en: [
+            'Thank you for your message. An advisor will contact you soon.',
+            'Would you like to learn more about our programs?',
+            'We would love to help you start your beauty career.',
+            'For information requests, please complete the form below.'
+          ]
+        };
+        const randomResponse = responses[currentLang][Math.floor(Math.random() * responses[currentLang].length)];
+        botMsg.innerHTML = `<div class="chat-bubble">${randomResponse}</div>`;
+        chatBody.appendChild(botMsg);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, 500);
+
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when link is clicked
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Form submission
+    const enrollmentForm = document.getElementById('enrollment-form');
+    enrollmentForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Obtener valores del formulario
+      const program = document.getElementById('program').value;
+      const name = document.getElementById('name').value;
+      const address = document.getElementById('address').value;
+      const ssn = document.getElementById('ssn').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const accept = document.getElementById('accept').checked;
+
+      // Validar que todos los campos estén llenos
+      if (!program || !name || !address || !ssn || !email || !phone || !accept) {
+        alert('Por favor, completa todos los campos obligatorios.');
+        return;
+      }
+
+      // Validar NSS/ITIN format
+      const ssnRegex = /^\d{3}-\d{2}-\d{4}$/;
+      if (!ssnRegex.test(ssn)) {
+        alert('Por favor, ingresa el NSS o ITIN en formato: XXX-XX-XXXX');
+        return;
+      }
+
+      // Mostrar mensaje de confirmación
+      const programName = document.getElementById('program').options[document.getElementById('program').selectedIndex].text;
+      alert(`¡Gracias ${name}!\\n\\nTu pre-registro para ${programName} ha sido recibido.\\n\\n1. Por favor, realiza el pago de aplicación de $150 USD a través de Zelle\\n2. Nos pondremos en contacto en 24 horas para confirmar tu inscripción\\n\\nCorreo: ${email}\\nTeléfono: ${phone}`);
+
+      enrollmentForm.reset();
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
