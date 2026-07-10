@@ -1,0 +1,49 @@
+{
+  "estudiantes": [
+    {
+      "id": "STU001",
+      "nombre": "Noemi Romero",
+      "email": "noemi@example.com",
+      "telefono": "(240) 555-1234",
+      "fecha_inscripcion": "2026-01-15",
+      "estado": "active",
+      "programa": "Cosmetology",
+      "horas_requeridas": 1200,
+      "horas_completadas": 26.5,
+      "porcentaje": 2.2,
+      "instructor_principal": "Maria Garcia",
+      "avatar": "https://ui-avatars.com/api/?name=Noemi+Romero",
+      "nss": "123-45-6789"
+    },
+    {
+      "id": "STU002",
+      "nombre": "Maria Garcia",
+      "email": "maria@example.com",
+      "telefono": "(240) 555-2345",
+      "fecha_inscripcion": "2026-01-20",
+      "estado": "active",
+      "programa": "Esthetician Specialized in Makeup",
+      "horas_requeridas": 600,
+      "horas_completadas": 11,
+      "porcentaje": 1.8,
+      "instructor_principal": "Elena Rodriguez",
+      "avatar": "https://ui-avatars.com/api/?name=Maria+Garcia",
+      "nss": "234-56-7890"
+    },
+    {
+      "id": "STU003",
+      "nombre": "Jessica Williams",
+      "email": "jessica@example.com",
+      "telefono": "(240) 555-3456",
+      "fecha_inscripcion": "2026-02-10",
+      "estado": "active",
+      "programa": "Nail Technician",
+      "horas_requeridas": 400,
+      "horas_completadas": 8.5,
+      "porcentaje": 2.1,
+      "instructor_principal": "Carmen Lopez",
+      "avatar": "https://ui-avatars.com/api/?name=Jessica+Williams",
+      "nss": "345-67-8901"
+    }
+  ]
+}

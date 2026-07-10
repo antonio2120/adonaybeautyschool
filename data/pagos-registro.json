@@ -1,0 +1,148 @@
+{
+  "pagos": [
+    {
+      "id": "PAY001",
+      "id_estudiante": "STU001",
+      "concepto": "Pago Total Programa Cosmetology",
+      "cantidad": 12000,
+      "monto": 12000,
+      "metodo": "Zelle",
+      "referencia": "APP-2026-001",
+      "estado": "completado",
+      "fecha": "2026-01-15",
+      "notas": "Pago de inscripción completo"
+    },
+    {
+      "id": "PAY002",
+      "id_estudiante": "STU001",
+      "concepto": "Mensualidad Enero",
+      "cantidad": 1000,
+      "monto": 1000,
+      "metodo": "Zelle",
+      "referencia": "",
+      "estado": "completado",
+      "fecha": "2026-01-20",
+      "notas": ""
+    },
+    {
+      "id": "PAY003",
+      "id_estudiante": "STU001",
+      "concepto": "Mensualidad Febrero",
+      "cantidad": 1000,
+      "monto": 1000,
+      "metodo": "Tarjeta",
+      "referencia": "",
+      "estado": "completado",
+      "fecha": "2026-02-01",
+      "notas": ""
+    },
+    {
+      "id": "PAY004",
+      "id_estudiante": "STU002",
+      "concepto": "Pago Total Programa Esthetician",
+      "cantidad": 6000,
+      "monto": 6000,
+      "metodo": "Zelle",
+      "referencia": "APP-2026-002",
+      "estado": "completado",
+      "fecha": "2026-01-20",
+      "notas": "Pago de inscripción completo"
+    },
+    {
+      "id": "PAY005",
+      "id_estudiante": "STU002",
+      "concepto": "Mensualidad Febrero",
+      "cantidad": 1000,
+      "monto": 1000,
+      "metodo": "Efectivo",
+      "referencia": "",
+      "estado": "completado",
+      "fecha": "2026-02-05",
+      "notas": ""
+    },
+    {
+      "id": "PAY006",
+      "id_estudiante": "STU003",
+      "concepto": "Pago Parcial Programa Nail Technician",
+      "cantidad": 2000,
+      "monto": 2000,
+      "metodo": "Zelle",
+      "referencia": "APP-2026-003",
+      "estado": "completado",
+      "fecha": "2026-02-10",
+      "notas": "Pago inicial, quedan $2000"
+    },
+    {
+      "id": "PAY007",
+      "id_estudiante": "STU003",
+      "concepto": "Saldo Programa Nail Technician",
+      "cantidad": 2000,
+      "monto": 2000,
+      "metodo": "Tarjeta",
+      "referencia": "",
+      "estado": "completado",
+      "fecha": "2026-03-15",
+      "notas": "Pago final del programa"
+    },
+    {
+      "id": "PAY008",
+      "id_estudiante": "STU001",
+      "concepto": "Pago Aplicación",
+      "cantidad": 150,
+      "monto": 150,
+      "metodo": "Zelle",
+      "referencia": "APP-2026-001",
+      "estado": "completado",
+      "fecha": "2026-01-10",
+      "notas": "Pago de aplicación"
+    },
+    {
+      "id": "PAY009",
+      "id_estudiante": "STU002",
+      "concepto": "Pago Aplicación",
+      "cantidad": 150,
+      "monto": 150,
+      "metodo": "Zelle",
+      "referencia": "APP-2026-002",
+      "estado": "completado",
+      "fecha": "2026-01-12",
+      "notas": "Pago de aplicación"
+    },
+    {
+      "id": "PAY010",
+      "id_estudiante": "STU003",
+      "concepto": "Pago Aplicación",
+      "cantidad": 150,
+      "monto": 150,
+      "metodo": "Zelle",
+      "referencia": "APP-2026-003",
+      "estado": "completado",
+      "fecha": "2026-02-01",
+      "notas": "Pago de aplicación"
+    },
+    {
+      "id": "PAY011",
+      "id_estudiante": "STU001",
+      "concepto": "Mensualidad Marzo",
+      "cantidad": 1000,
+      "monto": 1000,
+      "metodo": "Zelle",
+      "referencia": "",
+      "estado": "completado",
+      "fecha": "2026-03-01",
+      "notas": ""
+    },
+    {
+      "id": "PAY012",
+      "id_estudiante": "STU002",
+      "concepto": "Mensualidad Marzo",
+      "cantidad": 1000,
+      "monto": 1000,
+      "metodo": "Zelle",
+      "referencia": "",
+      "estado": "completado",
+      "fecha": "2026-03-01",
+      "notas": ""
+    }
+  ]
+}

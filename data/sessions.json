@@ -1,0 +1,79 @@
+{
+  "sessions": [
+    {
+      "id": "SES001",
+      "name": "Cosmetology Basics - Monday",
+      "course": "Cosmetology",
+      "startDate": "2024-04-15",
+      "endDate": "2024-05-15",
+      "schedule": "Monday, Wednesday, Friday",
+      "startTime": "09:00",
+      "endTime": "12:00",
+      "capacity": 15,
+      "enrolled": 12,
+      "instructor": "Jennifer Martinez",
+      "location": "Room A-101",
+      "description": "Learn fundamental cosmetology techniques and beauty concepts."
+    },
+    {
+      "id": "SES002",
+      "name": "Advanced Hair Styling",
+      "course": "Hair Styling",
+      "startDate": "2024-04-20",
+      "endDate": "2024-06-20",
+      "schedule": "Tuesday, Thursday",
+      "startTime": "13:00",
+      "endTime": "16:00",
+      "capacity": 10,
+      "enrolled": 8,
+      "instructor": "Michael Chen",
+      "location": "Room B-205",
+      "description": "Advanced techniques for hair cutting, coloring, and styling."
+    },
+    {
+      "id": "SES003",
+      "name": "Nail Art Fundamentals",
+      "course": "Nail Technician",
+      "startDate": "2024-04-22",
+      "endDate": "2024-05-22",
+      "schedule": "Monday, Wednesday",
+      "startTime": "10:00",
+      "endTime": "12:30",
+      "capacity": 12,
+      "enrolled": 11,
+      "instructor": "Sophia Patel",
+      "location": "Room C-310",
+      "description": "Master nail care, design, and application techniques."
+    },
+    {
+      "id": "SES004",
+      "name": "Esthetic Skincare",
+      "course": "Esthetician",
+      "startDate": "2024-05-01",
+      "endDate": "2024-06-30",
+      "schedule": "Tuesday, Thursday, Saturday",
+      "startTime": "09:00",
+      "endTime": "11:30",
+      "capacity": 14,
+      "enrolled": 10,
+      "instructor": "Amanda Brooks",
+      "location": "Room D-120",
+      "description": "Comprehensive skincare analysis, treatment, and product knowledge."
+    },
+    {
+      "id": "SES005",
+      "name": "Professional Makeup",
+      "course": "Makeup Artist",
+      "startDate": "2024-04-25",
+      "endDate": "2024-05-25",
+      "schedule": "Saturday, Sunday",
+      "startTime": "14:00",
+      "endTime": "17:30",
+      "capacity": 8,
+      "enrolled": 6,
+      "instructor": "Rachel Kim",
+      "location": "Room E-405",
+      "description": "Professional makeup application for weddings, events, and theatre."
+    }
+  ]
+}

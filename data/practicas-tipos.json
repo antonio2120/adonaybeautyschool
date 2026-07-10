@@ -1,0 +1,180 @@
+{
+  "tipos": [
+    {
+      "id": "CUT001",
+      "nombre": "Corte Recto 0°",
+      "categoria": "Corte de Cabello",
+      "descripcion": "Corte básico a 0 grados sin elevación",
+      "horas_standar": 2,
+      "activa": true
+    },
+    {
+      "id": "CUT002",
+      "nombre": "Corte Melena",
+      "categoria": "Corte de Cabello",
+      "descripcion": "Corte de cabello tipo melena",
+      "horas_standar": 2,
+      "activa": true
+    },
+    {
+      "id": "CUT003",
+      "nombre": "Corte en V",
+      "categoria": "Corte de Cabello",
+      "descripcion": "Corte con forma de V",
+      "horas_standar": 2,
+      "activa": true
+    },
+    {
+      "id": "CUT004",
+      "nombre": "Corte Escalonado Bob Corto 45°",
+      "categoria": "Corte de Cabello",
+      "descripcion": "Corte graduado con elevación de 45 grados, largo corto",
+      "horas_standar": 2.5,
+      "activa": true
+    },
+    {
+      "id": "CUT005",
+      "nombre": "Corte Escalonado Bob Largo 45°",
+      "categoria": "Corte de Cabello",
+      "descripcion": "Corte graduado con elevación de 45 grados, largo largo",
+      "horas_standar": 2.5,
+      "activa": true
+    },
+    {
+      "id": "CUT006",
+      "nombre": "Corte Escalonado Uniforme con Tijera y Navaja",
+      "categoria": "Corte de Cabello",
+      "descripcion": "Corte uniforme con todas las elevaciones usando tijera y navaja",
+      "horas_standar": 3,
+      "activa": true
+    },
+    {
+      "id": "CUT007",
+      "nombre": "Corte en Capas 180° con Tijera",
+      "categoria": "Corte de Cabello",
+      "descripcion": "Corte de capas largas con elevación de 180 grados",
+      "horas_standar": 3,
+      "activa": true
+    },
+    {
+      "id": "CUT008",
+      "nombre": "Corte Mariposa",
+      "categoria": "Corte de Cabello",
+      "descripcion": "Corte en forma de mariposa",
+      "horas_standar": 2.5,
+      "activa": true
+    },
+    {
+      "id": "CUT009",
+      "nombre": "Corte Básico con Máquina (Hombres)",
+      "categoria": "Corte de Cabello",
+      "descripcion": "Corte básico de clipper para hombres",
+      "horas_standar": 1.5,
+      "activa": true
+    },
+    {
+      "id": "CUT010",
+      "nombre": "Flequillo",
+      "categoria": "Corte de Cabello",
+      "descripcion": "Corte de flequillo o bangs",
+      "horas_standar": 1,
+      "activa": true
+    },
+    {
+      "id": "STYLE001",
+      "nombre": "Planchado",
+      "categoria": "Peluquería",
+      "descripcion": "Alisado de cabello con plancha",
+      "horas_standar": 1.5,
+      "activa": true
+    },
+    {
+      "id": "STYLE002",
+      "nombre": "Ondulación Térmica con Plancha",
+      "categoria": "Peluquería",
+      "descripcion": "Ondulación térmica usando plancha",
+      "horas_standar": 2,
+      "activa": true
+    },
+    {
+      "id": "CHEM001",
+      "nombre": "Prueba Preliminar de Rizos",
+      "categoria": "Servicios de Textura Química",
+      "descripcion": "Prueba previa antes de aplicar permanente",
+      "horas_standar": 0.5,
+      "activa": true
+    },
+    {
+      "id": "CHEM002",
+      "nombre": "Permanente Básico",
+      "categoria": "Servicios de Textura Química",
+      "descripcion": "Permanente básico estándar",
+      "horas_standar": 3,
+      "activa": true
+    },
+    {
+      "id": "CHEM003",
+      "nombre": "Permanente Curvatura",
+      "categoria": "Servicios de Textura Química",
+      "descripcion": "Permanente con curvatura",
+      "horas_standar": 3,
+      "activa": true
+    },
+    {
+      "id": "CHEM004",
+      "nombre": "Permanente Enladrillado",
+      "categoria": "Servicios de Textura Química",
+      "descripcion": "Permanente con técnica enladrillado",
+      "horas_standar": 3.5,
+      "activa": true
+    },
+    {
+      "id": "CHEM005",
+      "nombre": "Permanente con Divisiones en Zig Zag",
+      "categoria": "Servicios de Textura Química",
+      "descripcion": "Permanente con divisiones en patrón zigzag",
+      "horas_standar": 3.5,
+      "activa": true
+    },
+    {
+      "id": "CHEM006",
+      "nombre": "Permanente con Bigudí Doble",
+      "categoria": "Servicios de Textura Química",
+      "descripcion": "Permanente piggyback con bigudíes dobles",
+      "horas_standar": 3.5,
+      "activa": true
+    },
+    {
+      "id": "CHEM007",
+      "nombre": "Permanente Espiral",
+      "categoria": "Servicios de Textura Química",
+      "descripcion": "Permanente espiral",
+      "horas_standar": 4,
+      "activa": true
+    },
+    {
+      "id": "CHEM008",
+      "nombre": "Alisador de Hidróxido en Cabello Virgen",
+      "categoria": "Servicios de Textura Química",
+      "descripcion": "Aplicación de relajante de hidróxido en cabello sin tratar previamente",
+      "horas_standar": 3.5,
+      "activa": true
+    },
+    {
+      "id": "CHEM009",
+      "nombre": "Queratina",
+      "categoria": "Servicios de Textura Química",
+      "descripcion": "Tratamiento de queratina",
+      "horas_standar": 2,
+      "activa": true
+    },
+    {
+      "id": "CHEM010",
+      "nombre": "Coloración Permanente",
+      "categoria": "Servicios de Textura Química",
+      "descripcion": "Aplicación de color permanente",
+      "horas_standar": 2.5,
+      "activa": true
+    }
+  ]
+}

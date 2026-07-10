@@ -1,0 +1,59 @@
+{
+  "payments": [
+    {
+      "id": "PAY001",
+      "studentId": "STU001",
+      "studentName": "Sarah Johnson",
+      "amount": 1500.00,
+      "course": "Cosmetology",
+      "date": "2024-04-01",
+      "status": "completed",
+      "method": "credit_card",
+      "transactionId": "TXN-2024-001"
+    },
+    {
+      "id": "PAY002",
+      "studentId": "STU002",
+      "studentName": "Maria Garcia",
+      "amount": 1200.00,
+      "course": "Esthetician",
+      "date": "2024-04-02",
+      "status": "completed",
+      "method": "bank_transfer",
+      "transactionId": "TXN-2024-002"
+    },
+    {
+      "id": "PAY003",
+      "studentId": "STU003",
+      "studentName": "Emma Davis",
+      "amount": 750.00,
+      "course": "Hair Styling",
+      "date": "2024-04-03",
+      "status": "completed",
+      "method": "credit_card",
+      "transactionId": "TXN-2024-003"
+    },
+    {
+      "id": "PAY004",
+      "studentId": "STU004",
+      "studentName": "Jessica Williams",
+      "amount": 900.00,
+      "course": "Makeup Artist",
+      "date": "2024-04-05",
+      "status": "pending",
+      "method": "credit_card",
+      "transactionId": "TXN-2024-004"
+    },
+    {
+      "id": "PAY005",
+      "studentId": "STU001",
+      "studentName": "Sarah Johnson",
+      "amount": 300.00,
+      "course": "Nail Technician",
+      "date": "2024-04-08",
+      "status": "completed",
+      "method": "credit_card",
+      "transactionId": "TXN-2024-005"
+    }
+  ]
+}

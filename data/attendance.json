@@ -1,0 +1,104 @@
+{
+  "attendance": [
+    {
+      "id": "ATT001",
+      "studentId": "STU001",
+      "studentName": "Sarah Johnson",
+      "date": "2024-04-10",
+      "checkInTime": "09:00",
+      "checkOutTime": "17:30",
+      "hoursLogged": 8.5,
+      "notes": ""
+    },
+    {
+      "id": "ATT002",
+      "studentId": "STU002",
+      "studentName": "Maria Garcia",
+      "date": "2024-04-10",
+      "checkInTime": "09:15",
+      "checkOutTime": "17:45",
+      "hoursLogged": 8.5,
+      "notes": "Late by 15 minutes"
+    },
+    {
+      "id": "ATT003",
+      "studentId": "STU003",
+      "studentName": "Emma Davis",
+      "date": "2024-04-10",
+      "checkInTime": "09:00",
+      "checkOutTime": "12:30",
+      "hoursLogged": 3.5,
+      "notes": "Left early for appointment"
+    },
+    {
+      "id": "ATT004",
+      "studentId": "STU004",
+      "studentName": "Jessica Williams",
+      "date": "2024-04-10",
+      "checkInTime": "08:45",
+      "checkOutTime": "17:30",
+      "hoursLogged": 8.75,
+      "notes": ""
+    },
+    {
+      "id": "ATT005",
+      "studentId": "STU001",
+      "studentName": "Sarah Johnson",
+      "date": "2024-04-09",
+      "checkInTime": "09:00",
+      "checkOutTime": "17:30",
+      "hoursLogged": 8.5,
+      "notes": ""
+    },
+    {
+      "id": "ATT006",
+      "studentId": "STU002",
+      "studentName": "Maria Garcia",
+      "date": "2024-04-09",
+      "checkInTime": "09:00",
+      "checkOutTime": "17:30",
+      "hoursLogged": 8.5,
+      "notes": ""
+    },
+    {
+      "id": "ATT007",
+      "studentId": "STU003",
+      "studentName": "Emma Davis",
+      "date": "2024-04-09",
+      "checkInTime": "09:30",
+      "checkOutTime": "17:30",
+      "hoursLogged": 8.0,
+      "notes": "Late arrival"
+    },
+    {
+      "id": "ATT008",
+      "studentId": "STU004",
+      "studentName": "Jessica Williams",
+      "date": "2024-04-09",
+      "checkInTime": "09:00",
+      "checkOutTime": "17:30",
+      "hoursLogged": 8.5,
+      "notes": ""
+    },
+    {
+      "id": "ATT009",
+      "studentId": "STU001",
+      "studentName": "Sarah Johnson",
+      "date": "2024-04-08",
+      "checkInTime": "09:00",
+      "checkOutTime": "17:30",
+      "hoursLogged": 8.5,
+      "notes": ""
+    },
+    {
+      "id": "ATT010",
+      "studentId": "STU005",
+      "studentName": "Lisa Anderson",
+      "date": "2024-04-08",
+      "checkInTime": "09:00",
+      "checkOutTime": "17:30",
+      "hoursLogged": 8.5,
+      "notes": ""
+    }
+  ]
+}
