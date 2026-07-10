@@ -1,0 +1,28 @@
+{
+  "name": "adonais-beauty-school",
+  "version": "1.0.0",
+  "description": "Management system for Adonis Beauty School - Check-in/Check-out, Reports, Registration, and Payments",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npm run css:watch & open index.html",
+    "build": "npm run css:build",
+    "css:watch": "tailwindcss -i ./css/input.css -o ./css/output.css --watch",
+    "css:build": "tailwindcss -i ./css/input.css -o ./css/output.css --minify"
+  },
+  "keywords": [
+    "beauty-school",
+    "management",
+    "attendance",
+    "registration"
+  ],
+  "author": "Adonis Beauty School",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.4.1"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.0"
+  }
+}
