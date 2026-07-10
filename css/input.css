@@ -1,0 +1,259 @@
+/**
+ * Adonis Beauty School - Custom Styles (Redesigned)
+ *
+ * Design: Elegant, Modern Minimalist with Pastel Pink Theme
+ * Fonts: Serif headings (Playfair Display), Sans-serif body (Lato)
+ * Colors: Pastel pink, warm rose, gold accents, white backgrounds
+ *
+ * Note: For development, Tailwind CSS is loaded via CDN in index.html
+ * For production, compile with: npm run css:build
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Lato:wght@300;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-gray-800;
+    font-family: 'Lato', system-ui, sans-serif;
+  }
+
+  h1 {
+    @apply text-5xl font-serif font-bold text-primary-900 tracking-tight;
+  }
+
+  h2 {
+    @apply text-4xl font-serif font-bold text-primary-800;
+  }
+
+  h3 {
+    @apply text-2xl font-serif font-semibold text-primary-700;
+  }
+
+  h4 {
+    @apply text-xl font-serif font-semibold text-primary-600;
+  }
+
+  p {
+    @apply text-gray-700 leading-relaxed;
+  }
+
+  button {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  input, textarea, select {
+    @apply transition-colors duration-300;
+  }
+}
+
+@layer components {
+  /* Primary Button - Elegant Pink */
+  .btn-primary {
+    @apply px-6 py-3 bg-primary-600 text-white rounded-sm hover:bg-primary-700 active:bg-primary-800 font-medium transition-all shadow-sm hover:shadow-md;
+  }
+
+  /* Secondary Button - Rose/Taupe */
+  .btn-secondary {
+    @apply px-6 py-3 bg-secondary-600 text-white rounded-sm hover:bg-secondary-700 active:bg-secondary-800 font-medium transition-all shadow-sm hover:shadow-md;
+  }
+
+  /* Outline Button - Pink Border */
+  .btn-outline {
+    @apply px-6 py-3 border-2 border-primary-500 text-primary-600 rounded-sm hover:bg-primary-50 font-medium transition-all;
+  }
+
+  .btn-small {
+    @apply px-3 py-1 text-sm font-medium rounded-sm transition-all;
+  }
+
+  /* Card - Clean White with Light Shadow */
+  .card {
+    @apply bg-white rounded-sm shadow-sm p-8 hover:shadow-md transition-shadow border border-primary-50;
+  }
+
+  .card-compact {
+    @apply bg-white rounded-sm shadow-sm p-4 border border-primary-50;
+  }
+
+  /* Form Inputs - Minimal with Pink Focus */
+  .form-input {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-sm focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all bg-white;
+  }
+
+  .form-label {
+    @apply block text-sm font-semibold text-gray-700 mb-2 font-serif;
+  }
+
+  /* Table Styling - Elegant with Decorative Lines */
+  .table-row {
+    @apply border-b border-primary-100 hover:bg-primary-50 transition-colors;
+  }
+
+  /* Badges - Elegant and Minimal */
+  .badge {
+    @apply inline-block px-4 py-1 rounded-full text-xs font-semibold tracking-wide;
+  }
+
+  .badge-success {
+    @apply badge bg-green-100 text-green-700;
+  }
+
+  .badge-warning {
+    @apply badge bg-yellow-100 text-yellow-700;
+  }
+
+  .badge-danger {
+    @apply badge bg-red-100 text-red-700;
+  }
+
+  .badge-info {
+    @apply badge bg-blue-100 text-blue-700;
+  }
+
+  /* Modal - Elegant with Pink Accents */
+  .modal {
+    @apply fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50 hidden;
+  }
+
+  .modal.active {
+    @apply flex;
+  }
+
+  .modal-content {
+    @apply bg-white rounded-sm shadow-xl max-w-md w-full mx-4 border-t-4 border-primary-600;
+  }
+
+  /* Alerts - Soft Colors */
+  .alert {
+    @apply px-4 py-3 rounded-sm border-l-4 text-sm;
+  }
+
+  .alert-success {
+    @apply alert border-green-400 bg-green-50 text-green-800;
+  }
+
+  .alert-error {
+    @apply alert border-red-400 bg-red-50 text-red-800;
+  }
+
+  .alert-warning {
+    @apply alert border-yellow-400 bg-yellow-50 text-yellow-800;
+  }
+
+  .alert-info {
+    @apply alert border-blue-400 bg-blue-50 text-blue-800;
+  }
+
+  /* Decorative Line Dividers */
+  .divider {
+    @apply h-px bg-gradient-to-r from-transparent via-primary-200 to-transparent my-6;
+  }
+
+  .divider-pink {
+    @apply h-1 bg-primary-300 my-4;
+  }
+
+  /* Section Headers with Decorative Line */
+  .section-header {
+    @apply relative pb-4 mb-6 flex items-center gap-3;
+  }
+
+  .section-header::after {
+    @apply content-[''] absolute bottom-0 left-0 h-1 w-12 bg-primary-400;
+  }
+
+  /* Elegant Card with Pink Border Top */
+  .card-featured {
+    @apply card border-t-4 border-primary-600;
+  }
+}
+
+/* Hero Section - Elegant Gradient */
+.hero {
+  background: linear-gradient(135deg, #fdf7f5 0%, #f5ece9 100%);
+}
+
+.hero-accent {
+  @apply border-l-4 border-primary-600 pl-6;
+}
+
+/* Decorative Elements */
+.ornament {
+  @apply text-primary-300 text-4xl opacity-20;
+}
+
+.flourish-top::before {
+  @apply content-['✨'] absolute top-2 right-4 text-primary-200 text-xl;
+}
+
+/* Animation classes */
+@layer utilities {
+  .animate-slideIn {
+    animation: slideIn 0.4s ease-out;
+  }
+
+  .animate-fadeInUp {
+    animation: fadeInUp 0.5s ease-out;
+  }
+
+  .animate-pulse-subtle {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes glow {
+    0%, 100% {
+      box-shadow: 0 0 5px rgba(232, 138, 212, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(232, 138, 212, 0.5);
+    }
+  }
+
+  /* Text Utilities */
+  .text-elegant {
+    @apply font-serif text-primary-900 font-semibold;
+  }
+
+  .text-accent {
+    @apply text-accent-600 font-semibold;
+  }
+
+  /* Border Utilities */
+  .border-elegant {
+    @apply border-2 border-primary-200;
+  }
+
+  .border-accent {
+    @apply border-2 border-accent-400;
+  }
+}
