@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adonis Beauty School - Management System</title>
+  <meta name="description" content="Comprehensive management system for Adonis Beauty School">
+
+  <!-- Tailwind CSS (via CDN for development) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#f0f4f9',
+              100: '#e1e9f3',
+              200: '#c3d3e8',
+              300: '#a5bddc',
+              400: '#2B5A9D',
+              500: '#2B5A9D',
+              600: '#254a7e',
+              700: '#1f3a5f',
+              800: '#192a40',
+              900: '#0A1628',
+            },
+            secondary: {
+              50: '#e8fbf7',
+              100: '#d1f7f0',
+              200: '#a3efe1',
+              300: '#75e7d1',
+              400: '#00BFA5',
+              500: '#00BFA5',
+              600: '#00A896',
+              700: '#008F80',
+              800: '#006b63',
+              900: '#004d42',
+            },
+            accent: {
+              50: '#FAFBFF',
+              100: '#F0F4F8',
+              200: '#E8F7F5',
+              300: '#D1F7F0',
+              400: '#5A6A80',
+              500: '#0E1C2F',
+              600: '#09111F',
+              700: '#060A14',
+              800: '#030508',
+              900: '#000000',
+            },
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Lato', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Lato:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600;1,700&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+    :root {
+      --primary: #2B5A9D;
+      --accent: #00BFA5;
+      --dark: #0A1628;
+      --dark-text: #0E1C2F;
+      --light-bg: #FAFBFF;
+      --muted: #5A6A80;
+    }
+
+    * {
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* HERO STYLES FROM LANDING PAGE */
+    .badge-mint {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      background: rgba(0, 191, 165, 0.15);
+      border: 1px solid rgba(0, 191, 165, 0.35);
+      border-radius: 9999px;
+      padding: 0.375rem 1rem;
+    }
+
+    .badge-mint-text {
+      color: var(--accent);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(0, 191, 165, 0.3); }
+      50% { box-shadow: 0 0 40px rgba(0, 191, 165, 0.6); }
+    }
+
+    @keyframes heroFloat {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(5deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+
+    @keyframes iconBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .animate-glow-pulse {
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+
+    .animate-hero-float {
+      animation: heroFloat 6s ease-in-out infinite;
+    }
+
+    .icon-bounce:hover {
+      animation: iconBounce 0.6s ease-in-out;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: white;
+      padding: 1rem 2.25rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      box-shadow: 0 10px 25px rgba(0, 191, 165, 0.25);
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #00A896;
+      transform: scale(1.03);
+    }
+
+    /* Dashboard Welcome Section with Background Image */
+    .dashboard-welcome {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dashboard-welcome::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--dark) 0%, var(--dark) 50%, rgba(10, 22, 40, 0.3) 85%, transparent 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .dashboard-welcome::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 0%, var(--dark) 95%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .dashboard-welcome > div {
+      position: relative;
+      z-index: 2;
+    }
+
+    @import url('css/input.css');
+  </style>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%232B5A9D'/><text x='50' y='60' font-size='60' font-weight='bold' text-anchor='middle' fill='%2300BFA5' font-family='serif'>A</text></svg>">
+</head>
+<body class="bg-gray-50 font-sans">
+  <div class="flex h-screen flex-col md:flex-row">
+
+    <!-- Mobile Menu Toggle -->
+    <button id="menu-toggle" class="md:hidden fixed top-4 left-4 z-50 p-2 bg-primary-600 text-white rounded-lg">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="fixed md:relative w-64 bg-gradient-to-b from-primary-800 to-primary-900 text-white h-screen overflow-y-auto transition-transform transform translate-x-full md:translate-x-0 md:flex-shrink-0 z-40">
+
+      <!-- Logo -->
+      <div class="p-6 border-b border-primary-600">
+        <div class="flex items-center gap-3 mb-1">
+          <img src="assets/logo.png" alt="Adonay Beauty School" class="w-14 h-14 object-cover rounded">
+          <div>
+            <h1 class="text-base font-serif font-bold text-white leading-tight">Adonay</h1>
+            <p class="text-xs text-secondary-300 font-sans">Beauty School</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Menu -->
+      <nav class="p-4">
+        <div class="space-y-2">
+          <!-- Dashboard -->
+          <a href="#" data-nav="dashboard" class="nav-link px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-3m2 3l2-3m2 3l2-3m2-1a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span>Dashboard</span>
+          </a>
+
+          <!-- Académico -->
+          <div class="pt-2">
+            <p class="text-xs uppercase text-secondary-300 px-4 font-semibold tracking-wide">Académico</p>
+            <a href="#" data-nav="inscripcion" class="nav-link px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+              </svg>
+              <span>Inscripción</span>
+            </a>
+            <a href="#" data-nav="registro-qr" class="nav-link px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+              </svg>
+              <span>Entrada/Salida QR</span>
+            </a>
+            <a href="#" data-nav="registro-diario" class="nav-link px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+              </svg>
+              <span>Registro de Prácticas</span>
+            </a>
+            <a href="#" data-nav="mis-practicas" class="nav-link px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+              <span>Prácticas registradas</span>
+            </a>
+          </div>
+
+          <!-- Gestión -->
+          <div class="pt-2">
+            <p class="text-xs uppercase text-secondary-300 px-4 font-semibold tracking-wide">Gestión</p>
+            <a href="#" data-nav="estudiantes" class="nav-link px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 8.048M12 4.354l4 4.048M12 4.354l-4 4.048"></path>
+              </svg>
+              <span>Estudiantes</span>
+            </a>
+            <a href="#" data-nav="grupos" class="nav-link px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.856-1.487M15 10h.01M11 20h5v-2a3 3 0 00-5.856-1.487M11 10h.01M7 20h5v-2a3 3 0 00-5.856-1.487M7 10h.01"></path>
+              </svg>
+              <span>Grupos</span>
+            </a>
+            <a href="#" data-nav="practicas" class="nav-link px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+              </svg>
+              <span>Prácticas</span>
+            </a>
+            <a href="#" data-nav="reportes" class="nav-link px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+              <span>Reportes</span>
+            </a>
+            <a href="#" data-nav="payments" class="nav-link px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h10m4 0a1 1 0 11-2 0m2 0a1 1 0 10-2 0m-7 4h8a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+              <span>Pagos</span>
+            </a>
+          </div>
+
+          <!-- Admin -->
+          <div class="pt-2">
+            <p class="text-xs uppercase text-secondary-300 px-4 font-semibold tracking-wide">Configuración</p>
+            <a href="#" data-nav="configuracion" class="nav-link px-4 py-3 rounded-lg border-l-4 border-transparent text-primary-100 hover:bg-primary-500 hover:text-white transition-all flex items-center gap-3 mt-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              <span>Configuración</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto pt-16 md:pt-0">
+      <!-- Top Bar -->
+      <header class="fixed md:relative top-0 left-0 right-0 md:left-0 bg-white border-b border-gray-200 px-6 py-4 md:py-6 z-30 flex items-center justify-between">
+        <div class="flex-1 md:flex-none">
+          <h2 id="page-title" class="text-2xl font-bold text-gray-800">Dashboard</h2>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="hidden sm:flex items-center gap-2 text-sm text-gray-600">
+            <span id="current-time">--:--</span>
+            <span id="current-date">--</span>
+          </div>
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary-400 to-secondary-400 flex items-center justify-center text-white font-bold cursor-pointer hover:shadow-lg transition-shadow">
+            AD
+          </div>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <div id="page-content" class="p-6 md:p-8">
+        <!-- Content will be loaded dynamically here -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+
+  <!-- Update current time and date -->
+  <script>
+    function updateDateTime() {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+      const dateStr = now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+
+      const timeEl = document.getElementById('current-time');
+      const dateEl = document.getElementById('current-date');
+      if (timeEl) timeEl.textContent = timeStr;
+      if (dateEl) dateEl.textContent = dateStr;
+    }
+
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+  </script>
+</body>
+</html>
